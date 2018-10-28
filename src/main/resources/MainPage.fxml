@@ -62,9 +62,9 @@
                         </ImageView>
                     </children>
                 </Pane>
-                <Button fx:id="read_button" contentDisplay="RIGHT" disable="true" layoutX="92.0" layoutY="93.0" mnemonicParsing="false" onAction="#read_user" prefHeight="57.0" prefWidth="99.0" text="Read my info" />
-                <Button fx:id="update_button" disable="true" layoutX="92.0" layoutY="163.0" mnemonicParsing="false" onAction="#update_user" prefHeight="57.0" prefWidth="99.0" text="Update my info" />
-                <Button fx:id="delete_button" disable="true" layoutX="92.0" layoutY="230.0" mnemonicParsing="false" onAction="#delete_user" prefHeight="57.0" prefWidth="99.0" text="Delete Account" />
+                <Button fx:id="read_button" contentDisplay="RIGHT" disable="true" layoutX="50.0" layoutY="93.0" mnemonicParsing="false" onAction="#read_user" prefHeight="35.0" prefWidth="194.0" text="My Profile" />
+                <Button fx:id="update_button" disable="true" layoutX="50.0" layoutY="163.0" mnemonicParsing="false" onAction="#update_user" prefHeight="35.0" prefWidth="194.0" text="Update Profile" />
+                <Button fx:id="delete_button" disable="true" layoutX="50.0" layoutY="230.0" mnemonicParsing="false" onAction="#delete_user" prefHeight="35.0" prefWidth="194.0" text="Delete Account" />
             </children>
         </AnchorPane>
         <ImageView fitHeight="118.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
