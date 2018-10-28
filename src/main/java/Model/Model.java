@@ -39,11 +39,21 @@ public class Model {
         return database.delete(table_name, id);
     }
 
-    public String read(String table_name, String id) {
+    public String[] read(String table_name, String id) {
         this.user = database.read(table_name, id);
+
         if (user == null)
             return null;
-        return user.toString();
+
+        String[] details = new String[6];
+        details[0] = user.getUsername();
+        details[1] = user.getPassword();
+        details[2] = user.getBDay();
+        details[3] = user.getFName();
+        details[4] = user.getLName();
+        details[5] = user.getCity();
+
+        return details;
     }
 
     public boolean update(String table_name, Object[] data, String id) {
@@ -57,4 +67,10 @@ public class Model {
             return false;
         else return this.user.getPassword().equals(password);
     }
+
+    public String[] readConnectedUser() {
+        String [] details = read("Users", this.user.getUsername());
+        return details;
+    }
 }
+

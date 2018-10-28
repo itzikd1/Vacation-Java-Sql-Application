@@ -3,6 +3,7 @@ package View;
 import Controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,9 +14,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Date;
+import java.util.ResourceBundle;
 
-public class UpdateUser {
+public class UpdateUser implements Initializable {
     public TextField tf_city;
     public TextField tf_lastName;
     public TextField tf_firstName;
@@ -27,6 +30,10 @@ public class UpdateUser {
 
     private Controller controller = Controller.getInstance();
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        tf_city.setPromptText("test");
+    }
     // TODO: 28/10/2018 i want to pull user from DB and put info in the text boxs when initialized Itzik
     // TODO: 28/10/2018 Maybe like this? Itzik
 //    public void start(Stage primaryStage) {
@@ -38,16 +45,17 @@ public class UpdateUser {
 //
 
     public void update_info(ActionEvent actionEvent) {
+        String [] details = controller.readConnectedUser();
         String user, city, ln, fn, password;
         Date date = new Date();
         // TODO: 28/10/2018 i want to pull user from DB and put info in the text boxs when initialized Itzik
         //TODO this does this only after pressing the button update info, i want it to happen before
-        tf_username.setText("test");
-        tf_city.setPromptText("test");
-        tf_firstName.setText("test");
-        tf_lastName.setText("test");
-        tf_city.setText("test");
-        tf_password.setText("test");
+        tf_username.setText(details[0]);
+        tf_city.setPromptText(details[1]);
+        tf_firstName.setText(details[2]);
+        tf_lastName.setText(details[3]);
+        tf_city.setText(details[4]);
+        tf_password.setText(details[5]);
         // TODO: 28/10/2018 now we go to the database and do delete and create, or update Itzik
     }
 
@@ -68,4 +76,6 @@ public class UpdateUser {
             e.printStackTrace();
         }
     }
+
+
 }

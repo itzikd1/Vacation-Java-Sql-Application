@@ -29,8 +29,9 @@ public class Controller {
         return model.delete(table_name, id);
     }
 
-    public String read(String table_name, String id) {
-        return model.read(table_name, id);
+    public String [] read(String table_name, String id) {
+        String [] details = model.read(table_name, id);
+        return details;//TODO SHEKER
     }
 
     public boolean update(String table_name, Object[] data, String id) {
@@ -43,5 +44,10 @@ public class Controller {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public String[] readConnectedUser(){
+        String [] details = model.readConnectedUser();
+        return details;
     }
 }
