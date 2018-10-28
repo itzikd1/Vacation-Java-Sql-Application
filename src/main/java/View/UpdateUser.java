@@ -32,7 +32,13 @@ public class UpdateUser implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tf_city.setPromptText("test");
+        String[] details = controller.readConnectedUser();
+        tf_username.setText(details[0]);
+        tf_password.setText(details[1]);
+//        bd.setValue(details[3]);
+        tf_firstName.setText(details[3]);
+        tf_lastName.setText(details[4]);
+        tf_city.setText(details[5]);
     }
     // TODO: 28/10/2018 i want to pull user from DB and put info in the text boxs when initialized Itzik
     // TODO: 28/10/2018 Maybe like this? Itzik
@@ -63,18 +69,18 @@ public class UpdateUser implements Initializable {
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();
         s.close();
-        try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MainPage.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(true);
-            stage.setTitle("Vacation4U");
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MainPage.fxml"));
+//            Stage stage = new Stage();
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            stage.setResizable(true);
+//            stage.setTitle("Vacation4U");
+//            Scene scene = new Scene(root);
+//            stage.setScene(scene);
+//            stage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
