@@ -22,7 +22,6 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         Controller controller = Controller.getInstance();
-        //test
         //db.connect();
         //dropTable("Users");
         //db.delete("Users","itzik");
