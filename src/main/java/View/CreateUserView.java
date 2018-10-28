@@ -50,9 +50,13 @@ public class CreateUserView {
                 alert.showAndWait();
                 System.out.println("error");
             } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Sucess");
+                alert.setHeaderText("Sign up completed");
+                alert.showAndWait();
                 Stage s = (Stage) BackButton.getScene().getWindow();
                 s.close();
-                ChangeScene();
+//                ChangeScene();
                 System.out.println(user + "has been added");
             }
         } else {
@@ -82,6 +86,6 @@ public class CreateUserView {
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();
         s.close();
-        ChangeScene();
+//        ChangeScene();
     }
 }

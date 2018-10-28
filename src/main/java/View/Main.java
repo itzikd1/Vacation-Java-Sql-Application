@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 public class Main extends Application {
     // TODO: 24/10/2018 Bday does not work well - it calculated the result of [2010-04-10 = 1996]
     // TODO: 28/10/2018 when creating a user with same name, need to return the right error (user taken) and not general error Itzik
-// TODO: 28/10/2018 log in turns off text fields Itzik
     // TODO: 28/10/2018 sign up gives an alert that sucess and logs in Itzik
     @Override
     public void start(Stage primaryStage) throws Exception {
