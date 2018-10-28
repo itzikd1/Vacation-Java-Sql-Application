@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DeleteUserView">
+    <children>
+        <VBox layoutX="5.0" layoutY="5.0" prefHeight="400.0" prefWidth="600.0"/>
+        <ImageView fitHeight="405.0" fitWidth="605.0" nodeOrientation="INHERIT" pickOnBounds="true">
+            <image>
+                <Image url="@../../../../Ass1/IRMAF/src/main/resources/images/images.jpg"/>
+            </image>
+        </ImageView>
+        <Label layoutX="55.0" layoutY="98.0" prefHeight="18.0" prefWidth="87.0" text="User Name"/>
+        <Label layoutX="54.0" layoutY="169.0" prefHeight="18.0" prefWidth="87.0" text="Password"/>
+        <Button fx:id="delete_info" layoutX="140.0" layoutY="272.0" mnemonicParsing="false" onAction="#delete_info"
+                text="Delete"/>
+        <CheckBox layoutX="56.0" layoutY="230.0" mnemonicParsing="false"
+                  text="Are you sure you want to delete your user?"/>
+        <TextField fx:id="tf_username" layoutX="129.0" layoutY="98.0"/>
+        <PasswordField fx:id="tf_password" layoutX="128.0" layoutY="164.0"/>
+        <Text layoutX="47.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="photopshop register title"
+              textAlignment="CENTER" wrappingWidth="236.6312255859375"/>
+    </children>
+</AnchorPane>

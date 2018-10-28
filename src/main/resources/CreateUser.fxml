@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="400.0" maxWidth="350.0" minHeight="400.0" minWidth="350.0" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CreateUserView">
+    <children>
+        <ImageView fitHeight="400.0" fitWidth="350.0" nodeOrientation="INHERIT" pickOnBounds="true">
+            <image>
+                <Image url="@images/background.png" />
+            </image>
+        </ImageView>
+        <Pane layoutX="29.0" layoutY="24.0" prefHeight="353.0" prefWidth="293.0" style="-fx-background-color: dddddd;">
+            <children>
+                <Pane prefHeight="67.0" prefWidth="294.0" style="-fx-background-color: ffffff;">
+                    <children>
+                        <Label layoutX="14.0" layoutY="8.0" prefHeight="51.0" prefWidth="237.0" text="Register a new account" textFill="#717171">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="44.0" fitWidth="75.0" layoutX="236.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/register_icon.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <Button fx:id="send_button" layoutX="50.0" layoutY="314.0" mnemonicParsing="false" onAction="#send_info" text="Sign up" />
+                <Button fx:id="BackButton" layoutX="172.0" layoutY="314.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
+            </children>
+        </Pane>
+        <TextField fx:id="tf_username" layoutX="129.0" layoutY="98.0" />
+        <Label layoutX="55.0" layoutY="102.0" prefHeight="18.0" prefWidth="87.0" text="User Name" />
+        <Label layoutX="55.0" layoutY="138.0" prefHeight="18.0" prefWidth="87.0" text="Password" />
+        <Label layoutX="55.0" layoutY="177.0" prefHeight="18.0" prefWidth="87.0" text="Birth Date" />
+        <Label layoutX="55.0" layoutY="209.0" prefHeight="33.0" prefWidth="87.0" text="First Name" />
+        <Label layoutX="55.0" layoutY="250.0" prefHeight="33.0" prefWidth="87.0" text="Last Name" />
+        <Label layoutX="56.0" layoutY="290.0" prefHeight="34.0" prefWidth="74.0" text="City" />
+        <PasswordField fx:id="tf_password" layoutX="129.0" layoutY="136.0" />
+        <DatePicker fx:id="bd" layoutX="129.0" layoutY="173.0" prefWidth="148.8" />
+        <TextField fx:id="tf_firstName" layoutX="129.0" layoutY="213.0" />
+        <TextField fx:id="tf_lastName" layoutX="129.0" layoutY="254.0" />
+        <TextField fx:id="tf_city" layoutX="129.0" layoutY="295.0" />
+    </children>
+</AnchorPane>
