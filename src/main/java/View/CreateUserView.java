@@ -58,6 +58,8 @@ public class CreateUserView {
                 s.close();
 //                ChangeScene();
                 System.out.println(user + "has been added");
+                controller.saveUser(user);
+                updateLoginOnGui();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -66,6 +68,15 @@ public class CreateUserView {
 //            alert.setContentText("gfddf");
             alert.showAndWait();
         }
+    }
+
+    private void updateLoginOnGui() {
+//     //   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("MainPage.fxml"));
+//
+//        fxmlLoader.getController();
+//        MainPageView mainPageView = fxmlLoader.getController();
+//        mainPageView.disable_loginInfo();
+        //TODO: catch the controller
     }
 
     private void ChangeScene() {

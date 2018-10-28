@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,6 +27,7 @@ public class MainPageView implements Initializable {
     public Button delete_button;
     public TextField tf_username;
     public PasswordField tf_password;
+    public AnchorPane login_pane;
     private Controller controller = Controller.getInstance();
 
 
@@ -67,6 +69,7 @@ public class MainPageView implements Initializable {
                 sign_out.setVisible(false);
                 enableLoginInfo();
                 login_button.setDisable(false);
+                cleanTextFields();
             }
             else
             {
@@ -96,6 +99,8 @@ public class MainPageView implements Initializable {
             alert.setHeaderText("Login Failed Username Or Password Incorrect");
             alert.showAndWait();
         }
+        //login_pane.setVisible(false);
+        //TODO: to setVisible false to pane and replace it with something else (MAOR)
     }
 
     protected void disable_loginInfo() {
@@ -109,7 +114,6 @@ public class MainPageView implements Initializable {
         tf_username.setDisable(false);
         tf_password.setDisable(false);
         login_button.setDisable(false);
-
 
 
     }
@@ -145,7 +149,13 @@ public class MainPageView implements Initializable {
         create_button.setDisable(false);
         sign_out.setVisible(false);
         enableLoginInfo();
+        cleanTextFields();
 
+    }
+
+    private void cleanTextFields() {
+        tf_password.clear();
+        tf_username.clear();
     }
 
     private void enableButtons() {
