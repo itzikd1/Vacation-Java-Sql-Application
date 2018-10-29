@@ -3,6 +3,7 @@ package View;
 import Controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,12 +11,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.*;
 
-public class CreateUserView {
+public class CreateUserView implements Initializable {
     public TextField tf_city;
     public TextField tf_lastName;
     public TextField tf_firstName;
@@ -24,7 +26,6 @@ public class CreateUserView {
     public TextField tf_username;
     public Button send_button;
     public Button BackButton;
-
     private Controller controller = Controller.getInstance();
 
     public void send_info(ActionEvent actionEvent) {
@@ -54,7 +55,9 @@ public class CreateUserView {
                     Stage s = (Stage) BackButton.getScene().getWindow();
                     s.close();
                     //ChangeScene();
-                    System.out.println(user + "has been added");
+                    System.out.println(user + " has been added");
+                    updateLoginOnGui();
+
                 }
 
 
@@ -69,15 +72,30 @@ public class CreateUserView {
     }
 
     private void updateLoginOnGui() {
-//     //   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("MainPage.fxml"));
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Security Alert");
+        alert.setHeaderText("You have been signed up!\nPlease log in using your new account information");
+        alert.showAndWait();
+
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("MainPage.fxml"));
+//        Parent root2 = null;
+//        try {
+//            root2 = (Parent) fxmlLoader.load();
+//            MainPageView mainPageView = fxmlLoader.getController();
 //
-//        fxmlLoader.getController();
-//        MainPageView mainPageView = fxmlLoader.getController();
-//        mainPageView.disable_loginInfo();
-        //TODO: catch the controller
+//            Stage s  = (Stage)mainPageView.login_button.getScene().getWindow();
+//            s.close();
+//            mainPageView.disable_loginInfo();
+//            mainPageView.login_pane.setVisible(true);
+//            //TODO: catch the controller and hide the login (in the future the login will be on different page)
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
-    private void ChangeScene() {
+        private void ChangeScene() {
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MainPage.fxml"));
             Stage stage = new Stage();
@@ -96,5 +114,10 @@ public class CreateUserView {
         Stage s = (Stage) BackButton.getScene().getWindow();
         s.close();
 //        ChangeScene();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //nothing
     }
 }
