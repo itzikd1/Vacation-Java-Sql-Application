@@ -36,8 +36,8 @@
                 <Button fx:id="BackButton" layoutX="202.0" layoutY="314.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
             <Label id="Bday" fx:id="Bday" layoutX="99.0" layoutY="150.0" prefHeight="25.0" prefWidth="149.0" />
             <Label fx:id="Fname" layoutX="99.0" layoutY="189.0" prefHeight="25.0" prefWidth="149.0" />
-            <Label fx:id="Lname" layoutX="99.0" layoutY="229.0" prefHeight="25.0" prefWidth="149.0" />
-            <Label fx:id="City" layoutX="99.0" layoutY="265.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label fx:id="Lname" layoutX="99.0" layoutY="231.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label fx:id="City" layoutX="99.0" layoutY="271.0" prefHeight="25.0" prefWidth="149.0" />
             </children>
         </Pane>
         <Label layoutX="37.0" layoutY="102.0" prefHeight="18.0" prefWidth="87.0" text="Type Username:" />

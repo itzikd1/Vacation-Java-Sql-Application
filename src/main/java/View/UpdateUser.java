@@ -112,9 +112,12 @@ public class UpdateUser implements Initializable {
                 System.out.println("error");
             } else {
                 Stage s = (Stage) BackButton.getScene().getWindow();
-
-
-                System.out.println(user + "has been added");
+                System.out.println(user + " has been updated");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(user + " has been updated!");
+                alert.showAndWait();
+                s.close();
             }
 
 

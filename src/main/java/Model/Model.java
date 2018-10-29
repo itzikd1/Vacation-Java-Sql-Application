@@ -7,7 +7,9 @@ public class Model {
     public User user;
 
     private Model() {
+
         createDataBase();
+        //before_hagasha();
         createTables();
 
     }
@@ -71,5 +73,12 @@ public class Model {
         String [] details = read("Users", this.user.getUsername());
         return details;
     }
+
+
+    public void before_hagasha (){
+        database.dropTable("Users");
+    }
+
+
 }
 

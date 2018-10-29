@@ -70,6 +70,7 @@ public class Controller {
 
 
         }
+        data[2]=date;
         return model.insert(table_name, data);
     }
 
