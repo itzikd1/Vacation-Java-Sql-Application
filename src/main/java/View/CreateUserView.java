@@ -6,12 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -26,6 +28,7 @@ public class CreateUserView implements Initializable {
     public TextField tf_username;
     public Button send_button;
     public Button BackButton;
+
     private Controller controller = Controller.getInstance();
 
     public void send_info(ActionEvent actionEvent) {
@@ -41,8 +44,7 @@ public class CreateUserView implements Initializable {
 //            LocalDate localTodayDate = todayJavaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
 
-
-            //TODO if(p.getYears()>=18) + errormsg
+        //TODO if(p.getYears()>=18) + error msg
         Object[] user_details = new Object[]{user, password, bd, fn, ln, city};
                 boolean flag = controller.insert("Users", user_details);
                 if (!flag) {
@@ -61,7 +63,7 @@ public class CreateUserView implements Initializable {
                 }
 
 
-// TODO: to add eceptions -> catch them here, if DateEcepction will happen, we will show alert
+// TODO: to add exceptions -> catch them here, if Date Exception will happen, we will show alert
 //        } else {
 //            Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //            alert.setTitle("Error");
@@ -95,7 +97,7 @@ public class CreateUserView implements Initializable {
 
     }
 
-        private void ChangeScene() {
+    private void ChangeScene() {
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MainPage.fxml"));
             Stage stage = new Stage();
