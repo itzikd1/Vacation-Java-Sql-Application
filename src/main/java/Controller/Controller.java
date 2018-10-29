@@ -1,12 +1,14 @@
 package Controller;
 
 import Model.Model;
+import View.MainPageView;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import Model.V4UException.*;
 public class Controller {
@@ -28,7 +30,7 @@ public class Controller {
     //call the model basic functions:
     //functions:
 
-    public boolean insert(String table_name, Object[] data) throws Exception {
+    public boolean insert(String table_name, Object[] data) {
         String user;
         String password;
         String fn;
@@ -63,12 +65,9 @@ public class Controller {
             LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate now = LocalDate.now();
             Period p = Period.between(birthdate, now);
-            if(p.getYears() < 18){
-                throw new TooYoungException();
-            }
+
 
         }
-        data[2] = date;
         return model.insert(table_name, data);
     }
 

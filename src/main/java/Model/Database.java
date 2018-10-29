@@ -12,7 +12,7 @@ class Database {
 
     protected Database(String url) {
         this.url = url;
-        tables = new HashMap<String,Table>();
+        tables = new HashMap<String, Table>();
     }
 
     protected String getUrl() {
@@ -63,7 +63,7 @@ class Database {
      * @return true if we created tables
      * false if we could not create all
      */
-    protected boolean createTables() {//TODO PARAMETERS: NAME AND STRING[] COLUMNNAMES
+    protected boolean createTables() {
         boolean flag = false;
         try {
             UsersTable usersTable = new UsersTable(url, this);

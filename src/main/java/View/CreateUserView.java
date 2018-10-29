@@ -4,6 +4,7 @@ import Controller.Controller;
 import Model.V4UException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -11,8 +12,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.*;
 
-public class CreateUserView {
+public class CreateUserView implements Initializable {
     public TextField tf_city;
     public TextField tf_lastName;
     public TextField tf_firstName;
@@ -54,6 +59,7 @@ public class CreateUserView {
                 s.close();
                 //ChangeScene();
                 System.out.println(user + "has been added");
+                updateLoginOnGui();
             }
         }
         catch(V4UException e){
@@ -69,6 +75,21 @@ public class CreateUserView {
 
             System.out.println(e.getMessage());
         }
+                boolean flag = controller.insert("Users", user_details);
+                if (!flag) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Please Put Valid Information");
+                    alert.showAndWait();
+                    System.out.println("error");
+                } else {
+                    Stage s = (Stage) BackButton.getScene().getWindow();
+                    s.close();
+                    //ChangeScene();
+                    System.out.println(user + " has been added");
+                    updateLoginOnGui();
+
+                }
 
 
 // TODO: to add eceptions -> catch them here, if DateEcepction will happen, we will show alert
@@ -109,5 +130,11 @@ public class CreateUserView {
         Stage s = (Stage) BackButton.getScene().getWindow();
         s.close();
 //        ChangeScene();
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }
