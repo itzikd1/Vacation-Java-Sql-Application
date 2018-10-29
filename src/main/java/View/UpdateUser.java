@@ -33,12 +33,14 @@ public class UpdateUser implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String [] details = controller.readConnectedUser();
+        DatePicker dpbd = new DatePicker();
         tf_username.setText(details[0]);
         tf_password.setText(details[1]);
         bd.setPromptText(details[2]);
         tf_firstName.setText(details[3]);
         tf_lastName.setText(details[4]);
         tf_city.setText(details[5]);
+
 
     }
     // TODO: 28/10/2018 i want to pull user from DB and put info in the text boxs when initialized Itzik

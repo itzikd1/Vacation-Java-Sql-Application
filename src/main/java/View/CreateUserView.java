@@ -29,33 +29,21 @@ public class CreateUserView {
 
     public void send_info(ActionEvent actionEvent) {
         String user, city, ln, fn, password;
-        Date date;
         user = tf_username.getText();
         city = tf_city.getText();
         ln = tf_lastName.getText();
         fn = tf_firstName.getText();
         password = tf_password.getText();
-        if (user.isEmpty() || password.isEmpty() || city.isEmpty() || ln.isEmpty() || fn.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Please fill in all the info");
-            alert.showAndWait();
-        } else if (bd.getValue() != null) {
-            //user's birthdate to java format
-            date = java.sql.Date.valueOf(bd.getValue());
-            java.util.Date javaDate = new Date(date.getTime());
-            LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate now = LocalDate.now();
+
 //            java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 //            java.util.Date todayJavaDate = new Date(today.getTime());
 //            LocalDate localTodayDate = todayJavaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
 
-            Period p = Period.between(birthdate,now);
+
             //TODO if(p.getYears()>=18) + errormsg
-                System.out.println("user created : " + user + " " + fn + " " + ln + " " + city + " " + date.toString() + " ");
-                Object[] user_date = new Object[]{user, password, date, fn, ln, city};
-                boolean flag = controller.insert("Users", user_date);
+        Object[] user_details = new Object[]{user, password, bd, fn, ln, city};
+                boolean flag = controller.insert("Users", user_details);
                 if (!flag) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Error");
@@ -71,13 +59,13 @@ public class CreateUserView {
 
 
 
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Please Put A Valid Date");
+//        } else {
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Error");
+//            alert.setHeaderText("Please Put A Valid Date");
 //            alert.setContentText("gfddf");
-            alert.showAndWait();
-        }
+//            alert.showAndWait();
+//        }
     }
 
     private void updateLoginOnGui() {
