@@ -62,7 +62,7 @@
                         </ImageView>
                     </children>
                 </Pane>
-                <Button fx:id="read_button" contentDisplay="RIGHT" disable="true" layoutX="50.0" layoutY="93.0" mnemonicParsing="false" onAction="#search_user" prefHeight="35.0" prefWidth="194.0" text="Search Users" />
+                <Button fx:id="search_button" contentDisplay="RIGHT" disable="true" layoutX="50.0" layoutY="93.0" mnemonicParsing="false" onAction="#search_user" prefHeight="35.0" prefWidth="194.0" text="Search Users" />
                 <Button fx:id="update_button" disable="true" layoutX="50.0" layoutY="163.0" mnemonicParsing="false" onAction="#update_user" prefHeight="35.0" prefWidth="194.0" text="Update Profile" />
                 <Button fx:id="delete_button" disable="true" layoutX="50.0" layoutY="230.0" mnemonicParsing="false" onAction="#delete_user" prefHeight="35.0" prefWidth="194.0" text="Delete Account" />
             </children>

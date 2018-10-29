@@ -53,19 +53,19 @@ public class CreateUserView {
                 } else {
                     Stage s = (Stage) BackButton.getScene().getWindow();
                     s.close();
-                    ChangeScene();
+                    //ChangeScene();
                     System.out.println(user + "has been added");
                 }
 
 
-
+// TODO: to add eceptions -> catch them here, if DateEcepction will happen, we will show alert
 //        } else {
 //            Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //            alert.setTitle("Error");
 //            alert.setHeaderText("Please Put A Valid Date");
 //            alert.setContentText("gfddf");
 //            alert.showAndWait();
-//        }
+
     }
 
     private void updateLoginOnGui() {

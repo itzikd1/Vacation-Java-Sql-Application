@@ -22,7 +22,7 @@ public class MainPageView implements Initializable {
     public Button create_button;
     public Button sign_out;
     public Button update_button;
-    public Button read_button;
+    public Button search_button;
     public Button login_button;
     public Button delete_button;
     public TextField tf_username;
@@ -171,14 +171,14 @@ public class MainPageView implements Initializable {
 
     private void enableButtons() {
         //enable buttons
-        read_button.setDisable(false);
+        search_button.setDisable(false);
         update_button.setDisable(false);
         delete_button.setDisable(false);
     }
 
     private void DisableButtons() {
         //disable buttons
-        read_button.setDisable(true);
+        search_button.setDisable(true);
         update_button.setDisable(true);
         delete_button.setDisable(true);
     }
