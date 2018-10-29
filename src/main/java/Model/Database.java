@@ -103,13 +103,15 @@ class Database {
      * @param data       - the record in object array
      * @return - true - if succeed, false - if failed
      */
-    protected boolean insert(String table_name, Object[] data) {
+    protected boolean insert(String table_name, Object[] data) throws Model.V4UException.WrongDetailsException {
         System.out.println(data[2]);
         System.out.println(data[2].getClass());
         if (table_name.equals("Users")) {
             UsersTable users = (UsersTable) tables.get("Users");
             return users.insert(this, data);
-        } else return false;
+        } else {
+            throw new Model.V4UException.WrongDetailsException();
+        }
     }
 
     /**

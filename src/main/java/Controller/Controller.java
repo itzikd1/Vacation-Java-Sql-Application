@@ -1,16 +1,14 @@
 package Controller;
 
 import Model.Model;
-import View.MainPageView;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
-
+import Model.V4UException.*;
 public class Controller {
 
     private static Controller singleton = null;
@@ -30,7 +28,7 @@ public class Controller {
     //call the model basic functions:
     //functions:
 
-    public boolean insert(String table_name, Object[] data) {
+    public boolean insert(String table_name, Object[] data) throws Exception {
         String user;
         String password;
         String fn;
@@ -55,10 +53,8 @@ public class Controller {
             city = (String) data[5];
 
         if (user.isEmpty() || password.isEmpty() || city.isEmpty() || ln.isEmpty() || fn.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Please fill in all the info");
-            alert.showAndWait();
+            throw new NotFilledAllFieldsException();
+
         } else {
             //user's birthdate to java format
 
@@ -67,9 +63,12 @@ public class Controller {
             LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate now = LocalDate.now();
             Period p = Period.between(birthdate, now);
-
+            if(p.getYears() < 18){
+                throw new TooYoungException();
+            }
 
         }
+        data[2] = date;
         return model.insert(table_name, data);
     }
 
