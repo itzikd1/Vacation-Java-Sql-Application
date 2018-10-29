@@ -52,7 +52,7 @@ class UsersTable implements Table {
             String sql = "INSERT INTO Users " + fixedDetails + " " + valuesPart;//REMOVE THE LAST ","
             PreparedStatement pstmt = conn.prepareStatement(sql);
             for (int i = 0; i < data.length; i++)
-                pstmt.setString(i + 1, ((String)(data[i]).toString()));
+                pstmt.setString(i + 1, ((String) (data[i]).toString()));
             /**to check**/
             System.out.println(stmt.toString());
             /**/

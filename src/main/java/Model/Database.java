@@ -12,7 +12,7 @@ class Database {
 
     protected Database(String url) {
         this.url = url;
-        tables = new HashMap<String,Table>();
+        tables = new HashMap<String, Table>();
     }
 
     protected String getUrl() {

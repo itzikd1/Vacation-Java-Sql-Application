@@ -63,19 +63,17 @@ public class MainPageView implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.YES) {
             boolean flag = controller.delete("Users", user);
-            if (flag == true) {
+            if (flag) {
                 DisableButtons();
                 create_button.setDisable(false);
                 sign_out.setVisible(false);
                 enableLoginInfo();
                 login_button.setDisable(false);
                 cleanTextFields();
-            }
-            else
-            {
+            } else {
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error");
-                alert.setHeaderText("Failed to delte user");
+                alert.setHeaderText("Failed to delete user");
                 alert.showAndWait();
             }
         }
@@ -87,7 +85,7 @@ public class MainPageView implements Initializable {
         user = tf_username.getText();
         password = tf_password.getText();
         boolean flag = controller.confirmPassword("Users", user, password);
-        if (flag == true) {
+        if (flag) {
             controller.saveUser(user);
             enableButtons();
             create_button.setDisable(true);
@@ -110,7 +108,7 @@ public class MainPageView implements Initializable {
 
     }
 
-    private void enableLoginInfo(){
+    private void enableLoginInfo() {
         tf_username.setDisable(false);
         tf_password.setDisable(false);
         login_button.setDisable(false);

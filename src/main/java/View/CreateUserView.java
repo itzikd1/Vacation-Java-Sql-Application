@@ -39,7 +39,7 @@ public class CreateUserView {
 //            LocalDate localTodayDate = todayJavaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
 
-        //TODO if(p.getYears()>=18) + errormsg
+        //TODO if(p.getYears()>=18) + error msg
         Object[] user_details = new Object[]{user, password, bd, fn, ln, city};
         boolean flag = controller.insert("Users", user_details);
 //                if (!flag) {
@@ -57,7 +57,7 @@ public class CreateUserView {
         }
 
 
-// TODO: to add eceptions -> catch them here, if DateEcepction will happen, we will show alert
+// TODO: to add exceptions -> catch them here, if Date Exception will happen, we will show alert
 //        } else {
 //            Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //            alert.setTitle("Error");

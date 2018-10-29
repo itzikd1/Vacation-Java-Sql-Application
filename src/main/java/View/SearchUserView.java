@@ -31,9 +31,10 @@ public class SearchUserView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
+
     public void search(ActionEvent actionEvent) {
         String user = tf_username.getText();
-        String [] details = controller.read("Users",user);
+        String[] details = controller.read("Users", user);
 
         if (details != null) {
             //set labels
@@ -43,7 +44,7 @@ public class SearchUserView implements Initializable {
             City.setText(details[5]);
 
             enable_visible();
-        }else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText("There is no match here !");
@@ -51,7 +52,7 @@ public class SearchUserView implements Initializable {
         }
     }
 
-    private void enable_visible (){
+    private void enable_visible() {
         lbl_Bday.setVisible(true);
         lbl_City.setVisible(true);
         lbl_Fname.setVisible(true);

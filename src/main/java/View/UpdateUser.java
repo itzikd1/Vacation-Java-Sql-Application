@@ -1,16 +1,11 @@
 package View;
-import javafx.util.*;
+
 import Controller.Controller;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
@@ -71,7 +66,7 @@ public class UpdateUser implements Initializable {
             alert.setHeaderText("Please fill in all the info");
             alert.showAndWait();
         } else if (bd.getValue() != null) {
-            //user's birthdate to java format
+            //user's birthday to java format
             date = java.sql.Date.valueOf(bd.getValue());
             java.util.Date javaDate = new Date(date.getTime());
             LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -81,11 +76,11 @@ public class UpdateUser implements Initializable {
 //            LocalDate localTodayDate = todayJavaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
 
-            Period p = Period.between(birthdate,now);
+            Period p = Period.between(birthdate, now);
             //TODO if(p.getYears()>=18) + errormsg
             System.out.println("user created : " + user + " " + fn + " " + ln + " " + city + " " + date.toString() + " ");
-            Object[] updatedDetails = new Object[]{ user, password, date, fn, ln, city};
-            boolean flag = controller.update("Users", updatedDetails, (String)updatedDetails[0]);
+            Object[] updatedDetails = new Object[]{user, password, date, fn, ln, city};
+            boolean flag = controller.update("Users", updatedDetails, (String) updatedDetails[0]);
             if (!flag) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error");
@@ -101,7 +96,6 @@ public class UpdateUser implements Initializable {
                 alert.showAndWait();
                 s.close();
             }
-
 
 
         } else {

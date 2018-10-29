@@ -70,12 +70,11 @@ public class Model {
     }
 
     public String[] readConnectedUser() {
-        String [] details = read("Users", this.user.getUsername());
-        return details;
+        return read("Users", this.user.getUsername());
     }
 
 
-    public void before_hagasha (){
+    public void before_hagasha() {
         database.dropTable("Users");
     }
 
