@@ -33,7 +33,7 @@ class Database {
         try {
             conn = DriverManager.getConnection(url);
             DatabaseMetaData meta = conn.getMetaData();
-//            System.out.println("Connection to SQLite has been established.");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -54,7 +54,6 @@ class Database {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-//        System.out.println("Disconnected to the DB");
     }
 
     /**
@@ -105,6 +104,8 @@ class Database {
      * @return - true - if succeed, false - if failed
      */
     protected boolean insert(String table_name, Object[] data) {
+        System.out.println(data[2]);
+        System.out.println(data[2].getClass());
         if (table_name.equals("Users")) {
             UsersTable users = (UsersTable) tables.get("Users");
             return users.insert(this, data);
@@ -148,6 +149,8 @@ class Database {
      * @return - true- if succeed, false - if failed
      */
     protected boolean update(String table_name, Object[] data, String id) {
+        System.out.println(data[2]);
+        System.out.println(data[2].getClass());
         if (table_name.equals("Users")) {
             UsersTable users = (UsersTable) tables.get("Users");
             return users.update(this, id, data);

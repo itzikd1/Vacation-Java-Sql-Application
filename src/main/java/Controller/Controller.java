@@ -3,6 +3,8 @@ package Controller;
 import Model.Model;
 import View.MainPageView;
 
+import java.util.Calendar;
+
 public class Controller {
 
     private static Controller singleton = null;
@@ -23,6 +25,8 @@ public class Controller {
     //functions:
 
     public boolean insert(String table_name, Object[] data) {
+
+
         return model.insert(table_name, data);
     }
 

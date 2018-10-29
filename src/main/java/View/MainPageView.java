@@ -142,6 +142,7 @@ public class MainPageView implements Initializable {
         alert.setTitle("Error");
         alert.setHeaderText("we havnt done this yet");
         alert.showAndWait();
+
     }
 
     public void log_out(ActionEvent actionEvent) {

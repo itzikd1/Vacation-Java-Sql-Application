@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="350.0" minHeight="400.0" minWidth="350.0" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UpdateUser">
+<AnchorPane maxHeight="400.0" maxWidth="350.0" minHeight="400.0" minWidth="350.0" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UpdateUser">
     <children>
         <ImageView fitHeight="400.0" fitWidth="350.0" nodeOrientation="INHERIT" pickOnBounds="true">
             <image>
@@ -34,8 +34,8 @@
                         </ImageView>
                     </children>
                 </Pane>
-                <Button fx:id="update_button" layoutX="128.0" layoutY="314.0" mnemonicParsing="false" onAction="#update_info" text="Update Info" />
-                <Button fx:id="BackButton" layoutX="3.0" layoutY="318.0" mnemonicParsing="false" onAction="#go_main" style="-fx-background-color: c21807;" text="Close" />
+                <Button fx:id="update_button" layoutX="50.0" layoutY="314.0" mnemonicParsing="false" onAction="#update_info" text="Update Info" />
+                <Button fx:id="BackButton" layoutX="172.0" layoutY="314.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
             </children>
         </Pane>
         <Label layoutX="55.0" layoutY="102.0" prefHeight="18.0" prefWidth="87.0" text="User Name" />
@@ -44,7 +44,7 @@
         <Label layoutX="55.0" layoutY="209.0" prefHeight="33.0" prefWidth="87.0" text="First Name" />
         <Label layoutX="55.0" layoutY="250.0" prefHeight="33.0" prefWidth="87.0" text="Last Name" />
         <Label layoutX="56.0" layoutY="290.0" prefHeight="34.0" prefWidth="74.0" text="City" />
-        <TextField fx:id="tf_username" disable="true" layoutX="129.0" layoutY="98.0" />
+        <TextField fx:id="tf_username" editable="false" layoutX="129.0" layoutY="98.0" />
         <DatePicker fx:id="bd" layoutX="129.0" layoutY="173.0" prefWidth="148.8" />
         <PasswordField fx:id="tf_password" layoutX="129.0" layoutY="136.0" />
         <TextField fx:id="tf_firstName" layoutX="129.0" layoutY="213.0" />

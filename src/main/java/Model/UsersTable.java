@@ -12,7 +12,7 @@ class UsersTable implements Table {
         String sql = "CREATE TABLE IF NOT EXISTS Users(\n"
                 + "	UserName varchar PRIMARY KEY,\n"
                 + "	Password varchar NOT NULL,\n"
-                + "    Birthdate date , \n"
+                + "    Birthdate varchar , \n"
                 + "    FirstName varchar, \n"
                 + "    LastName varchar, \n"
                 + "    City varchar \n"
@@ -52,7 +52,7 @@ class UsersTable implements Table {
             String sql = "INSERT INTO Users " + fixedDetails + " " + valuesPart;//REMOVE THE LAST ","
             PreparedStatement pstmt = conn.prepareStatement(sql);
             for (int i = 0; i < data.length; i++)
-                pstmt.setObject(i + 1, data[i]);
+                pstmt.setString(i + 1, ((String)(data[i]).toString()));
             /**to check**/
             System.out.println(stmt.toString());
             /**/

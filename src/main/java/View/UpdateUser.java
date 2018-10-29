@@ -1,20 +1,20 @@
 package View;
-
+import javafx.util.*;
 import Controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -32,13 +32,14 @@ public class UpdateUser implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String[] details = controller.readConnectedUser();
+        String [] details = controller.readConnectedUser();
         tf_username.setText(details[0]);
         tf_password.setText(details[1]);
-//        bd.setValue(details[3]);
+        bd.setPromptText(details[2]);
         tf_firstName.setText(details[3]);
         tf_lastName.setText(details[4]);
         tf_city.setText(details[5]);
+
     }
     // TODO: 28/10/2018 i want to pull user from DB and put info in the text boxs when initialized Itzik
     // TODO: 28/10/2018 Maybe like this? Itzik
@@ -51,20 +52,71 @@ public class UpdateUser implements Initializable {
 //
 
     public void update_info(ActionEvent actionEvent) {
-        String [] details = controller.readConnectedUser();
+        /*
+        show current user's details by default
+         */
+
         String user, city, ln, fn, password;
         Date date = new Date();
         // TODO: 28/10/2018 i want to pull user from DB and put info in the text boxs when initialized Itzik
         //TODO this does this only after pressing the button update info, i want it to happen before
-        tf_username.setText(details[0]);
-        tf_city.setPromptText(details[1]);
-        tf_firstName.setText(details[2]);
-        tf_lastName.setText(details[3]);
-        tf_city.setText(details[4]);
-        tf_password.setText(details[5]);
-        // TODO: 28/10/2018 now we go to the database and do delete and create, or update Itzik
-    }
 
+        // TODO: 28/10/2018 now we go to the database and do delete and create, or update Itzik
+        /*
+        check if new details are valid and continue.
+         */
+
+
+        user = tf_username.getText();
+        city = tf_city.getText();
+        ln = tf_lastName.getText();
+        fn = tf_firstName.getText();
+        password = tf_password.getText();
+
+        if (user.isEmpty() || password.isEmpty() || city.isEmpty() || ln.isEmpty() || fn.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please fill in all the info");
+            alert.showAndWait();
+        } else if (bd.getValue() != null) {
+            //user's birthdate to java format
+            date = java.sql.Date.valueOf(bd.getValue());
+            java.util.Date javaDate = new Date(date.getTime());
+            LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate now = LocalDate.now();
+//            java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+//            java.util.Date todayJavaDate = new Date(today.getTime());
+//            LocalDate localTodayDate = todayJavaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+
+            Period p = Period.between(birthdate,now);
+            //TODO if(p.getYears()>=18) + errormsg
+            System.out.println("user created : " + user + " " + fn + " " + ln + " " + city + " " + date.toString() + " ");
+            Object[] updatedDetails = new Object[]{ user, password, date, fn, ln, city};
+            boolean flag = controller.update("Users", updatedDetails, (String)updatedDetails[0]);
+            if (!flag) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("update failed");
+                alert.showAndWait();
+                System.out.println("error");
+            } else {
+                Stage s = (Stage) BackButton.getScene().getWindow();
+
+
+                System.out.println(user + "has been added");
+            }
+
+
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please Put A Valid Date");
+//            alert.setContentText("gfddf");
+            alert.showAndWait();
+        }
+    }
 
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();

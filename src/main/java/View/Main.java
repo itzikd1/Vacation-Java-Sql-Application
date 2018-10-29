@@ -30,7 +30,6 @@ public class Main extends Application {
 //        data = new Object[]{"Anael", "9876", new Date(2010 - 04 - 10), "Anael", "gorfinkel", "b7"};
 //    //    System.out.println(db.insert("Users", data));
 //        //db.print_table("Users");
-//        System.out.println(db.delete("Users", "itzik"));
 //        System.out.println("-------------------------------------------");
 //        //db.print_table("Users");
 //        System.out.println("-------------------------------------------");

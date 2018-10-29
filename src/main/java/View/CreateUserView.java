@@ -10,7 +10,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.*;
 
 public class CreateUserView {
     public TextField tf_city;
@@ -27,7 +30,6 @@ public class CreateUserView {
     public void send_info(ActionEvent actionEvent) {
         String user, city, ln, fn, password;
         Date date;
-
         user = tf_username.getText();
         city = tf_city.getText();
         ln = tf_lastName.getText();
@@ -39,28 +41,36 @@ public class CreateUserView {
             alert.setHeaderText("Please fill in all the info");
             alert.showAndWait();
         } else if (bd.getValue() != null) {
+            //user's birthdate to java format
             date = java.sql.Date.valueOf(bd.getValue());
-            System.out.println("user created : " + user + " " + fn + " " + ln + " " + city + " " + date.toString() + " ");
-            Object[] user_date = new Object[]{user, password, date, fn, ln, city};
-            boolean flag = controller.insert("Users", user_date);
-            if (!flag) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
-                alert.setHeaderText("Please Put Valid Information");
-                alert.showAndWait();
-                System.out.println("error");
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Sucess");
-                alert.setHeaderText("Sign up completed");
-                alert.showAndWait();
-                Stage s = (Stage) BackButton.getScene().getWindow();
-                s.close();
-//                ChangeScene();
-                System.out.println(user + "has been added");
-                controller.saveUser(user);
-                updateLoginOnGui();
-            }
+            java.util.Date javaDate = new Date(date.getTime());
+            LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate now = LocalDate.now();
+//            java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+//            java.util.Date todayJavaDate = new Date(today.getTime());
+//            LocalDate localTodayDate = todayJavaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+
+            Period p = Period.between(birthdate,now);
+            //TODO if(p.getYears()>=18) + errormsg
+                System.out.println("user created : " + user + " " + fn + " " + ln + " " + city + " " + date.toString() + " ");
+                Object[] user_date = new Object[]{user, password, date, fn, ln, city};
+                boolean flag = controller.insert("Users", user_date);
+                if (!flag) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Please Put Valid Information");
+                    alert.showAndWait();
+                    System.out.println("error");
+                } else {
+                    Stage s = (Stage) BackButton.getScene().getWindow();
+                    s.close();
+                    ChangeScene();
+                    System.out.println(user + "has been added");
+                }
+
+
+
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
