@@ -45,6 +45,6 @@
         <Label fx:id="lbl_Fname" layoutX="55.0" layoutY="209.0" prefHeight="33.0" prefWidth="87.0" text="First Name:" visible="false" />
         <Label fx:id="lbl_Lname" layoutX="55.0" layoutY="250.0" prefHeight="33.0" prefWidth="87.0" text="Last Name:" visible="false" />
         <Label fx:id="lbl_City" layoutX="56.0" layoutY="290.0" prefHeight="34.0" prefWidth="74.0" text="City:" visible="false" />
-        <TextField fx:id="tf_username" editable="false" layoutX="129.0" layoutY="98.0" />
+        <TextField fx:id="tf_username" editable="true" layoutX="129.0" layoutY="98.0" />
     </children>
 </AnchorPane>
