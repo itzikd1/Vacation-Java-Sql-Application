@@ -38,7 +38,9 @@ public class UpdateUser implements Initializable {
         //birthday
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-
+//TODO: 1 update of new user (old will work)
+        //TODO: 2 bd picker
+        //todo: not disconnent of db sometimes
         //convert String to LocalDate
         LocalDate localDate = LocalDate.parse(details[2], formatter);
         bd.setValue(localDate);
