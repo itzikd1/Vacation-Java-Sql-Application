@@ -80,6 +80,7 @@ public class UpdateUser implements Initializable {
         fn = tf_firstName.getText();
         password = tf_password.getText();
 
+        //TODO: to fix the case username is already exists
         if (user.isEmpty() || password.isEmpty() || city.isEmpty() || ln.isEmpty() || fn.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");

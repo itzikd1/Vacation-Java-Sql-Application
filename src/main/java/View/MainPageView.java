@@ -137,11 +137,21 @@ public class MainPageView implements Initializable {
     }
 
     // TODO: 28/10/2018 TODO this Itzik
-    public void read_user(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Error");
-        alert.setHeaderText("we havnt done this yet");
-        alert.showAndWait();
+    public void search_user(ActionEvent actionEvent) {
+        Stage s = (Stage) update_button.getScene().getWindow();
+//        s.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("SearchUser.fxml"));
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(true);
+            stage.setTitle("Search User");
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
