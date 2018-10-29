@@ -20,15 +20,15 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Maven: org.xerial:sqlite-jdbc:3.25.2" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../jfoenix.jar!/" />
+          <root url="jar://$MODULE_DIR$/jfoenix.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Maven: org.xerial:sqlite-jdbc:3.25.2" level="project" />
   </component>
 </module>

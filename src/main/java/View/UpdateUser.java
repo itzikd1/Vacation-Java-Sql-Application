@@ -15,6 +15,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -36,10 +37,16 @@ public class UpdateUser implements Initializable {
         DatePicker dpbd = new DatePicker();
         tf_username.setText(details[0]);
         tf_password.setText(details[1]);
-        bd.setPromptText(details[2]);
         tf_firstName.setText(details[3]);
         tf_lastName.setText(details[4]);
         tf_city.setText(details[5]);
+        //birthday
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+
+        //convert String to LocalDate
+        LocalDate localDate = LocalDate.parse(details[2], formatter);
+        bd.setValue(localDate);
 
 
     }
