@@ -5,15 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
-import java.util.*;
 
 public class CreateUserView {
     public TextField tf_city;
@@ -40,22 +39,22 @@ public class CreateUserView {
 //            LocalDate localTodayDate = todayJavaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
 
-
-            //TODO if(p.getYears()>=18) + errormsg
+        //TODO if(p.getYears()>=18) + errormsg
         Object[] user_details = new Object[]{user, password, bd, fn, ln, city};
-                boolean flag = controller.insert("Users", user_details);
-                if (!flag) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Please Put Valid Information");
-                    alert.showAndWait();
-                    System.out.println("error");
-                } else {
-                    Stage s = (Stage) BackButton.getScene().getWindow();
-                    s.close();
-                    //ChangeScene();
-                    System.out.println(user + "has been added");
-                }
+        boolean flag = controller.insert("Users", user_details);
+//                if (!flag) {
+//                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                    alert.setTitle("Error");
+//                    alert.setHeaderText("Please Put Valid Information");
+//                    alert.showAndWait();
+//                    System.out.println("error");
+//                } else {
+        if (flag) {
+            Stage s = (Stage) BackButton.getScene().getWindow();
+            s.close();
+            //ChangeScene();
+            System.out.println(user + "has been added");
+        }
 
 
 // TODO: to add eceptions -> catch them here, if DateEcepction will happen, we will show alert

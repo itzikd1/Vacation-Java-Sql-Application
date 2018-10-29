@@ -115,7 +115,7 @@ class UsersTable implements Table {
 
     @Override
     public Object read(Database db, String id) {
-        String sql = "SELECT UserName, Password, Birthdate, FirstName, LastName, city "//TODO HIDE PASSWORD ?
+        String sql = "SELECT UserName, Password, Birthdate, FirstName, LastName, city "
                 + "FROM Users Where UserName = ?";
         User user = null;
         Connection conn = null;

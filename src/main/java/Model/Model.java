@@ -27,7 +27,7 @@ public class Model {
     }
 
     private void createTables() {
-        database.createTables();//TODO PARAMETER TABLE NAME
+        database.createTables();
     }
 
     //functions:

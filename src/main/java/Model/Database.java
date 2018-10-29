@@ -63,7 +63,7 @@ class Database {
      * @return true if we created tables
      * false if we could not create all
      */
-    protected boolean createTables() {//TODO PARAMETERS: NAME AND STRING[] COLUMNNAMES
+    protected boolean createTables() {
         boolean flag = false;
         try {
             UsersTable usersTable = new UsersTable(url, this);

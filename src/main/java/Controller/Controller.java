@@ -59,6 +59,7 @@ public class Controller {
             alert.setTitle("Error");
             alert.setHeaderText("Please fill in all the info");
             alert.showAndWait();
+            return false;
         } else {
             //user's birthdate to java format
 
