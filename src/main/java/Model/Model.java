@@ -41,18 +41,18 @@ public class Model {
     }
 
     public String[] read(String table_name, String id) {
-        this.user = database.read(table_name, id);
+        User showedUser = database.read(table_name, id);
 
-        if (user == null)
+        if (showedUser == null)
             return null;
 
         String[] details = new String[6];
-        details[0] = user.getUsername();
-        details[1] = user.getPassword();
-        details[2] = user.getBDay();
-        details[3] = user.getFName();
-        details[4] = user.getLName();
-        details[5] = user.getCity();
+        details[0] = showedUser.getUsername();
+        details[1] = showedUser.getPassword();
+        details[2] = showedUser.getBDay();
+        details[3] = showedUser.getFName();
+        details[4] = showedUser.getLName();
+        details[5] = showedUser.getCity();
 
         return details;
     }
