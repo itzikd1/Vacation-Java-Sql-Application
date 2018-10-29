@@ -87,13 +87,29 @@ public class MainPageView implements Initializable {
             enableButtons();
             create_button.setDisable(true);
             sign_out.setVisible(true);
-            login_button.setDisable(true);
+            disable_loginInfo();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText("Login Failed Username Or Password Incorrect");
             alert.showAndWait();
         }
+    }
+
+    protected void disable_loginInfo() {
+        tf_username.setDisable(true);
+        tf_password.setDisable(true);
+        login_button.setDisable(true);
+
+    }
+
+    private void enableLoginInfo(){
+        tf_username.setDisable(false);
+        tf_password.setDisable(false);
+        login_button.setDisable(false);
+
+
+
     }
 
     // TODO: 28/10/2018  Itzik
@@ -126,7 +142,8 @@ public class MainPageView implements Initializable {
         DisableButtons();
         create_button.setDisable(false);
         sign_out.setVisible(false);
-        login_button.setDisable(false);
+        enableLoginInfo();
+
     }
 
     private void enableButtons() {
@@ -142,6 +159,8 @@ public class MainPageView implements Initializable {
         update_button.setDisable(true);
         delete_button.setDisable(true);
     }
+
+
 }
 
 
