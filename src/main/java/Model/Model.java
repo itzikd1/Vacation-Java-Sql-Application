@@ -1,5 +1,8 @@
 package Model;
 
+import Model.Excpetions.V4UException;
+import Model.Excpetions.WrongDetailsException;
+
 public class Model {
 
     private static Model singleton = null;
@@ -32,8 +35,8 @@ public class Model {
 
     //functions:
 
-    public boolean insert(String table_name, Object[] data) {
-        return database.insert(table_name, data);
+    public void insert(String table_name, Object[] data) throws V4UException {
+        database.insert(table_name, data);
     }
 
     public boolean delete(String table_name, String id) {

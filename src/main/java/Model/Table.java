@@ -1,9 +1,11 @@
 package Model;
 
-public interface Table {
-    boolean insert(Database db, Object[] data);
+import Model.Excpetions.V4UException;
 
-    boolean update(Database db, String id, Object[] data);
+public interface Table {
+    boolean insert(Database db, Object[] data) throws V4UException;
+
+    boolean update(Database db, String id, Object[] data)  throws V4UException;
 
     boolean delete(Database db, String id);
 

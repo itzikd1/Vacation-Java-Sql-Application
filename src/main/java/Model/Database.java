@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import Model.Excpetions.V4UException;
+import Model.Excpetions.WrongDetailsException;
+
 class Database {
 
     private String url;
@@ -103,14 +106,13 @@ class Database {
      * @param data       - the record in object array
      * @return - true - if succeed, false - if failed
      */
-    protected boolean insert(String table_name, Object[] data) throws Model.V4UException.WrongDetailsException {
+    protected void insert(String table_name, Object[] data) throws  V4UException{
         System.out.println(data[2]);
         System.out.println(data[2].getClass());
         if (table_name.equals("Users")) {
             UsersTable users = (UsersTable) tables.get("Users");
-            return users.insert(this, data);
-        } else {
-            throw new Model.V4UException.WrongDetailsException();
+            users.insert(this, data);
+
         }
     }
 

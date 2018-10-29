@@ -1,16 +1,15 @@
 package Controller;
 
+import Model.Excpetions.V4UException;
 import Model.Model;
-import View.MainPageView;
-import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
-import Model.V4UException.*;
+import Model.Excpetions.*;
+
 public class Controller {
 
     private static Controller singleton = null;
@@ -30,7 +29,7 @@ public class Controller {
     //call the model basic functions:
     //functions:
 
-    public boolean insert(String table_name, Object[] data) {
+    public void insert(String table_name, Object[] data) throws V4UException {
         String user;
         String password;
         String fn;
@@ -45,9 +44,6 @@ public class Controller {
             if(x.getValue()!=null) {
                 bd = (DatePicker) data[2];
                 date = java.sql.Date.valueOf((bd).getValue());
-            }
-            else{
-                return false;
             }
 
             fn = (String) data[3];
@@ -65,10 +61,12 @@ public class Controller {
             LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate now = LocalDate.now();
             Period p = Period.between(birthdate, now);
+            if (p.getYears() < 18)
+                throw new TooYoungException();
 
 
         }
-        return model.insert(table_name, data);
+         model.insert(table_name, data);
     }
 
     public boolean delete (String table_name, String id){

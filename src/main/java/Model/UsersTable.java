@@ -1,5 +1,8 @@
 package Model;
 
+import Model.Excpetions.UserNameIsntValidException;
+import Model.Excpetions.V4UException;
+
 import java.sql.*;
 
 class UsersTable implements Table {
@@ -29,7 +32,7 @@ class UsersTable implements Table {
 
 
     @Override
-    public boolean insert(Database db, Object[] data) {
+    public boolean insert(Database db, Object[] data) throws V4UException {
         boolean flag = false;
         Connection conn = db.connect();
         String details = "(";
@@ -60,10 +63,17 @@ class UsersTable implements Table {
             flag = true;
             System.out.println("Username :" + data[0] + " - was added to the DB");
 
-        } catch (Exception e) {
+        }catch (SQLException se) {
+            System.out.println(se.getMessage());
+            db.disconnect(conn);
+
+            throw new UserNameIsntValidException();
+
+        }
+        catch
+         (Exception e) {
             System.out.println(e.getMessage());
         }
-        db.disconnect(conn);
         return flag;
     }
 

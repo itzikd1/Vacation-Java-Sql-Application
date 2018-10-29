@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Controller;
+import Model.Excpetions.WrongDetailsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -92,10 +93,15 @@ public class MainPageView implements Initializable {
             sign_out.setVisible(true);
             disable_loginInfo();
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Login Failed Username Or Password Incorrect");
-            alert.showAndWait();
+            try {
+                throw new WrongDetailsException();
+            } catch (WrongDetailsException e) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(e.getMessage());
+                alert.showAndWait();
+
+            }
         }
         //login_pane.setVisible(false);
         //TODO: to setVisible false to pane and replace it with something else (MAOR)

@@ -1,7 +1,7 @@
 package View;
 
 import Controller.Controller;
-import Model.V4UException;
+import Model.Excpetions.V4UException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,10 +12,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
+import java.net.URL;
 import java.util.*;
+import Model.Excpetions.*;
 
 public class CreateUserView implements Initializable {
     public TextField tf_city;
@@ -42,89 +41,44 @@ public class CreateUserView implements Initializable {
 //            LocalDate localTodayDate = todayJavaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
 
-
-            //TODO if(p.getYears()>=18) + errormsg
+        //TODO if(p.getYears()>=18) + errormsg
         Object[] user_details = new Object[]{user, password, bd, fn, ln, city};
         try {
-            boolean flag = controller.insert("Users", user_details);
-
-            if (!flag) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
-                alert.setHeaderText("Please Put Valid Information");
-                alert.showAndWait();
-                System.out.println("error");
-            } else {
-                Stage s = (Stage) BackButton.getScene().getWindow();
-                s.close();
-                //ChangeScene();
-                System.out.println(user + "has been added");
-                updateLoginOnGui();
-            }
-        }
-        catch(V4UException e){
+            controller.insert("Users", user_details);
+            Stage s = (Stage) BackButton.getScene().getWindow();
+            s.close();
+            //ChangeScene();
+            System.out.println(user + " has been added");
+            updateLoginOnGui();
+        } catch (V4UException e) {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText(e.getMessage());
-//            alert.setContentText("gfddf");
             alert.showAndWait();
-            e.getMessage();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
             System.out.println(e.getMessage());
+
         }
-                boolean flag = controller.insert("Users", user_details);
-                if (!flag) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Please Put Valid Information");
-                    alert.showAndWait();
-                    System.out.println("error");
-                } else {
-                    Stage s = (Stage) BackButton.getScene().getWindow();
-                    s.close();
-                    //ChangeScene();
-                    System.out.println(user + " has been added");
-                    updateLoginOnGui();
-
-                }
-
-
-// TODO: to add eceptions -> catch them here, if DateEcepction will happen, we will show alert
-//        } else {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Error");
-//            alert.setHeaderText("Please Put A Valid Date");
-//            alert.setContentText("gfddf");
-//            alert.showAndWait();
-
     }
 
+
     private void updateLoginOnGui() {
-//     //   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("MainPage.fxml"));
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Security Alert");
+            alert.setHeaderText("You have been signed up!\nPlease log in using your new account information");
+            alert.showAndWait();
+        //     //   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("MainPage.fxml"));
 //
 //        fxmlLoader.getController();
 //        MainPageView mainPageView = fxmlLoader.getController();
 //        mainPageView.disable_loginInfo();
         //TODO: catch the controller
+
     }
 
-    private void ChangeScene() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MainPage.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(true);
-            stage.setTitle("Vacation4U");
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();
