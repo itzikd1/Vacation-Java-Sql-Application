@@ -5,7 +5,6 @@ public class Model {
     private static Model singleton = null;
     public Database database;
     public User user;
-    public User connectedUser;
 
     private Model() {
         createDataBase();

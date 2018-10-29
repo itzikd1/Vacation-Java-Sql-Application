@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Model;
+import View.MainPageView;
 
 public class Controller {
 
@@ -50,4 +51,9 @@ public class Controller {
         String [] details = model.readConnectedUser();
         return details;
     }
+
+    public void saveUser(String user) {
+        model.read("Users",user);
+    }
+
 }

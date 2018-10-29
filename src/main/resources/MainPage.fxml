@@ -19,7 +19,7 @@
                 <Image url="@images/background.png" />
             </image>
         </ImageView>
-        <AnchorPane layoutX="58.0" layoutY="122.0" maxHeight="600.0" maxWidth="400.0" minHeight="236.0" minWidth="286.0" prefHeight="236.0" prefWidth="286.0" style="-fx-background-color: dddddd;">
+        <AnchorPane fx:id="login_pane" layoutX="58.0" layoutY="122.0" maxHeight="600.0" maxWidth="400.0" minHeight="236.0" minWidth="286.0" prefHeight="236.0" prefWidth="286.0" style="-fx-background-color: dddddd;">
             <children>
                 <TextField fx:id="tf_username" layoutX="23.0" layoutY="96.0" prefHeight="39.0" prefWidth="237.0" promptText="Username" />
                 <PasswordField fx:id="tf_password" layoutX="23.0" layoutY="142.0" prefHeight="39.0" prefWidth="237.0" promptText="Password" />

@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,6 +27,7 @@ public class MainPageView implements Initializable {
     public Button delete_button;
     public TextField tf_username;
     public PasswordField tf_password;
+    public AnchorPane login_pane;
     private Controller controller = Controller.getInstance();
 
 
@@ -35,7 +37,7 @@ public class MainPageView implements Initializable {
 
     public void create_user(ActionEvent actionEvent) {
         Stage s = (Stage) create_button.getScene().getWindow();
-        s.close();
+//        s.close();
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("CreateUser.fxml"));
             Stage stage = new Stage();
@@ -65,7 +67,9 @@ public class MainPageView implements Initializable {
                 DisableButtons();
                 create_button.setDisable(false);
                 sign_out.setVisible(false);
+                enableLoginInfo();
                 login_button.setDisable(false);
+                cleanTextFields();
             }
             else
             {
@@ -84,6 +88,7 @@ public class MainPageView implements Initializable {
         password = tf_password.getText();
         boolean flag = controller.confirmPassword("Users", user, password);
         if (flag == true) {
+            controller.saveUser(user);
             enableButtons();
             create_button.setDisable(true);
             sign_out.setVisible(true);
@@ -94,6 +99,8 @@ public class MainPageView implements Initializable {
             alert.setHeaderText("Login Failed Username Or Password Incorrect");
             alert.showAndWait();
         }
+        //login_pane.setVisible(false);
+        //TODO: to setVisible false to pane and replace it with something else (MAOR)
     }
 
     protected void disable_loginInfo() {
@@ -109,13 +116,12 @@ public class MainPageView implements Initializable {
         login_button.setDisable(false);
 
 
-
     }
 
     // TODO: 28/10/2018  Itzik
     public void update_user(ActionEvent actionEvent) {
         Stage s = (Stage) update_button.getScene().getWindow();
-        s.close();
+//        s.close();
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("UpdateUser.fxml"));
             Stage stage = new Stage();
@@ -143,7 +149,13 @@ public class MainPageView implements Initializable {
         create_button.setDisable(false);
         sign_out.setVisible(false);
         enableLoginInfo();
+        cleanTextFields();
 
+    }
+
+    private void cleanTextFields() {
+        tf_password.clear();
+        tf_username.clear();
     }
 
     private void enableButtons() {
