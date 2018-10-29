@@ -79,7 +79,7 @@ public class Controller {
 
     public String[] read (String table_name, String id){
         String[] details = model.read(table_name, id);
-        return details;//TODO SHEKER
+        return details;
     }
 
     public boolean update (String table_name, Object[]data, String id){
