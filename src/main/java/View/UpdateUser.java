@@ -33,7 +33,7 @@ public class UpdateUser implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String [] details = controller.readConnectedUser();
+        String[] details = controller.readConnectedUser();
         DatePicker dpbd = new DatePicker();
         tf_username.setText(details[0]);
         tf_password.setText(details[1]);
@@ -48,17 +48,7 @@ public class UpdateUser implements Initializable {
         LocalDate localDate = LocalDate.parse(details[2], formatter);
         bd.setValue(localDate);
 
-
     }
-    // TODO: 28/10/2018 i want to pull user from DB and put info in the text boxs when initialized Itzik
-    // TODO: 28/10/2018 Maybe like this? Itzik
-//    public void start(Stage primaryStage) {
-//        tf_username.setText("test");
-//
-//    }
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//    }
-//
 
     public void update_info(ActionEvent actionEvent) {
         /*
@@ -67,14 +57,6 @@ public class UpdateUser implements Initializable {
 
         String user, city, ln, fn, password;
         Date date = new Date();
-        // TODO: 28/10/2018 i want to pull user from DB and put info in the text boxs when initialized Itzik
-        //TODO this does this only after pressing the button update info, i want it to happen before
-
-        // TODO: 28/10/2018 now we go to the database and do delete and create, or update Itzik
-        /*
-        check if new details are valid and continue.
-         */
-
 
         user = tf_username.getText();
         city = tf_city.getText();

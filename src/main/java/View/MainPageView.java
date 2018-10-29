@@ -118,7 +118,6 @@ public class MainPageView implements Initializable {
 
     }
 
-    // TODO: 28/10/2018  Itzik
     public void update_user(ActionEvent actionEvent) {
         Stage s = (Stage) update_button.getScene().getWindow();
 //        s.close();
@@ -136,7 +135,6 @@ public class MainPageView implements Initializable {
         }
     }
 
-    // TODO: 28/10/2018 TODO this Itzik
     public void search_user(ActionEvent actionEvent) {
         Stage s = (Stage) update_button.getScene().getWindow();
 //        s.close();
