@@ -57,14 +57,14 @@ class UsersTable implements Table {
             for (int i = 0; i < data.length; i++)
                 pstmt.setString(i + 1, ((String) (data[i]).toString()));
             /**to check**/
-            System.out.println(stmt.toString());
+
             /**/
             pstmt.executeUpdate();
             flag = true;
-            System.out.println("Username :" + data[0] + " - was added to the DB");
+
 
         }catch (SQLException se) {
-            System.out.println(se.getMessage());
+
             db.disconnect(conn);
 
             throw new UserNameIsntValidException();
@@ -111,7 +111,7 @@ class UsersTable implements Table {
                 pstmt.setString(1, id);
                 pstmt.executeUpdate();
                 flag = true;
-                System.out.println("Username :" + id + " - was deleted from the DB");
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             } finally {
@@ -169,7 +169,7 @@ class UsersTable implements Table {
                         rs.getString("FirstName"),
                         rs.getString("LastName"),
                         rs.getString("City"));
-                System.out.println(user.toString());
+
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

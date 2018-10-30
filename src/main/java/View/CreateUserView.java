@@ -48,7 +48,7 @@ public class CreateUserView implements Initializable {
             Stage s = (Stage) BackButton.getScene().getWindow();
             s.close();
             //ChangeScene();
-            System.out.println(user + " has been added");
+
             updateLoginOnGui();
         } catch (V4UException e) {
 

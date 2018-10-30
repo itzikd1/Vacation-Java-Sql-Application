@@ -38,17 +38,17 @@ public class Controller {
         String city;
         Date date=null;
 
-            user = (String) data[0];
-            password = (String) data[1];
-            DatePicker x = (DatePicker)(data[2]);
-            if(x.getValue()!=null) {
-                bd = (DatePicker) data[2];
-                date = java.sql.Date.valueOf((bd).getValue());
-            }
+        user = (String) data[0];
+        password = (String) data[1];
+        DatePicker x = (DatePicker)(data[2]);
+        if(x.getValue()!=null) {
+            bd = (DatePicker) data[2];
+            date = java.sql.Date.valueOf((bd).getValue());
+        }
 
-            fn = (String) data[3];
-            ln = (String) data[4];
-            city = (String) data[5];
+        fn = (String) data[3];
+        ln = (String) data[4];
+        city = (String) data[5];
 
         if (user.isEmpty() || password.isEmpty() || city.isEmpty() || ln.isEmpty() || fn.isEmpty()) {
             throw new NotFilledAllFieldsException();
@@ -67,7 +67,7 @@ public class Controller {
 
         }
         data[2] = date;
-         model.insert(table_name, data);
+        model.insert(table_name, data);
     }
 
     public boolean delete (String table_name, String id){
@@ -79,7 +79,45 @@ public class Controller {
         return details;
     }
 
-    public boolean update (String table_name, Object[]data, String id){
+    public boolean update (String table_name, Object[]data, String id) throws V4UException{
+
+//        DatePicker x = (DatePicker)(data[2]);
+
+        String user;
+        String password;
+        String fn;
+        DatePicker bd;
+        String ln;
+        String city;
+        Date date=null;
+
+        user = (String) data[0];
+        password = (String) data[1];
+
+//        DatePicker x = (DatePicker)(data[2]);
+        date = java.sql.Date.valueOf((data[2]).toString());
+        fn = (String) data[3];
+        ln = (String) data[4];
+        city = (String) data[5];
+
+        if (user.isEmpty() || password.isEmpty() || city.isEmpty() || ln.isEmpty() || fn.isEmpty()) {
+            throw new NotFilledAllFieldsException();
+
+        } else {
+            //user's birthdate to java format
+
+
+            java.util.Date javaDate = new Date(date.getTime());
+            LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate now = LocalDate.now();
+            Period p = Period.between(birthdate, now);
+            if (p.getYears() < 18)
+                throw new TooYoungException();
+
+
+        }
+        data[2] = date;
+
         return model.update(table_name, data, id);
     }
 

@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Controller;
+import Model.Excpetions.V4UException;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -29,7 +30,6 @@ public class UpdateUser implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String[] details = controller.readConnectedUser();
-        DatePicker dpbd = new DatePicker();
         tf_username.setText(details[0]);
         tf_password.setText(details[1]);
         tf_firstName.setText(details[3]);
@@ -61,53 +61,59 @@ public class UpdateUser implements Initializable {
         fn = tf_firstName.getText();
         password = tf_password.getText();
 
+
         //TODO: to fix the case username is already exists
-        if (user.isEmpty() || password.isEmpty() || city.isEmpty() || ln.isEmpty() || fn.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Please fill in all the info");
-            alert.showAndWait();
-        } else if (bd.getValue() != null) {
-            //user's birthday to java format
-            date = java.sql.Date.valueOf(bd.getValue());
-            java.util.Date javaDate = new Date(date.getTime());
-            LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate now = LocalDate.now();
+
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Error");
+//            alert.setHeaderText("Please fill in all the info");
+//            alert.showAndWait();
+//        } else if (bd.getValue() != null) {
+//            //user's birthday to java format
+//            date = java.sql.Date.valueOf(bd.getValue());
+//            java.util.Date javaDate = new Date(date.getTime());
+//            LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//            LocalDate now = LocalDate.now();
 //            java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 //            java.util.Date todayJavaDate = new Date(today.getTime());
 //            LocalDate localTodayDate = todayJavaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
 
-            Period p = Period.between(birthdate, now);
-            //TODO if(p.getYears()>=18) + errormsg
-            System.out.println("user created : " + user + " " + fn + " " + ln + " " + city + " " + date.toString() + " ");
-            Object[] updatedDetails = new Object[]{user, password, date, fn, ln, city};
-            boolean flag = controller.update("Users", updatedDetails, (String) updatedDetails[0]);
-            if (!flag) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
-                alert.setHeaderText("update failed");
-                alert.showAndWait();
-                System.out.println("error");
-            } else {
-                Stage s = (Stage) BackButton.getScene().getWindow();
-                System.out.println(user + " has been updated");
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
-                alert.setHeaderText(user + " has been updated!");
-                alert.showAndWait();
-                s.close();
-            }
+//            Period p = Period.between(birthdate, now);
+        //TODO if(p.getYears()>=18) + errormsg
 
 
-        } else {
+        Object[] updatedDetails = new Object[]{user, password, date, fn, ln, city};
+        updatedDetails[2] = bd.getValue();
+        boolean flag = false;
+        try {
+            flag = controller.update("Users", updatedDetails, (String) updatedDetails[0]);
+        } catch (V4UException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
-            alert.setHeaderText("Please Put A Valid Date");
-//            alert.setContentText("gfddf");
+            alert.setHeaderText(e.getMessage());
             alert.showAndWait();
+
+        }
+        if (flag) {
+            Stage s = (Stage) BackButton.getScene().getWindow();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Update Confirm");
+            alert.setHeaderText("Your details have been updated!");
+            alert.showAndWait();
+            s.close();
         }
     }
+
+
+//        } else {
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Error");
+//            alert.setHeaderText("Please Put A Valid Date");
+////            alert.setContentText("gfddf");
+//            alert.showAndWait();
+//        }
+//    }
 
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();

@@ -107,8 +107,7 @@ class Database {
      * @return - true - if succeed, false - if failed
      */
     protected void insert(String table_name, Object[] data) throws  V4UException{
-        System.out.println(data[2]);
-        System.out.println(data[2].getClass());
+
         if (table_name.equals("Users")) {
             UsersTable users = (UsersTable) tables.get("Users");
             users.insert(this, data);
@@ -153,8 +152,7 @@ class Database {
      * @return - true- if succeed, false - if failed
      */
     protected boolean update(String table_name, Object[] data, String id) {
-        System.out.println(data[2]);
-        System.out.println(data[2].getClass());
+
         if (table_name.equals("Users")) {
             UsersTable users = (UsersTable) tables.get("Users");
             return users.update(this, id, data);
