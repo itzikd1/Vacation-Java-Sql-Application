@@ -56,23 +56,18 @@ class UsersTable implements Table {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             for (int i = 0; i < data.length; i++)
                 pstmt.setString(i + 1, ((String) (data[i]).toString()));
-            /**to check**/
-
-            /**/
             pstmt.executeUpdate();
             flag = true;
 
-
         }catch (SQLException se) {
-
-            db.disconnect(conn);
-
             throw new UserNameIsntValidException();
-
         }
         catch
          (Exception e) {
             System.out.println(e.getMessage());
+        }
+        finally {
+            db.disconnect(conn);
         }
         return flag;
     }
@@ -94,6 +89,9 @@ class UsersTable implements Table {
             flag = true;
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally {
+            db.disconnect(conn);
         }
         return flag;
     }

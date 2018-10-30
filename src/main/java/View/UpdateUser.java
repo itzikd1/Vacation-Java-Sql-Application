@@ -38,8 +38,6 @@ public class UpdateUser implements Initializable {
         //birthday
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-//TODO: 1 update of new user (old will work)
-        //TODO: 2 bd picker
         //todo: not disconnent of db sometimes
         //convert String to LocalDate
         LocalDate localDate = LocalDate.parse(details[2], formatter);
@@ -60,27 +58,6 @@ public class UpdateUser implements Initializable {
         ln = tf_lastName.getText();
         fn = tf_firstName.getText();
         password = tf_password.getText();
-
-
-        //TODO: to fix the case username is already exists
-
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Error");
-//            alert.setHeaderText("Please fill in all the info");
-//            alert.showAndWait();
-//        } else if (bd.getValue() != null) {
-//            //user's birthday to java format
-//            date = java.sql.Date.valueOf(bd.getValue());
-//            java.util.Date javaDate = new Date(date.getTime());
-//            LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//            LocalDate now = LocalDate.now();
-//            java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-//            java.util.Date todayJavaDate = new Date(today.getTime());
-//            LocalDate localTodayDate = todayJavaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-
-//            Period p = Period.between(birthdate, now);
-        //TODO if(p.getYears()>=18) + errormsg
 
 
         Object[] updatedDetails = new Object[]{user, password, date, fn, ln, city};
@@ -105,15 +82,6 @@ public class UpdateUser implements Initializable {
         }
     }
 
-
-//        } else {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Error");
-//            alert.setHeaderText("Please Put A Valid Date");
-////            alert.setContentText("gfddf");
-//            alert.showAndWait();
-//        }
-//    }
 
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();
