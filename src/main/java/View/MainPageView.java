@@ -81,7 +81,6 @@ public class MainPageView implements Initializable {
     }
 
     public void sign_in(ActionEvent actionEvent) {
-        //TODO: log in the user by model. we will be needed to add USERNAME member who will update
         String user, password;
         user = tf_username.getText();
         password = tf_password.getText();
@@ -104,7 +103,7 @@ public class MainPageView implements Initializable {
             }
         }
         //login_pane.setVisible(false);
-        //TODO: to setVisible false to pane and replace it with something else (MAOR)
+        //TODO: to setVisible false to pane and replace it with something else (MAOR) (Second time)
     }
 
     protected void disable_loginInfo() {

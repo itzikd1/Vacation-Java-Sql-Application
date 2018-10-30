@@ -41,7 +41,6 @@ public class CreateUserView implements Initializable {
 //            LocalDate localTodayDate = todayJavaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
 
-        //TODO if(p.getYears()>=18) + errormsg
         Object[] user_details = new Object[]{user, password, bd, fn, ln, city};
         try {
             controller.insert("Users", user_details);
