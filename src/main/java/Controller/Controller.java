@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Excpetions.V4UException;
 import Model.Model;
+import Model.User;
 import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
@@ -25,11 +26,20 @@ public class Controller {
         return singleton;
     }
 
+    public Period getPeriod (Date date) throws TooYoungException {
+        java.util.Date javaDate = new Date(date.getTime());
+        LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate now = LocalDate.now();
+        Period p = Period.between(birthdate, now);
+        if (p.getYears() < 18)
+            throw new TooYoungException();
+        return p;
+    }
 
     //call the model basic functions:
     //functions:
 
-    public void insert(String table_name, Object[] data) throws V4UException {
+    public void insertNewUser(String table_name, Object[] data) throws V4UException {
         String user;
         String password;
         String fn;
@@ -53,20 +63,10 @@ public class Controller {
         if (user.isEmpty() || password.isEmpty() || city.isEmpty() || ln.isEmpty() || fn.isEmpty()) {
             throw new NotFilledAllFieldsException();
 
-        } else {
-            //user's birthdate to java format
-
-
-            java.util.Date javaDate = new Date(date.getTime());
-            LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate now = LocalDate.now();
-            Period p = Period.between(birthdate, now);
-            if (p.getYears() < 18)
-                throw new TooYoungException();
-
-
+        } else { //user's birthdate to java format
+            Period p =getPeriod(date);
         }
-        data[2] = date;
+        data[2] = date.forma;
         model.insert(table_name, data);
     }
 
@@ -74,8 +74,9 @@ public class Controller {
         return model.delete(table_name, id);
     }
 
-    public String[] read (String table_name, String id){
-        String[] details = model.read(table_name, id);
+    public String[] readUser (String table_name, String id){
+        User user = (User)model.read(table_name, id);
+        String[] details = user.getDetails();
         return details;
     }
 

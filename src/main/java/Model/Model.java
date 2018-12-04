@@ -33,9 +33,8 @@ public class Model {
         database.createTables();
     }
 
-    //functions:
 
-    public void insert(String table_name, Object[] data) throws V4UException {
+    public void insert(String table_name, String[] data) throws V4UException {
         database.insert(table_name, data);
     }
 
@@ -43,21 +42,22 @@ public class Model {
         return database.delete(table_name, id);
     }
 
-    public String[] read(String table_name, String id) {
-        User showedUser = database.read(table_name, id);
-
-        if (showedUser == null)
-            return null;
-
-        String[] details = new String[6];
-        details[0] = showedUser.getUsername();
-        details[1] = showedUser.getPassword();
-        details[2] = showedUser.getBDay();
-        details[3] = showedUser.getFName();
-        details[4] = showedUser.getLName();
-        details[5] = showedUser.getCity();
-
-        return details;
+    public Object read(String table_name, String pk) {
+        String[] result = database.read(table_name, pk);
+        Object ans= null;
+        switch (table_name){
+            case "Users":
+                String Username = result [0];
+                String Password = result [1];
+                String BDay = result [2];
+                String FName = result [3];
+                String LName = result [4];
+                String City = result [5];
+                ans = new User (Username, Password, BDay, FName, LName, City);
+                break;
+                // todo: add other cases
+        }
+        return ans;
     }
 
     public boolean update(String table_name, Object[] data, String id) {

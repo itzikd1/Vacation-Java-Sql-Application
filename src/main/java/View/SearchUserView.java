@@ -34,7 +34,7 @@ public class SearchUserView implements Initializable {
 
     public void search(ActionEvent actionEvent) {
         String user = tf_username.getText();
-        String[] details = controller.read("Users", user);
+        String[] details = controller.readUser("Users", user);
 
         if (details != null) {
             //set labels

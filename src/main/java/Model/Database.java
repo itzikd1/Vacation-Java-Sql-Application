@@ -45,7 +45,7 @@ class Database {
         return flag;
     }
 
-    private ResultSet runQueryReturnOutput (String sql){
+    private String[] runQueryReturnOutput (String sql, String tableName){
         ResultSet result = null;
         Connection conn = connect();
         try {
@@ -57,7 +57,7 @@ class Database {
         finally {
             disconnect(conn);
         }
-        return result;
+        return convertResultSet(tableName, result);
     }
 
     public String[] convertResultSet(String tableName, ResultSet rs){
@@ -196,9 +196,9 @@ class Database {
     }
 
     /**
-     * this function insert to a specific table a record
+     * this function insertNewUser to a specific table a record
      *
-     * @param tableName - table name to insert to
+     * @param tableName - table name to insertNewUser to
      * @param data       - the record in object array
      * @return - true - if succeed, false - if failed
      */
@@ -218,10 +218,10 @@ class Database {
         return runQuery(sql);
     }
 
-    public ResultSet Read(String data, String tableName) {
+    public String[] read(String data, String tableName) {
         String field = fieldsOfTables.get(tableName)[0];
         String sql = "SELECT * FROM " + tableName + " WHERE " + field + " = '" + data + "'";
-        return runQueryReturnOutput(sql);
+        return runQueryReturnOutput(sql,tableName);
     }
 
     /**
@@ -230,14 +230,14 @@ class Database {
      * @param tableName
      * @return
      */
-    public boolean Delete(String data, String tableName) {
+    public boolean delete(String data, String tableName) {
         String[] fields = fieldsOfTables.get(tableName);
         String sql = "DELETE FROM " + tableName + "WHERE " + fields[0] + " = '" + data + "'";
         return runQuery(sql);
 
     }
 
-    public boolean Update (String[] data, String tableName) {
+    public boolean update (String[] data, String tableName) {
         String[] fields = fieldsOfTables.get(tableName);
         String sql = "UPDATE " + tableName + "SET ";
         for (int i=0; i<data.length; i++) {

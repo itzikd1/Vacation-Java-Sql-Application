@@ -3,18 +3,12 @@ package View;
 import Controller.Controller;
 import Model.Excpetions.V4UException;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import Model.Excpetions.*;
 
 public class CreateUserView implements Initializable {
     public TextField tf_city;
@@ -43,7 +37,7 @@ public class CreateUserView implements Initializable {
 
         Object[] user_details = new Object[]{user, password, bd, fn, ln, city};
         try {
-            controller.insert("Users", user_details);
+            controller.insertNewUser("Users", user_details);
             Stage s = (Stage) BackButton.getScene().getWindow();
             s.close();
             //ChangeScene();

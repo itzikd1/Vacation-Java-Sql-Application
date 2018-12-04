@@ -27,6 +27,11 @@ public class User {
         City = null;
     }
 
+    public String[] getDetails(){
+        String[] details = {Username, Password, BDay, FName, LName, City};
+        return details;
+    }
+
     protected String getUsername() {
         return Username;
     }
