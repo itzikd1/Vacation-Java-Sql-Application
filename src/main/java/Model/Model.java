@@ -60,20 +60,21 @@ public class Model {
         return ans;
     }
 
-    public boolean update(String table_name, Object[] data, String id) {
-        return database.update(table_name, data, id);
+    public boolean update(String table_name, String[] data) {
+        return database.update(data, table_name);
     }
 
 
     public boolean confirm(String table_name, String user, String password) {
-        this.user = database.read(table_name, user);
+        String[] userDetails = database.read(user, table_name);
         if (user == null)
             return false;
         else return this.user.getPassword().equals(password);
     }
 
     public String[] readConnectedUser() {
-        return read("Users", this.user.getUsername());
+        User user = (User) read("Users", this.user.getUsername());
+        return user.getDetails();
     }
 
 

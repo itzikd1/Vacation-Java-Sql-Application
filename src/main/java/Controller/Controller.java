@@ -47,27 +47,27 @@ public class Controller {
         String ln;
         String city;
         Date date=null;
-
-        user = (String) data[0];
-        password = (String) data[1];
+        String[] details = new String[6];
+        details[0] = (String) data[0];
+        details[1] = (String) data[1];
         DatePicker x = (DatePicker)(data[2]);
         if(x.getValue()!=null) {
             bd = (DatePicker) data[2];
             date = java.sql.Date.valueOf((bd).getValue());
         }
 
-        fn = (String) data[3];
-        ln = (String) data[4];
-        city = (String) data[5];
+        details[3] = (String) data[3];
+        details[4] = (String) data[4];
+        details[5] = (String) data[5];
 
-        if (user.isEmpty() || password.isEmpty() || city.isEmpty() || ln.isEmpty() || fn.isEmpty()) {
+        if (details[1].isEmpty() || details[0].isEmpty() || details[5].isEmpty() || details[4].isEmpty() || details[3].isEmpty()) {
             throw new NotFilledAllFieldsException();
 
         } else { //user's birthdate to java format
             Period p =getPeriod(date);
         }
-        data[2] = date.forma;
-        model.insert(table_name, data);
+        details[2] = date.toString();
+        model.insert(table_name, details);
     }
 
     public boolean delete (String table_name, String id){
@@ -119,7 +119,7 @@ public class Controller {
         }
         data[2] = date;
 
-        return model.update(table_name, data, id);
+        return model.update(table_name, (String[])data);
     }
 
     public boolean confirmPassword (String table_name, String user, String password){

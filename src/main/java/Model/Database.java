@@ -37,10 +37,10 @@ class Database {
             stmt.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            flag = false;
         }
         finally {
             disconnect(conn);
-            flag = false;
         }
         return flag;
     }
@@ -49,7 +49,7 @@ class Database {
         ResultSet result = null;
         Connection conn = connect();
         try {
-            Statement stmt = conn.createStatement();
+            PreparedStatement stmt = conn.prepareStatement(sql);
             result = stmt.executeQuery(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -213,14 +213,15 @@ class Database {
         fieldsForSQL = fieldsForSQL.substring(0, fieldsForSQL.length()-1) + ")";
         values = values.substring(0, values.length()-1) + ")";
 
-        String sql = "INSERT INTO " + tableName + fieldsForSQL + " " + values;
+        String sql = "INSERT INTO " + tableName + fieldsForSQL + " VALUES" + values;
 
         return runQuery(sql);
     }
 
     public String[] read(String data, String tableName) {
         String field = fieldsOfTables.get(tableName)[0];
-        String sql = "SELECT * FROM " + tableName + " WHERE " + field + " = '" + data + "'";
+        String sql = "SELECT * FROM " + tableName + " WHERE " + field + " = ?";
+
         return runQueryReturnOutput(sql,tableName);
     }
 
