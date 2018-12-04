@@ -10,8 +10,8 @@ public class User {
     private String City;
 
     protected User(String username, String password, String BDay, String FName, String LName, String city) {
-        Username = username;
-        Password = password;
+        this.Username = username;
+        this.Password = password;
         this.BDay = BDay;
         this.FName = FName;
         this.LName = LName;

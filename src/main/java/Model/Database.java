@@ -5,17 +5,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Model.Excpetions.V4UException;
-import Model.Excpetions.WrongDetailsException;
 
 class Database {
 
     private String url;
-    private Map<String, Table> tables;
+    private Map<String, String[]> fieldsOfTables; // table name -> fields
 
-
+    /**
+     * create the DB class
+     * fieldsOfTables [0] is always the PK !!!
+     * @param url- to DB
+     */
     protected Database(String url) {
         this.url = url;
-        tables = new HashMap<String, Table>();
+        fieldsOfTables = new HashMap<String, String[]>();
     }
 
     protected String getUrl() {
@@ -24,6 +27,55 @@ class Database {
 
     protected void setUrl(String url) {
         this.url = url;
+    }
+
+    private boolean runQuery (String sql){
+        boolean flag = true;
+        Connection conn = connect();
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            disconnect(conn);
+            flag = false;
+        }
+        return flag;
+    }
+
+    private ResultSet runQueryReturnOutput (String sql){
+        ResultSet result = null;
+        Connection conn = connect();
+        try {
+            Statement stmt = conn.createStatement();
+            result = stmt.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            disconnect(conn);
+        }
+        return result;
+    }
+
+    public String[] convertResultSet(String tableName, ResultSet rs){
+        String[] fields = fieldsOfTables.get(tableName);
+        String[] result = new String[fields.length];
+
+        try {
+            int i=0;
+            while (rs.next()) {
+                result[i] = rs.getString(fields[i]);
+                i++;
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+
     }
 
     /**
@@ -68,14 +120,58 @@ class Database {
      */
     protected boolean createTables() {
         boolean flag = false;
-        try {
-            UsersTable usersTable = new UsersTable(url, this);
-            tables.put("Users", usersTable);
-            flag = true;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return flag;
+        String usersSQL = "CREATE TABLE IF NOT EXISTS Users(\n"
+                + "	UserName varchar PRIMARY KEY,\n"
+                + "	Password varchar NOT NULL,\n"
+                + "    Birthdate varchar , \n"
+                + "    FirstName varchar, \n"
+                + "    LastName varchar, \n"
+                + "    City varchar \n"
+                + ");";
+        String[] usersFields = {"UserName","Password","Birthdate","FirstName","LastName","City"};
+        fieldsOfTables.put("Users" , usersFields);
+        String purchasesSQL = "CREATE TABLE IF NOT EXISTS Purchases(\n"
+                + "	PurchaseID varchar PRIMARY KEY,\n"
+                + " VacationID varchar NOT NULL, \n"
+                + " BuyerUserName varchar NOT NULL,\n"
+                + " SellerUserName varchar NOT NULL \n"
+                + " Price varchar NOT NULL, \n"
+                + " PaymentMethod varchar NOT NULL, \n"
+                + " CreditCardNum varchar, \n"
+                + " PayPalUserName varchar, \n"
+                + "  \n"
+                + ");";
+        String[] purchasesFields = {"PurchaseID","VacationID","BuyerUserName","SellerUserName",
+                "Price","PaymentMethod","CreditCardNum", "PayPalUserName"};
+        fieldsOfTables.put("Purchases" , purchasesFields);
+        String vacationsSQL = "CREATE TABLE IF NOT EXISTS Vacations(\n"
+                + " VacationID varchar PRIMARY KEY \n"
+                + "	UserName varchar,\n"
+                + "	Departure varchar NOT NULL,\n"
+                + " DepartureDate varchar  NOT NULL, \n"
+                + " DepartureTime varchar NOT NULL, \n"
+                + " Destination varchar NOT NULL, \n"
+                + " DestinationDate varchar NOT NULL, \n"
+                + " DestinationTime varchar NOT NULL, \n"
+                + " ReturnDate varchar, \n" // return flight optional
+                + " ReturnTime varchar, \n"// return flight optional
+                + " ArrivalDateInDestination varchar, \n"// return flight optional
+                + " ArrivalTimeInDestination varchar, \n"// return flight optional
+                + " TicketType varchar NOT NULL, \n"
+                + " FlightsCompany varchar NOT NULL, \n"
+                + " ConnectionCountry varchar, \n"
+                + " isBaggageIncluded bit , \n" // o or 1
+                + " BaggageOptions varchar, \n"
+                + " ClassType varchar NOT NULL"
+                + ");";
+        String[] vacationFields = {"VacationID","UserName","Departure","DepartureDate","DepartureTime","Destination",
+        "ReturnDate","ReturnTime","ArrivalDateInDestination","ArrivalTimeInDestination","TicketType","FlightsCompany",
+                "ConnectionCountry","isBaggageIncluded","BaggageOptions","ClassType"};
+        fieldsOfTables.put("Vacations" , vacationFields);
+        boolean flag1 = runQuery(usersSQL);
+        boolean flag2 = runQuery(purchasesSQL);
+        boolean flag3 = runQuery(vacationsSQL);
+        return flag1 && flag2 && flag3;
     }
 
     /**
@@ -102,66 +198,59 @@ class Database {
     /**
      * this function insert to a specific table a record
      *
-     * @param table_name - table name to insert to
+     * @param tableName - table name to insert to
      * @param data       - the record in object array
      * @return - true - if succeed, false - if failed
      */
-    protected void insert(String table_name, Object[] data) throws  V4UException{
-
-        if (table_name.equals("Users")) {
-            UsersTable users = (UsersTable) tables.get("Users");
-            users.insert(this, data);
-
+    protected boolean insert(String tableName, String[] data) throws  V4UException{
+        String[] fields = fieldsOfTables.get(tableName);
+        String fieldsForSQL = "(";
+        String values = "(";
+        for (int i = 0 ; i < fields.length ; i++){
+            fieldsForSQL = fieldsForSQL + fields[i] + ",";
+            values = values + data[i] + ",";
         }
+        fieldsForSQL = fieldsForSQL.substring(0, fieldsForSQL.length()-1) + ")";
+        values = values.substring(0, values.length()-1) + ")";
+
+        String sql = "INSERT INTO " + tableName + fieldsForSQL + " " + values;
+
+        return runQuery(sql);
+    }
+
+    public ResultSet Read(String data, String tableName) {
+        String field = fieldsOfTables.get(tableName)[0];
+        String sql = "SELECT * FROM " + tableName + " WHERE " + field + " = '" + data + "'";
+        return runQueryReturnOutput(sql);
     }
 
     /**
-     * this function delete one record by id from a specific table
-     *
-     * @param table_name - the table name to delete from
-     * @param id         - the record that we want to delete
-     * @return - true- if succeed, false - if failed
+     * deletation by primary key (fields[0]
+     * @param data
+     * @param tableName
+     * @return
      */
-    protected boolean delete(String table_name, String id) {
-        if (table_name.equals("Users")) {
-            UsersTable users = (UsersTable) tables.get("Users");
-            return users.delete(this, id);
-        } else return false;
+    public boolean Delete(String data, String tableName) {
+        String[] fields = fieldsOfTables.get(tableName);
+        String sql = "DELETE FROM " + tableName + "WHERE " + fields[0] + " = '" + data + "'";
+        return runQuery(sql);
+
     }
 
-    /**
-     * this function return the user by PK
-     *
-     * @param table_name - the table name
-     * @param id         - the record that we want to find
-     * @return - true- if succeed, false - if failed
-     */
-    protected User read(String table_name, String id) {
-        if (table_name.equals("Users")) {
-            UsersTable users = (UsersTable) tables.get("Users");
-            return (User) users.read(this, id);
-        } else return null;
-    }
-
-    /**
-     * this function updates a record with PK=id
-     *
-     * @param table_name - where
-     * @param data       - new data
-     * @param id         - PK of the record
-     * @return - true- if succeed, false - if failed
-     */
-    protected boolean update(String table_name, Object[] data, String id) {
-
-        if (table_name.equals("Users")) {
-            UsersTable users = (UsersTable) tables.get("Users");
-            return users.update(this, id, data);
-        } else return false;
-    }
-
-    protected void print_table(String table_name) {
-        if (table_name.equals("Users")) {
-            tables.get("Users").print(this);
+    public boolean Update (String[] data, String tableName) {
+        String[] fields = fieldsOfTables.get(tableName);
+        String sql = "UPDATE " + tableName + "SET ";
+        for (int i=0; i<data.length; i++) {
+            sql = sql + fields[i] + " = '" + data[i] + "',";
         }
+        sql=sql.substring(0,sql.length()-1);
+        sql = sql + " WHERE " + fields[0] + "LIKE '" + data[0] + "'";
+        return runQuery(sql);
     }
+
+//    protected void print_table(String table_name) {
+//        if (table_name.equals("Users")) {
+//            tables.get("Users").print(this);
+//        }
+//    }
 }

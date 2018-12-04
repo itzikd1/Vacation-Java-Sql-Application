@@ -5,7 +5,7 @@ import Model.Excpetions.V4UException;
 
 import java.sql.*;
 
-class UsersTable implements Table {
+class UsersTable implements ITable {
 
     protected String url_DB;
 
