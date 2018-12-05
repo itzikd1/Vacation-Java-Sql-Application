@@ -34,7 +34,7 @@ class Database {
         Connection conn = connect();
         try {
             Statement stmt = conn.createStatement();
-            stmt.execute(sql);
+            stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
             flag = false;
@@ -134,18 +134,18 @@ class Database {
                 + "	PurchaseID varchar PRIMARY KEY,\n"
                 + " VacationID varchar NOT NULL, \n"
                 + " BuyerUserName varchar NOT NULL,\n"
-                + " SellerUserName varchar NOT NULL \n"
+                + " SellerUserName varchar NOT NULL, \n"
                 + " Price varchar NOT NULL, \n"
                 + " PaymentMethod varchar NOT NULL, \n"
                 + " CreditCardNum varchar, \n"
-                + " PayPalUserName varchar, \n"
+                + " PayPalUserName varchar"
                 + "  \n"
                 + ");";
         String[] purchasesFields = {"PurchaseID","VacationID","BuyerUserName","SellerUserName",
                 "Price","PaymentMethod","CreditCardNum", "PayPalUserName"};
         fieldsOfTables.put("Purchases" , purchasesFields);
         String vacationsSQL = "CREATE TABLE IF NOT EXISTS Vacations(\n"
-                + " VacationID varchar PRIMARY KEY \n"
+                + " VacationID varchar PRIMARY KEY, \n"
                 + "	UserName varchar,\n"
                 + "	Departure varchar NOT NULL,\n"
                 + " DepartureDate varchar  NOT NULL, \n"
@@ -161,8 +161,9 @@ class Database {
                 + " FlightsCompany varchar NOT NULL, \n"
                 + " ConnectionCountry varchar, \n"
                 + " isBaggageIncluded bit , \n" // o or 1
-                + " BaggageOptions varchar, \n"
+                + " BaggageOptions varchar \n"
                 + " ClassType varchar NOT NULL"
+                + "  \n"
                 + ");";
         String[] vacationFields = {"VacationID","UserName","Departure","DepartureDate","DepartureTime","Destination",
         "ReturnDate","ReturnTime","ArrivalDateInDestination","ArrivalTimeInDestination","TicketType","FlightsCompany",
@@ -213,7 +214,7 @@ class Database {
         fieldsForSQL = fieldsForSQL.substring(0, fieldsForSQL.length()-1) + ")";
         values = values.substring(0, values.length()-1) + ")";
 
-        String sql = "INSERT INTO " + tableName + fieldsForSQL + " VALUES" + values;
+        String sql = "INSERT INTO " + tableName + " " +  fieldsForSQL + " VALUES " + values;
 
         return runQuery(sql);
     }

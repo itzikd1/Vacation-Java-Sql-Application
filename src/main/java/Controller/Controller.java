@@ -40,25 +40,21 @@ public class Controller {
     //functions:
 
     public void insertNewUser(String table_name, Object[] data) throws V4UException {
-        String user;
-        String password;
-        String fn;
         DatePicker bd;
-        String ln;
-        String city;
+
         Date date=null;
         String[] details = new String[6];
-        details[0] = (String) data[0];
-        details[1] = (String) data[1];
+        details[0] = (String) data[0]; //user_name
+        details[1] = (String) data[1]; //password
         DatePicker x = (DatePicker)(data[2]);
         if(x.getValue()!=null) {
             bd = (DatePicker) data[2];
             date = java.sql.Date.valueOf((bd).getValue());
         }
 
-        details[3] = (String) data[3];
-        details[4] = (String) data[4];
-        details[5] = (String) data[5];
+        details[3] = (String) data[3]; //first name
+        details[4] = (String) data[4]; //last name
+        details[5] = (String) data[5]; //city
 
         if (details[1].isEmpty() || details[0].isEmpty() || details[5].isEmpty() || details[4].isEmpty() || details[3].isEmpty()) {
             throw new NotFilledAllFieldsException();
@@ -66,7 +62,7 @@ public class Controller {
         } else { //user's birthdate to java format
             Period p =getPeriod(date);
         }
-        details[2] = date.toString();
+        details[2] = date.toString(); //date string YYYY-MM-DD
         model.insert(table_name, details);
     }
 
