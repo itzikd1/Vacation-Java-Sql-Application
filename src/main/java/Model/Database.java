@@ -48,28 +48,34 @@ class Database {
     private String[] runQueryReturnOutput (String sql, String tableName){
         ResultSet result = null;
         Connection conn = connect();
+        String[] converted_result = null;
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            result = stmt.executeQuery(sql);
+            result = stmt.executeQuery();
+            converted_result = convertResultSet(tableName, result);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         finally {
             disconnect(conn);
         }
-        return convertResultSet(tableName, result);
+        return converted_result;
     }
 
-    public String[] convertResultSet(String tableName, ResultSet rs){
+    public String[] convertResultSet(String tableName, ResultSet rs) throws SQLException {
         String[] fields = fieldsOfTables.get(tableName);
         String[] result = new String[fields.length];
+        ResultSetMetaData metadata = rs.getMetaData();
+        //todo: change this or create a new method to get an array of arrays of result or somerthing smarter.
 
         try {
-            int i=0;
             while (rs.next()) {
-                result[i] = rs.getString(fields[i]);
-                i++;
+                int i = 0;
+                while (i < fields.length) {
+                    result[i] = rs.getString(fields[i]);
+                    i++;
 
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -208,8 +214,8 @@ class Database {
         String fieldsForSQL = "(";
         String values = "(";
         for (int i = 0 ; i < fields.length ; i++){
-            fieldsForSQL = fieldsForSQL + fields[i] + ",";
-            values = values + data[i] + ",";
+            fieldsForSQL = fieldsForSQL +fields[i]+ ",";
+            values = values + "'" + data[i] + "'" + ",";
         }
         fieldsForSQL = fieldsForSQL.substring(0, fieldsForSQL.length()-1) + ")";
         values = values.substring(0, values.length()-1) + ")";
@@ -219,9 +225,11 @@ class Database {
         return runQuery(sql);
     }
 
+    //todo: not sure if there is problem on this function
     public String[] read(String data, String tableName) {
-        String field = fieldsOfTables.get(tableName)[0];
-        String sql = "SELECT * FROM " + tableName + " WHERE " + field + " = ?";
+        String[] fields = fieldsOfTables.get(tableName);
+        String field = fields[0];
+        String sql = "SELECT * FROM " + tableName + " WHERE " + field + " = " + "'" +  data + "'" ;
 
         return runQueryReturnOutput(sql,tableName);
     }
@@ -234,19 +242,19 @@ class Database {
      */
     public boolean delete(String data, String tableName) {
         String[] fields = fieldsOfTables.get(tableName);
-        String sql = "DELETE FROM " + tableName + "WHERE " + fields[0] + " = '" + data + "'";
+        String sql = "DELETE FROM " + tableName + " WHERE " + fields[0] + " = '" + data + "'";
         return runQuery(sql);
 
     }
 
     public boolean update (String[] data, String tableName) {
         String[] fields = fieldsOfTables.get(tableName);
-        String sql = "UPDATE " + tableName + "SET ";
+        String sql = "UPDATE " + tableName + " SET ";
         for (int i=0; i<data.length; i++) {
             sql = sql + fields[i] + " = '" + data[i] + "',";
         }
         sql=sql.substring(0,sql.length()-1);
-        sql = sql + " WHERE " + fields[0] + "LIKE '" + data[0] + "'";
+        sql = sql + " WHERE " + fields[0] + " LIKE '" + data[0] + "'";
         return runQuery(sql);
     }
 

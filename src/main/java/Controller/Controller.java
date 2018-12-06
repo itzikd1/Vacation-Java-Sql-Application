@@ -8,6 +8,7 @@ import javafx.scene.control.DatePicker;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.Date;
 import Model.Excpetions.*;
 
@@ -59,7 +60,7 @@ public class Controller {
         if (details[1].isEmpty() || details[0].isEmpty() || details[5].isEmpty() || details[4].isEmpty() || details[3].isEmpty()) {
             throw new NotFilledAllFieldsException();
 
-        } else { //user's birthdate to java format
+        } else { //connected_user's birthdate to java format
             Period p =getPeriod(date);
         }
         details[2] = date.toString(); //date string YYYY-MM-DD
@@ -67,7 +68,7 @@ public class Controller {
     }
 
     public boolean delete (String table_name, String id){
-        return model.delete(table_name, id);
+        return model.delete(id,table_name);
     }
 
     public String[] readUser (String table_name, String id){
@@ -101,7 +102,7 @@ public class Controller {
             throw new NotFilledAllFieldsException();
 
         } else {
-            //user's birthdate to java format
+            //connected_user's birthdate to java format
 
 
             java.util.Date javaDate = new Date(date.getTime());
@@ -113,9 +114,12 @@ public class Controller {
 
 
         }
-        data[2] = date;
+        data[2] = date.toString();
 
-        return model.update(table_name, (String[])data);
+        String[] string_data = Arrays.copyOf(data, data.length, String[].class);
+
+
+        return model.update(table_name, string_data);
     }
 
     public boolean confirmPassword (String table_name, String user, String password){
@@ -131,7 +135,7 @@ public class Controller {
         return details;
     }
 
-    public void saveUser (String user){
-        model.read("Users", user);
+    public void log_out() {
+        model.log_out();
     }
 }

@@ -1,13 +1,12 @@
 package Model;
 
 import Model.Excpetions.V4UException;
-import Model.Excpetions.WrongDetailsException;
 
 public class Model {
 
     private static Model singleton = null;
-    public Database database;
-    public User user;
+    public Database database = null;
+    public User connected_user = null;
 
     private Model() {
 
@@ -38,12 +37,15 @@ public class Model {
         database.insert(table_name, data);
     }
 
-    public boolean delete(String table_name, String id) {
-        return database.delete(table_name, id);
+    public boolean delete(String id, String table_name) {
+        boolean flag =  database.delete(id, table_name);
+        if (flag)
+            log_out();
+        return flag;
     }
 
     public Object read(String table_name, String pk) {
-        String[] result = database.read(table_name, pk);
+        String[] result = database.read(pk,table_name);
         Object ans= null;
         switch (table_name){
             case "Users":
@@ -61,20 +63,26 @@ public class Model {
     }
 
     public boolean update(String table_name, String[] data) {
-        return database.update(data, table_name);
+        boolean flag = database.update(data, table_name);
+        if (flag)
+            update_connected_user(data[0]);
+        return flag;
     }
 
 
-    public boolean confirm(String table_name, String user, String password) {
-        String[] userDetails = database.read(user, table_name);
-        if (user == null)
+    public boolean confirm(String table_name, String user_name, String password) {
+        String[] userDetails = database.read(user_name, table_name);
+        this.connected_user = new User(userDetails[0],userDetails[1],userDetails[2],userDetails[3],userDetails[4],userDetails[5]);
+        if (this.connected_user == null)
             return false;
-        else return this.user.getPassword().equals(password);
+        else return this.connected_user.getPassword().equals(password);
     }
 
     public String[] readConnectedUser() {
-        User user = (User) read("Users", this.user.getUsername());
-        return user.getDetails();
+//        User user = (User) read("Users", this.connected_user.getUsername());
+        if (connected_user!=null)
+            return connected_user.getDetails();
+        else return null;
     }
 
 
@@ -82,6 +90,19 @@ public class Model {
         database.dropTable("Users");
     }
 
+    private void clear_connected_user() {
+        this.connected_user = null;
 
+    }
+
+    public void update_connected_user(String user_name) {
+        String[] userDetails = database.read(user_name, "Users");
+        this.connected_user = new User(userDetails[0],userDetails[1],userDetails[2],userDetails[3],userDetails[4],userDetails[5]);
+    }
+
+
+    public void log_out() {
+        clear_connected_user();
+    }
 }
 

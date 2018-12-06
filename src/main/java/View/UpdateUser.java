@@ -47,7 +47,7 @@ public class UpdateUser implements Initializable {
 
     public void update_info(ActionEvent actionEvent) {
         /*
-        show current user's details by default
+        show current connected_user's details by default
          */
 
         String user, city, ln, fn, password;

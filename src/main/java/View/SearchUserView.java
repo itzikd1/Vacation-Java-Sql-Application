@@ -50,6 +50,7 @@ public class SearchUserView implements Initializable {
             alert.setHeaderText("There is no match here !");
             alert.showAndWait();
         }
+        //todo: fix the visibility of the information - city and names too far from column
     }
 
     private void enable_visible() {

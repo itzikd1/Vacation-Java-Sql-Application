@@ -59,7 +59,7 @@ public class MainPageView implements Initializable {
         password = tf_password.getText();
         Object[] user_date = new Object[]{user, password};
         Alert alert = new Alert(Alert.AlertType.WARNING,
-                "Are you sure you want to delete the user?",
+                "Are you sure you want to delete your account?",
                 ButtonType.YES, ButtonType.NO);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.YES) {
@@ -74,7 +74,7 @@ public class MainPageView implements Initializable {
             } else {
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error");
-                alert.setHeaderText("Failed to delete user");
+                alert.setHeaderText("Failed to delete connected_user");
                 alert.showAndWait();
             }
         }
@@ -86,7 +86,6 @@ public class MainPageView implements Initializable {
         password = tf_password.getText();
         boolean flag = controller.confirmPassword("Users", user, password);
         if (flag) {
-            controller.saveUser(user);
             enableButtons();
             create_button.setDisable(true);
             sign_out.setVisible(true);
@@ -162,6 +161,7 @@ public class MainPageView implements Initializable {
         sign_out.setVisible(false);
         enableLoginInfo();
         cleanTextFields();
+        controller.log_out();
 
     }
 
