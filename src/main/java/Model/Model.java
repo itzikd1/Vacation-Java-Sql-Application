@@ -7,13 +7,20 @@ public class Model {
     private static Model singleton = null;
     public Database database = null;
     public User connected_user = null;
+    public int vacationIDCounter;
 
     private Model() {
 
         createDataBase();
         //before_hagasha();
         createTables();
+        vacationIDCounter = searchForNext() + 1;
 
+
+    }
+
+    private int searchForNext() {
+        return database.getMaxVacationID();
     }
 
     public static Model getInstance() {
@@ -21,6 +28,11 @@ public class Model {
             singleton = new Model();
         return singleton;
 
+    }
+
+    public int getNextVacationID (){
+        vacationIDCounter += 1;
+        return vacationIDCounter - 1;
     }
 
     private void createDataBase() {
@@ -103,6 +115,10 @@ public class Model {
 
     public void log_out() {
         clear_connected_user();
+    }
+
+    public Object[] readAll(String tableName){
+        return null;
     }
 }
 

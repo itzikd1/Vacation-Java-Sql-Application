@@ -3,6 +3,7 @@ package Controller;
 import Model.Excpetions.V4UException;
 import Model.Model;
 import Model.User;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
@@ -37,8 +38,47 @@ public class Controller {
         return p;
     }
 
-    //call the model basic functions:
-    //functions:
+
+    public void insertNewVacation(String tableName, Object[] vacation_details) throws V4UException {
+        DatePicker departure_date, arrival_date, return_date;
+        Date date = null;
+        String[] details = new String[17];
+        details[0] = String.valueOf(model.getNextVacationID());
+        details[1] = model.connected_user.getDetails()[0];
+        details[2] = (String)vacation_details[0]; // from
+        departure_date = (DatePicker) vacation_details[1];
+        if(departure_date.getValue()!=null) {
+            departure_date = (DatePicker) vacation_details[1];
+            date = java.sql.Date.valueOf((departure_date).getValue());
+        }
+        details[3] = date.toString();// departure date
+        details[4] = (String)vacation_details[2]; //departure time
+        details[5] = (String)vacation_details[3]; // destination
+        arrival_date = (DatePicker) vacation_details[4];
+        if(arrival_date.getValue()!=null) {
+            arrival_date = (DatePicker) vacation_details[4];
+            date = java.sql.Date.valueOf((arrival_date).getValue());
+        }
+        details[6] = date.toString(); // arrival date
+        details[7] = (String) vacation_details[5]; // arrival time
+        return_date = (DatePicker) vacation_details[6];
+        if(return_date.getValue()!=null) {
+            return_date = (DatePicker) vacation_details[6];
+            date = java.sql.Date.valueOf((return_date).getValue());
+        }
+        details[8] = date.toString(); // return date
+        details[9] = (String)vacation_details[7]; // return time
+        details[10] = (String)vacation_details[8]; //ticket type
+        details[11] = (String)vacation_details[9]; //company
+        details[12] = (String)vacation_details[10]; //connection country
+        boolean isBaggage = ((CheckBox)vacation_details[11]).isSelected();
+        details[13] = String.valueOf(isBaggage); //boolean baggageinclude
+        details[14] = (String)vacation_details[12]; //baggage options
+        details[15] = (String)vacation_details[13]; //class type
+        details[16] = (String)vacation_details[14]; //price
+
+        model.insert(tableName, details);
+    }
 
     public void insertNewUser(String table_name, Object[] data) throws V4UException {
         DatePicker bd;
@@ -88,10 +128,8 @@ public class Controller {
         String ln;
         String city;
         Date date=null;
-
         user = (String) data[0];
         password = (String) data[1];
-
 //        DatePicker x = (DatePicker)(data[2]);
         date = java.sql.Date.valueOf((data[2]).toString());
         fn = (String) data[3];
@@ -103,16 +141,12 @@ public class Controller {
 
         } else {
             //connected_user's birthdate to java format
-
-
             java.util.Date javaDate = new Date(date.getTime());
             LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate now = LocalDate.now();
             Period p = Period.between(birthdate, now);
             if (p.getYears() < 18)
                 throw new TooYoungException();
-
-
         }
         data[2] = date.toString();
 
@@ -138,4 +172,11 @@ public class Controller {
     public void log_out() {
         model.log_out();
     }
+
+    public Object[] readAll(String tableName){
+        Object[] data = model.readAll(tableName);
+        return null;
+    }
+
+
 }

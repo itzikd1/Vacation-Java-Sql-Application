@@ -1,8 +1,8 @@
 package Model;
 
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
 
 import Model.Excpetions.V4UException;
 
@@ -153,29 +153,28 @@ class Database {
                 "Price","PaymentMethod","CreditCardNum", "PayPalUserName, DateOfPurchase"};
         fieldsOfTables.put("Purchases" , purchasesFields);
         String vacationsSQL = "CREATE TABLE IF NOT EXISTS Vacations(\n"
-                + " VacationID varchar PRIMARY KEY, \n"
-                + "	UserName varchar,\n"
-                + "	Departure varchar NOT NULL,\n"
-                + " DepartureDate varchar  NOT NULL, \n"
-                + " DepartureTime varchar NOT NULL, \n"
-                + " Destination varchar NOT NULL, \n"
-                + " DestinationDate varchar NOT NULL, \n"
-                + " DestinationTime varchar NOT NULL, \n"
-                + " ReturnDate varchar, \n" // return flight optional
-                + " ReturnTime varchar, \n"// return flight optional
-                + " ArrivalDateInDestination varchar, \n"// return flight optional
-                + " ArrivalTimeInDestination varchar, \n"// return flight optional
-                + " TicketType varchar NOT NULL, \n"
-                + " FlightsCompany varchar NOT NULL, \n"
-                + " ConnectionCity varchar, \n"
-                + " isBaggageIncluded bit , \n" // o or 1
-                + " BaggageOptions varchar \n"
-                + " ClassType varchar NOT NULL"
-                + "  \n"
+                + "\tVacationID varchar PRIMARY KEY,\n"
+                + "\tUserName varchar,\n"
+                + "\t_From varchar NOT NULL,\n"
+                + "\tDepartureDate varchar  NOT NULL,\n"
+                + "\tDepartureTime varchar NOT NULL,\n"
+                + "\tDestination varchar NOT NULL,\n"
+                + "\tArrivalDate varchar NOT NULL,\n"
+                + "\tArrivalTime varchar NOT NULL,\n"
+                + "\tReturnDate varchar,\n" // return flight optional
+                + "\tReturnTime varchar,\n"// return flight optional
+                + "\tTicketType varchar NOT NULL,\n"
+                + "\tFlightsCompany varchar NOT NULL,\n"
+                + "\tConnectionCity varchar,\n"
+                + "\tisBaggageIncluded bit ,\n" // o or 1
+                + "\tBaggageOptions varchar,\n"
+                + "\tClassType varchar NOT NULL,\n"
+                + "\tPrice varchar NOT NULL"
+                + " \n"
                 + ");";
-        String[] vacationFields = {"VacationID","UserName","Departure","DepartureDate","DepartureTime","Destination",
-        "ReturnDate","ReturnTime","ArrivalDateInDestination","ArrivalTimeInDestination","TicketType","FlightsCompany",
-                "ConnectionCity","isBaggageIncluded","BaggageOptions","ClassType"};
+        String[] vacationFields = {"VacationID","UserName","_From","DepartureDate","DepartureTime","Destination",
+                "ArrivalDate","ArrivalTime","ReturnDate","ReturnTime","TicketType","FlightsCompany",
+                "ConnectionCity","isBaggageIncluded","BaggageOptions","ClassType", "Price"};
         fieldsOfTables.put("Vacations" , vacationFields);
         boolean flag1 = runQuery(usersSQL);
         boolean flag2 = runQuery(purchasesSQL);
@@ -259,6 +258,51 @@ class Database {
         sql = sql + " WHERE " + fields[0] + " LIKE '" + data[0] + "'";
         return runQuery(sql);
     }
+
+    public Object[] getAllData (String tableName){
+        String sql = "SELECT * FROM " + tableName;
+        return runQueryReturnOutput(sql,tableName);
+    }
+
+    public int getMaxVacationID (){
+        String sql = "SELECT VacationID FROM Vacations";
+        LinkedList<String> ans = runQueryReturnOutputForOneField(sql,"Vacations", "VacationID");
+        int max = 0;
+        if (ans != null) {
+            for (String num : ans) {
+                int x = Integer.parseInt(num);
+                if (x > max) {
+                    max = x;
+                }
+            }
+        }
+        return max;
+    }
+
+    private LinkedList<String> runQueryReturnOutputForOneField(String sql, String tableName, String fiealdName) {
+        ResultSet rs = null;
+        Connection conn = connect();
+        String[] converted_result = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            LinkedList<String> results = new LinkedList<>();
+            try {
+                while (rs.next()) {
+                    results.add(rs.getString(fiealdName));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                disconnect(conn);
+            }
+            return results;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 //    protected void print_table(String table_name) {
 //        if (table_name.equals("Users")) {

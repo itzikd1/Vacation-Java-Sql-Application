@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="700.0" minHeight="400.0" minWidth="700.0" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SellVacationView">
+<AnchorPane maxHeight="448.0" maxWidth="700.0" minHeight="400.0" minWidth="700.0" prefHeight="448.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SellVacationView">
     <children>
-        <ImageView fitHeight="400.0" fitWidth="713.0" nodeOrientation="INHERIT" pickOnBounds="true">
+        <ImageView fitHeight="447.0" fitWidth="713.0" nodeOrientation="INHERIT" pickOnBounds="true">
             <image>
                 <Image url="@images/background.png" />
             </image>
         </ImageView>
-        <Pane layoutX="29.0" layoutY="24.0" prefHeight="353.0" prefWidth="647.0" style="-fx-background-color: dddddd;">
+        <Pane layoutX="29.0" layoutY="24.0" prefHeight="401.0" prefWidth="647.0" style="-fx-background-color: dddddd;">
             <children>
                 <Pane prefHeight="67.0" prefWidth="647.0" style="-fx-background-color: ffffff;">
                     <children>
@@ -35,36 +35,37 @@
                         </ImageView>
                     </children>
                 </Pane>
-                <Button fx:id="update_button" layoutX="50.0" layoutY="314.0" mnemonicParsing="false" onAction="#update_info" text="Send Info" />
-                <Button fx:id="BackButton" layoutX="172.0" layoutY="314.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
-            <Label layoutX="338.0" layoutY="77.0" prefHeight="18.0" prefWidth="87.0" text="Arrival Date" />
-            <Label layoutX="338.0" layoutY="113.0" prefHeight="18.0" prefWidth="112.0" text="Arrival Time" />
-            <Label layoutX="338.0" layoutY="152.0" prefHeight="21.0" prefWidth="106.0" text="Departure Time" />
+                <Button fx:id="publish_for_sale_button" layoutX="172.0" layoutY="362.0" mnemonicParsing="false" onAction="#publish" text="Publish" />
+                <Button fx:id="BackButton" layoutX="445.0" layoutY="362.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
+            <Label layoutX="27.0" layoutY="192.0" prefHeight="18.0" prefWidth="87.0" text="Arrival Date" />
+            <Label layoutX="27.0" layoutY="229.0" prefHeight="18.0" prefWidth="112.0" text="Arrival Time" />
             <Label layoutX="338.0" layoutY="184.0" prefHeight="33.0" prefWidth="87.0" text="Ticket Type" />
             <Label layoutX="339.0" layoutY="225.0" prefHeight="34.0" prefWidth="106.0" text="Connection City" />
-            <TextField fx:id="tf_username1" editable="false" layoutX="446.0" layoutY="73.0" />
-            <PasswordField fx:id="tf_password1" layoutX="446.0" layoutY="150.0" />
-            <TextField fx:id="tf_firstName1" layoutX="446.0" layoutY="188.0" />
-            <TextField fx:id="tf_lastName1" layoutX="446.0" layoutY="267.0" />
-            <TextField fx:id="tf_city1" layoutX="446.0" layoutY="225.0" />
-            <DatePicker fx:id="bd21" editable="false" layoutX="446.0" layoutY="111.0" prefWidth="148.8" />
-            <Label layoutX="348.0" layoutY="266.0" prefHeight="33.0" prefWidth="87.0" text="Class Type" />
-            <TextField fx:id="tf_lastName11" layoutX="446.0" layoutY="308.0" promptText="Type info about baggage" />
-            <CheckBox layoutX="335.0" layoutY="313.0" mnemonicParsing="false" text="Baggage" />
+            <TextField fx:id="arrivalTime" editable="true" layoutX="136.0" layoutY="230.0" />
+            <TextField fx:id="returnTime" layoutX="446.0" layoutY="150.0" />
+            <TextField fx:id="ticketType" layoutX="446.0" layoutY="188.0" />
+            <TextField fx:id="classType" layoutX="136.0" layoutY="270.0" />
+            <TextField fx:id="connectionCity" layoutX="446.0" layoutY="225.0" />
+            <DatePicker fx:id="arrivalDate" editable="true" layoutX="136.0" layoutY="188.0" prefWidth="148.8" />
+            <Label layoutX="27.0" layoutY="266.0" prefHeight="33.0" prefWidth="87.0" text="Class Type" />
+            <TextField fx:id="baggageInfo" layoutX="446.0" layoutY="306.0" promptText="Type info about baggage" />
+            <CheckBox fx:id="baggage" layoutX="338.0" layoutY="310.0" mnemonicParsing="false" text="Baggage" />
+              <TextField fx:id="destination" layoutX="446.0" layoutY="73.0" />
+              <Label layoutX="338.0" layoutY="69.0" prefHeight="33.0" prefWidth="87.0" text="Destination" />
+            <DatePicker fx:id="returnDate" editable="true" layoutX="446.0" layoutY="114.0" prefWidth="148.8" />
+              <Label layoutX="336.0" layoutY="110.0" prefHeight="33.0" prefWidth="87.0" text="Return Date" />
+              <Label layoutX="338.0" layoutY="146.0" prefHeight="34.0" prefWidth="87.0" text="Return Time" />
+            <TextField fx:id="Price" layoutX="446.0" layoutY="266.0" />
+            <Label layoutX="339.0" layoutY="262.0" prefHeight="34.0" prefWidth="87.0" text="Price" />
+            <TextField fx:id="company" layoutX="136.0" layoutY="315.0" />
+            <Label layoutX="27.0" layoutY="311.0" prefHeight="33.0" prefWidth="87.0" text="Company" />
             </children>
         </Pane>
         <Label layoutX="55.0" layoutY="102.0" prefHeight="18.0" prefWidth="87.0" text="From" />
         <Label layoutX="55.0" layoutY="138.0" prefHeight="18.0" prefWidth="112.0" text="Departure Date" />
         <Label layoutX="55.0" layoutY="177.0" prefHeight="21.0" prefWidth="106.0" text="Departure Time" />
-        <Label layoutX="55.0" layoutY="209.0" prefHeight="33.0" prefWidth="87.0" text="Destination" />
-        <Label layoutX="55.0" layoutY="250.0" prefHeight="33.0" prefWidth="87.0" text="Return Date" />
-        <Label layoutX="56.0" layoutY="290.0" prefHeight="34.0" prefWidth="87.0" text="Return Time" />
-        <TextField fx:id="tf_username" editable="false" layoutX="163.0" layoutY="98.0" />
-        <DatePicker fx:id="bd" editable="false" layoutX="163.0" layoutY="136.0" prefWidth="148.8" />
-        <PasswordField fx:id="tf_password" layoutX="163.0" layoutY="175.0" />
-        <TextField fx:id="tf_firstName" layoutX="163.0" layoutY="213.0" />
-        <TextField fx:id="tf_lastName" layoutX="163.0" layoutY="136.0" />
-        <TextField fx:id="tf_city" layoutX="163.0" layoutY="291.0" />
-      <DatePicker fx:id="bd2" editable="false" layoutX="163.0" layoutY="250.0" prefWidth="148.8" />
+        <TextField fx:id="from" editable="true" layoutX="163.0" layoutY="98.0" />
+        <DatePicker fx:id="departureDate" editable="true" layoutX="163.0" layoutY="136.0" prefWidth="148.8" />
+        <TextField fx:id="departureTime" layoutX="163.0" layoutY="175.0" />
     </children>
 </AnchorPane>

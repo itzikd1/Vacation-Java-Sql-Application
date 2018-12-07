@@ -30,6 +30,7 @@ public class MainPageView implements Initializable {
     public AnchorPane account_settings;
     public Pane login_pane;
     public Button sell_vacation_button;
+    public Button search_vacation_button;
 
     public TextField tf_username;
     public PasswordField tf_password;
@@ -185,6 +186,20 @@ public class MainPageView implements Initializable {
 
     public void search_vacation(ActionEvent actionEvent) {
         //todo:// open the window anael did
+        Stage s = (Stage) search_vacation_button.getScene().getWindow();
+//        s.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FindMeADeal.fxml"));
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(true);
+            stage.setTitle("Search Vacation");
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void sell_vacation(ActionEvent actionEvent) {

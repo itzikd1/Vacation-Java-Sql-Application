@@ -1,18 +1,18 @@
 package Model;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Vacation {
-    private String VacationID;
-    private String UserName;
-    private String Departure;
+    private String VacationID; //not from GUI
+    private String UserName; // not from GUI
+    private String from;
     private String DepartureDate;
     private String DepartureTime;
     private String Destination;
-    private String DestinationDate;
-    private String DestinationTime;
+    private String ArrivalDate;
+    private String ArrivalTime;
     private String ReturnDate;
     private String ReturnTime;
-    private String ArrivalDateInDestination;
-    private String ArrivalTimeInDestination;
     private String TicketType;
     private String FlightsCompany;
     private String ConnectionCountry;
@@ -20,6 +20,7 @@ public class Vacation {
     private String BaggageOptions;
     private String ClassType;
     private String Price;
+
 
     public String getPrice() {
         return Price;
@@ -29,21 +30,17 @@ public class Vacation {
         Price = price;
     }
 
-
-
-    public Vacation(String vacationID, String userName, String departure, String departureDate, String departureTime, String destination, String destinationDate, String destinationTime, String returnDate, String returnTime, String arrivalDateInDestination, String arrivalTimeInDestination, String ticketType, String flightsCompany, String connectionCountry, String isBaggageIncluded, String baggageOptions, String classType, String price) {
+    public Vacation(String vacationID, String userName, String from, String departureDate, String departureTime, String destination, String arrivalDate, String arrivalTime, String returnDate, String returnTime, String ticketType, String flightsCompany, String connectionCountry, String isBaggageIncluded, String baggageOptions, String classType, String price) {
         VacationID = vacationID;
         UserName = userName;
-        Departure = departure;
+        this.from = from;
         DepartureDate = departureDate;
         DepartureTime = departureTime;
         Destination = destination;
-        DestinationDate = destinationDate;
-        DestinationTime = destinationTime;
+        ArrivalDate = arrivalDate;
+        ArrivalTime = arrivalTime;
         ReturnDate = returnDate;
         ReturnTime = returnTime;
-        ArrivalDateInDestination = arrivalDateInDestination;
-        ArrivalTimeInDestination = arrivalTimeInDestination;
         TicketType = ticketType;
         FlightsCompany = flightsCompany;
         ConnectionCountry = connectionCountry;
@@ -67,14 +64,6 @@ public class Vacation {
 
     public void setUserName(String userName) {
         UserName = userName;
-    }
-
-    public String getDeparture() {
-        return Departure;
-    }
-
-    public void setDeparture(String departure) {
-        Departure = departure;
     }
 
     public String getDepartureDate() {
@@ -101,22 +90,6 @@ public class Vacation {
         Destination = destination;
     }
 
-    public String getDestinationDate() {
-        return DestinationDate;
-    }
-
-    public void setDestinationDate(String destinationDate) {
-        DestinationDate = destinationDate;
-    }
-
-    public String getDestinationTime() {
-        return DestinationTime;
-    }
-
-    public void setDestinationTime(String destinationTime) {
-        DestinationTime = destinationTime;
-    }
-
     public String getReturnDate() {
         return ReturnDate;
     }
@@ -131,22 +104,6 @@ public class Vacation {
 
     public void setReturnTime(String returnTime) {
         ReturnTime = returnTime;
-    }
-
-    public String getArrivalDateInDestination() {
-        return ArrivalDateInDestination;
-    }
-
-    public void setArrivalDateInDestination(String arrivalDateInDestination) {
-        ArrivalDateInDestination = arrivalDateInDestination;
-    }
-
-    public String getArrivalTimeInDestination() {
-        return ArrivalTimeInDestination;
-    }
-
-    public void setArrivalTimeInDestination(String arrivalTimeInDestination) {
-        ArrivalTimeInDestination = arrivalTimeInDestination;
     }
 
     public String getTicketType() {
