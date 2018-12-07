@@ -7,7 +7,7 @@
 //
 //    boolean update(Database db, String id, Object[] data)  throws V4UException;
 //
-//    boolean delete(Database db, String id);
+//    boolean delete_user(Database db, String id);
 //
 //    Object read(Database db, String id);
 //

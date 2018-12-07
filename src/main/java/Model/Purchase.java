@@ -10,8 +10,9 @@ public class Purchase {
     private String PaymentMethod;
     private String CreditCardNum;
     private String PayPalUserName;
+    private String DateOfPurchase;
 
-    public Purchase(String purchaseID, String vacationID, String buyerUserName, String sellerUserName, String price, String paymentMethod, String creditCardNum, String payPalUserName) {
+    public Purchase(String purchaseID, String vacationID, String buyerUserName, String sellerUserName, String price, String paymentMethod, String creditCardNum, String payPalUserName, String dateOfPurchase) {
         PurchaseID = purchaseID;
         VacationID = vacationID;
         BuyerUserName = buyerUserName;
@@ -20,6 +21,7 @@ public class Purchase {
         PaymentMethod = paymentMethod;
         CreditCardNum = creditCardNum;
         PayPalUserName = payPalUserName;
+        DateOfPurchase = DateOfPurchase;
     }
 
     public String getPurchaseID() {
@@ -72,6 +74,14 @@ public class Purchase {
 
     public String getCreditCardNum() {
         return CreditCardNum;
+    }
+
+    public String getDateOfPurchase() {
+        return DateOfPurchase;
+    }
+
+    public void setDateOfPurchase(String dateOfPurchase) {
+        DateOfPurchase = dateOfPurchase;
     }
 
     public void setCreditCardNum(String creditCardNum) {

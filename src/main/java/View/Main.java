@@ -23,8 +23,8 @@ public class Main extends Application {
         Controller controller = Controller.getInstance();
         //db.connect();
         //dropTable("Users");
-        //db.delete("Users","itzik");
-        //db.delete("Users", "Anael");
+        //db.delete_user("Users","itzik");
+        //db.delete_user("Users", "Anael");
 //        Object[] data = new Object[]{"itzik", "1234", new Date(2010 - 01 - 01), "itzik", "d", "haifa"};
 //        System.out.println(db.insertNewUser("Users", data));
 //        data = new Object[]{"Anael", "9876", new Date(2010 - 04 - 10), "Anael", "gorfinkel", "b7"};

@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class UpdateUser implements Initializable {
+public class UpdateUserView implements Initializable {
     public TextField tf_city;
     public TextField tf_lastName;
     public TextField tf_firstName;

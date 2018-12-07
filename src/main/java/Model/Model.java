@@ -37,8 +37,8 @@ public class Model {
         database.insert(table_name, data);
     }
 
-    public boolean delete(String id, String table_name) {
-        boolean flag =  database.delete(id, table_name);
+    public boolean delete_user() {
+        boolean flag =  database.delete(connected_user.getUsername(), "Users");
         if (flag)
             log_out();
         return flag;

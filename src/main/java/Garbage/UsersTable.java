@@ -97,7 +97,7 @@
 //    }
 //
 //    @Override
-//    public boolean delete(Database db, String id) {
+//    public boolean delete_user(Database db, String id) {
 //        boolean flag = false;
 //        String sql = "DELETE FROM Users WHERE UserName = ?";
 //        Connection conn = null;

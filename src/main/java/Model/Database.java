@@ -144,11 +144,13 @@ class Database {
                 + " Price varchar NOT NULL, \n"
                 + " PaymentMethod varchar NOT NULL, \n"
                 + " CreditCardNum varchar, \n"
-                + " PayPalUserName varchar"
+                + " PayPalUserName varchar, \n"
+                + " DateOfPurchase varchar"
+
                 + "  \n"
                 + ");";
         String[] purchasesFields = {"PurchaseID","VacationID","BuyerUserName","SellerUserName",
-                "Price","PaymentMethod","CreditCardNum", "PayPalUserName"};
+                "Price","PaymentMethod","CreditCardNum", "PayPalUserName, DateOfPurchase"};
         fieldsOfTables.put("Purchases" , purchasesFields);
         String vacationsSQL = "CREATE TABLE IF NOT EXISTS Vacations(\n"
                 + " VacationID varchar PRIMARY KEY, \n"

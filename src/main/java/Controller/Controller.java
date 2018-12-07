@@ -67,8 +67,8 @@ public class Controller {
         model.insert(table_name, details);
     }
 
-    public boolean delete (String table_name, String id){
-        return model.delete(id,table_name);
+    public boolean delete_user(){
+        return model.delete_user();
     }
 
     public String[] readUser (String table_name, String id){
