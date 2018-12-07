@@ -19,8 +19,19 @@ public class Vacation {
     private String isBaggageIncluded;
     private String BaggageOptions;
     private String ClassType;
+    private String Price;
 
-    public Vacation(String vacationID, String userName, String departure, String departureDate, String departureTime, String destination, String destinationDate, String destinationTime, String returnDate, String returnTime, String arrivalDateInDestination, String arrivalTimeInDestination, String ticketType, String flightsCompany, String connectionCountry, String isBaggageIncluded, String baggageOptions, String classType) {
+    public String getPrice() {
+        return Price;
+    }
+
+    public void setPrice(String price) {
+        Price = price;
+    }
+
+
+
+    public Vacation(String vacationID, String userName, String departure, String departureDate, String departureTime, String destination, String destinationDate, String destinationTime, String returnDate, String returnTime, String arrivalDateInDestination, String arrivalTimeInDestination, String ticketType, String flightsCompany, String connectionCountry, String isBaggageIncluded, String baggageOptions, String classType, String price) {
         VacationID = vacationID;
         UserName = userName;
         Departure = departure;
@@ -39,6 +50,7 @@ public class Vacation {
         this.isBaggageIncluded = isBaggageIncluded;
         BaggageOptions = baggageOptions;
         ClassType = classType;
+        Price = price;
     }
 
     public String getVacationID() {
