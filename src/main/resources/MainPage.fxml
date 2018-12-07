@@ -82,5 +82,25 @@
             </effect>
         </Label>
         <Button fx:id="sign_out" layoutX="92.0" layoutY="431.0" mnemonicParsing="false" onAction="#log_out" prefHeight="26.0" prefWidth="206.0" text="Sign Out" visible="false" />
+      <AnchorPane fx:id="vacations_pane" layoutX="473.0" layoutY="122.0" maxHeight="600.0" maxWidth="400.0" minHeight="236.0" minWidth="286.0" prefHeight="236.0" prefWidth="286.0" style="-fx-background-color: dddddd;">
+         <children>
+            <Pane prefHeight="75.0" prefWidth="286.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="161.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="12.0" prefHeight="52.0" prefWidth="206.0" text="Vacations" textAlignment="CENTER" textFill="#717171">
+                     <font>
+                        <Font name="Arial" size="21.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="77.0" fitWidth="74.0" layoutX="212.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/vacations_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button fx:id="search_vacation_button" layoutX="40.0" layoutY="87.0" mnemonicParsing="false" onAction="#search_vacation" prefHeight="26.0" prefWidth="206.0" text="Search Vacation" />
+            <Button fx:id="sell_vacation_button" disable="true" layoutX="40.0" layoutY="131.0" mnemonicParsing="false" onAction="#sell_vacation" prefHeight="26.0" prefWidth="206.0" text="Sell your Vacation" />
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

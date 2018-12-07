@@ -29,6 +29,7 @@ public class MainPageView implements Initializable {
     public Button login_button;
     public AnchorPane account_settings;
     public Pane login_pane;
+    public Button sell_vacation_button;
 
     public TextField tf_username;
     public PasswordField tf_password;
@@ -161,13 +162,14 @@ public class MainPageView implements Initializable {
         tf_username.clear();
     }
 
-    
+
 
     private void switchToLogged(){
         login_pane.setVisible(false);
         login_button.setVisible(false);
         sign_up_button.setVisible(false);
         sign_out.setVisible(true);
+        sell_vacation_button.setDisable((true));
         account_settings.setVisible(true);
     }
     private void switchToLogout() {
@@ -176,10 +178,31 @@ public class MainPageView implements Initializable {
         sign_up_button.setVisible(true);
         cleanTextFields();
         sign_out.setVisible(false);
+        sell_vacation_button.setDisable(true);
         login_pane.setVisible(true);
     }
 
 
+    public void search_vacation(ActionEvent actionEvent) {
+        //todo:// open the window anael did
+    }
+
+    public void sell_vacation(ActionEvent actionEvent) {
+        Stage s = (Stage) sell_vacation_button.getScene().getWindow();
+//        s.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("SellVacation.fxml"));
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(true);
+            stage.setTitle("Sell Vacation");
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
