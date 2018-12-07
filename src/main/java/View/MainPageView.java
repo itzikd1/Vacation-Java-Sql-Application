@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -20,17 +21,17 @@ import java.util.ResourceBundle;
 
 public class MainPageView implements Initializable {
     public ImageView image_background;
-    public Button create_button;
+    public Button sign_up_button;
     public Button sign_out;
     public Button update_button;
     public Button search_button;
     public Button delete_button;
     public Button login_button;
-    public Button account_settings_button;
+    public AnchorPane account_settings;
+    public Pane login_pane;
 
     public TextField tf_username;
     public PasswordField tf_password;
-    public AnchorPane login_pane;
     private Controller controller = Controller.getInstance();
 
 
@@ -39,7 +40,7 @@ public class MainPageView implements Initializable {
     }
 
     public void create_user(ActionEvent actionEvent) {
-        Stage s = (Stage) create_button.getScene().getWindow();
+        Stage s = (Stage) sign_up_button.getScene().getWindow();
 //        s.close();
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("CreateUser.fxml"));
@@ -67,12 +68,12 @@ public class MainPageView implements Initializable {
         if (result.get() == ButtonType.YES) {
             boolean flag = controller.delete_user();
             if (flag) {
-                DisableButtons();
-                create_button.setDisable(false);
-                sign_out.setVisible(false);
-                enableLoginInfo();
-                login_button.setDisable(false);
+                //DisableButtons();
+                //sign_up_button.setDisable(false);
+                //sign_out.setVisible(false);
+                //enableLoginInfo();
                 cleanTextFields();
+                switchToLogout();
             } else {
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error");
@@ -125,10 +126,9 @@ public class MainPageView implements Initializable {
         password = tf_password.getText();
         boolean flag = controller.confirmPassword("Users", user, password);
         if (flag) {
-            enableButtons();
-            create_button.setDisable(true);
-            sign_out.setVisible(true);
-            disable_loginInfo();
+            //enableButtons();
+            switchToLogged();
+            //disable_loginInfo();
         } else {
             try {
                 throw new WrongDetailsException();
@@ -144,49 +144,15 @@ public class MainPageView implements Initializable {
         //TODO: to setVisible false to pane and replace it with something else (MAOR) (Second time)
     }
 
-    protected void disable_loginInfo() {
-        tf_username.setDisable(true);
-        tf_password.setDisable(true);
-        login_button.setDisable(true);
 
-    }
-
-     void enableLoginInfo() {
-        tf_username.setDisable(false);
-        tf_password.setDisable(false);
-        login_button.setDisable(false);
-
-
-    }
-
-    public void command_account_settings(ActionEvent actionEvent){
-
-        account_settings_button.setVisible(true);
-        Stage s = (Stage) account_settings_button.getScene().getWindow();
-//        s.close();
-        try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("AccountSettings.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(true);
-            stage.setTitle("Account Settings");
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
 
     public void log_out(ActionEvent actionEvent) {
-        DisableButtons();
-        create_button.setDisable(false);
-        sign_out.setVisible(false);
-        enableLoginInfo();
-        cleanTextFields();
+       // DisableButtons();
+
+        //enableLoginInfo();
         controller.log_out();
+        switchToLogout();
 
     }
 
@@ -195,20 +161,22 @@ public class MainPageView implements Initializable {
         tf_username.clear();
     }
 
-    private void enableButtons() {
-        //enable buttons
-        search_button.setDisable(false);
-        update_button.setDisable(false);
-        delete_button.setDisable(false);
-        account_settings_button.setVisible(true);
-    }
+    
 
-    private void DisableButtons() {
-        //disable buttons
-        search_button.setDisable(true);
-        update_button.setDisable(true);
-        delete_button.setDisable(true);
-        account_settings_button.setVisible(false);
+    private void switchToLogged(){
+        login_pane.setVisible(false);
+        login_button.setVisible(false);
+        sign_up_button.setVisible(false);
+        sign_out.setVisible(true);
+        account_settings.setVisible(true);
+    }
+    private void switchToLogout() {
+        account_settings.setVisible(false);
+        login_button.setVisible(true);
+        sign_up_button.setVisible(true);
+        cleanTextFields();
+        sign_out.setVisible(false);
+        login_pane.setVisible(true);
     }
 
 

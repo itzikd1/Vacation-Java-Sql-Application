@@ -40,13 +40,13 @@
                 <Button fx:id="login_button" layoutX="35.0" layoutY="194.0" mnemonicParsing="false" onAction="#sign_in" prefHeight="26.0" prefWidth="206.0" text="Sign in" />
             </children>
         </AnchorPane>
-        <Button fx:id="create_button" layoutX="92.0" layoutY="418.0" mnemonicParsing="false" onAction="#create_user" prefHeight="26.0" prefWidth="206.0" text="Sign Up" />
-        <Label layoutX="106.0" layoutY="374.0" prefHeight="39.0" prefWidth="286.0" text="Still not a member?" textAlignment="CENTER" textFill="WHITE">
+        <Button fx:id="sign_up_button" layoutX="92.0" layoutY="418.0" mnemonicParsing="false" onAction="#create_user" prefHeight="26.0" prefWidth="206.0" text="Sign Up" />
+        <Label fx:id="lable_still_not_member" layoutX="106.0" layoutY="374.0" prefHeight="39.0" prefWidth="286.0" text="Still not a member?" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="Arial Bold" size="16.0" />
             </font>
         </Label>
-        <AnchorPane layoutX="455.0" layoutY="122.0" maxHeight="302.0" maxWidth="400.0" minHeight="302.0" minWidth="286.0" prefHeight="302.0" prefWidth="286.0" style="-fx-background-color: dddddd;">
+        <AnchorPane fx:id="account_settings" layoutX="58.0" layoutY="122.0" maxHeight="302.0" maxWidth="400.0" minHeight="302.0" minWidth="286.0" prefHeight="302.0" prefWidth="286.0" style="-fx-background-color: dddddd;" visible="false">
             <children>
                 <Pane prefHeight="75.0" prefWidth="286.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="221.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
@@ -62,9 +62,9 @@
                         </ImageView>
                     </children>
                 </Pane>
-                <Button fx:id="search_button" contentDisplay="RIGHT" disable="true" layoutX="50.0" layoutY="93.0" mnemonicParsing="false" onAction="#search_user" prefHeight="35.0" prefWidth="194.0" text="Search Users" />
-                <Button fx:id="update_button" disable="true" layoutX="50.0" layoutY="163.0" mnemonicParsing="false" onAction="#update_user" prefHeight="35.0" prefWidth="194.0" text="Update Profile" />
-                <Button fx:id="delete_button" disable="true" layoutX="50.0" layoutY="230.0" mnemonicParsing="false" onAction="#delete_user" prefHeight="35.0" prefWidth="194.0" text="Delete Account" />
+                <Button fx:id="search_button" contentDisplay="RIGHT" layoutX="50.0" layoutY="93.0" mnemonicParsing="false" onAction="#search_user" prefHeight="35.0" prefWidth="194.0" text="Search Users" />
+                <Button fx:id="update_button" layoutX="50.0" layoutY="163.0" mnemonicParsing="false" onAction="#update_user" prefHeight="35.0" prefWidth="194.0" text="Update Profile" />
+                <Button fx:id="delete_button" layoutX="50.0" layoutY="230.0" mnemonicParsing="false" onAction="#delete_user" prefHeight="35.0" prefWidth="194.0" text="Delete Account" />
             </children>
         </AnchorPane>
         <ImageView fitHeight="118.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
@@ -81,7 +81,6 @@
                 <Glow level="0.8" />
             </effect>
         </Label>
-        <Button fx:id="sign_out" layoutX="92.0" layoutY="381.0" mnemonicParsing="false" onAction="#log_out" prefHeight="26.0" prefWidth="206.0" text="Sign Out" visible="false" />
-      <Button fx:id="account_settings_button" layoutX="92.0" layoutY="461.0" mnemonicParsing="false" onAction="#command_account_settings" prefHeight="26.0" prefWidth="206.0" text="Account Settings" visible="false" />
+        <Button fx:id="sign_out" layoutX="92.0" layoutY="431.0" mnemonicParsing="false" onAction="#log_out" prefHeight="26.0" prefWidth="206.0" text="Sign Out" visible="false" />
     </children>
 </AnchorPane>
