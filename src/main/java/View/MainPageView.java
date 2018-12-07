@@ -169,7 +169,7 @@ public class MainPageView implements Initializable {
         login_button.setVisible(false);
         sign_up_button.setVisible(false);
         sign_out.setVisible(true);
-        sell_vacation_button.setDisable((true));
+        sell_vacation_button.setDisable(false);
         account_settings.setVisible(true);
     }
     private void switchToLogout() {

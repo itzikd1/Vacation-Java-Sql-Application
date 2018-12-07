@@ -167,7 +167,7 @@ class Database {
                 + " ArrivalTimeInDestination varchar, \n"// return flight optional
                 + " TicketType varchar NOT NULL, \n"
                 + " FlightsCompany varchar NOT NULL, \n"
-                + " ConnectionCountry varchar, \n"
+                + " ConnectionCity varchar, \n"
                 + " isBaggageIncluded bit , \n" // o or 1
                 + " BaggageOptions varchar \n"
                 + " ClassType varchar NOT NULL"
@@ -175,7 +175,7 @@ class Database {
                 + ");";
         String[] vacationFields = {"VacationID","UserName","Departure","DepartureDate","DepartureTime","Destination",
         "ReturnDate","ReturnTime","ArrivalDateInDestination","ArrivalTimeInDestination","TicketType","FlightsCompany",
-                "ConnectionCountry","isBaggageIncluded","BaggageOptions","ClassType"};
+                "ConnectionCity","isBaggageIncluded","BaggageOptions","ClassType"};
         fieldsOfTables.put("Vacations" , vacationFields);
         boolean flag1 = runQuery(usersSQL);
         boolean flag2 = runQuery(purchasesSQL);
