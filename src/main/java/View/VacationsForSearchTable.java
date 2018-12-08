@@ -2,10 +2,8 @@ package View;
 
 import Model.Vacation;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -81,7 +79,7 @@ public class VacationsForSearchTable {
     public VacationsForSearchTable(Vacation vacation, Button details, Button buy) {
         this.vacation = vacation;
         this.departureDate = LocalDate.parse(vacation.getDepartureDate());
-        this.returnDate =  LocalDate.parse(vacation.getReturnDate());
+        this.returnDate = LocalDate.parse(vacation.getReturnDate());
         this.from = vacation.getFrom();
         this.destination = vacation.getDestination();
         this.details = details;
