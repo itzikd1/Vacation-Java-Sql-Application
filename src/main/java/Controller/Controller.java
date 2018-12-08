@@ -117,11 +117,17 @@ public class Controller {
         return model.delete_user();
     }
 
-    public String[] readUser (String table_name, String id){
-        User user = (User)model.read(table_name, id);
+    public String[] readUser (String id) {
+        User user = (User) model.read("Users", id);
         String[] details = user.getDetails();
         return details;
     }
+
+    public String[] readVacation (String id){
+        Vacation vacation = (Vacation)model.read("Vacations", id);
+        //todo: String[] details = Vacation.getDetails();
+        //return details;
+        return null;    }
 
     public boolean update (String table_name, Object[]data, String id) throws V4UException{
 
