@@ -197,7 +197,7 @@ public class Controller {
         for (int i=0 ; i<o.length ; i++){
             if (o[i] instanceof Vacation){
                 Vacation v = (Vacation)o[i];
-                vacations.add(new VacationsForSearchTable(v, new Button(), new Button(),v.getVacationID()));
+                vacations.add(new VacationsForSearchTable(v, new Button(), new Button()));
             }
             else System.out.println("wrong table in controller getVacationsForSearch");
         }
