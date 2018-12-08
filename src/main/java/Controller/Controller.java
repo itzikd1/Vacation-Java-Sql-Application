@@ -235,6 +235,6 @@ public class Controller {
         String[] details = {req_id,vacationID,buyerID,bit};
         return model.insertBuyingRequest(details);
     }
-}
+
 }
 
