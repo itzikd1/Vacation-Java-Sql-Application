@@ -200,6 +200,7 @@ public class Controller {
         for (int i=0 ; i<o.length ; i++){
             if (o[i] instanceof Vacation){
                 Vacation v = (Vacation)o[i];
+                if (checkVacationDate(v))
                 vacations.add(new VacationsForSearchTable(v, new Button(), new Button()));
             }
             else System.out.println("wrong table in controller getVacationsForSearch");
@@ -208,7 +209,7 @@ public class Controller {
     }
 
 
-    private boolean chceckVacationDate(Vacation v) {
+    private boolean checkVacationDate(Vacation v) {
         LocalDate localDate = LocalDate.now();
         String[] TodayDate = localDate.toString().split("-");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
