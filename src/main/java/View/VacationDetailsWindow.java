@@ -35,8 +35,8 @@ public class VacationDetailsWindow implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO: 08/12/2018 pass here the info of what id we want to search and put it in vacation  Itzik
-        String vacation = VacationsForSearchTable.vacationID;
-        String[] details = controller.readVacation(vacation);
+        String vacationID = VacationsForSearchTable.get_static_vacationID();
+        String[] details = controller.readVacation(vacationID);
         l_from.setText(details[2]);
         l_departDate.setText(details[3]);
         l_departTime.setText(details[4]);

@@ -18,9 +18,12 @@ public class VacationsForSearchTable {
     public String from;
     public String destination;
     public LocalDate departureDate;
-    public static String vacationID;
+    private static String vacationID;
 
 
+    public static String get_static_vacationID(){
+        return vacationID;
+    }
     public Vacation getVacation() {
         return vacation;
     }
@@ -111,11 +114,11 @@ public class VacationsForSearchTable {
         });
 
         details.setOnAction(event -> {
+
             Stage s = (Stage) details.getScene().getWindow();
 //        s.close();
             try {
-                this.vacationID = vacation.getVacationID();
-                System.out.println(vacationID);
+                vacationID = vacation.getVacationID();
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
