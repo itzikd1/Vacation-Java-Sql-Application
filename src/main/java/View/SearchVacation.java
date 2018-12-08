@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Controller;
 import Model.Vacation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +19,8 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class SearchVacation implements Initializable {
+
+    private Controller controller = Controller.getInstance();
 
     public TableView<Vacation> vacationsTable;
     public TableColumn<Vacation, String> from;
@@ -38,7 +41,9 @@ public class SearchVacation implements Initializable {
         //moreDetails.setCellValueFactory(new PropertyValueFactory<Button, String>("details"));
         //moreDetails.setCellValueFactory(new PropertyValueFactory<Button, String>("buy"));
 
-        vacationsTable.setItems(tryme());
+        ObservableList<Vacation> vacations = controller.getVacationsForSearch();
+        //vacationsTable.setItems(tryme());
+        vacationsTable.setItems(vacations);
     }
 
     private ObservableList<Vacation> tryme() {

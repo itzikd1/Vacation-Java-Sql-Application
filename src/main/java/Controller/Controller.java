@@ -1,8 +1,12 @@
 package Controller;
 
+import Model.Vacation;
+
 import Model.Excpetions.V4UException;
 import Model.Model;
 import Model.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 
@@ -179,4 +183,16 @@ public class Controller {
     }
 
 
+    public ObservableList<Vacation> getVacationsForSearch() {
+        ObservableList<Vacation> vacations = FXCollections.observableArrayList();
+        Object[] o = model.readAll("Vacations");
+        for (int i=0 ; i<o.length ; i++){
+            if (o[i] instanceof Vacation){
+                Vacation v = (Vacation)o[i];
+                vacations.add(v);
+            }
+            else System.out.println("wrong table in controller getVacationsForSearch");
+        }
+        return vacations;
+    }
 }

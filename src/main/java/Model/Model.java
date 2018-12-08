@@ -118,6 +118,15 @@ public class Model {
     }
 
     public Object[] readAll(String tableName){
+        Object[] items = database.getAllData(tableName);
+        if (tableName.equals("Vacations")){
+            Vacation[] vacations = new Vacation[items.length];
+            for( int i=0; i<items.length; i++){
+                Vacation v = new Vacation((String[])items[i]);
+                vacations[i] = v;
+            }
+            return vacations;
+        }
         return null;
     }
 }

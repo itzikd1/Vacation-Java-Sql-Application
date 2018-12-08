@@ -22,14 +22,6 @@ public class Vacation {
     private String Price;
 
 
-    public String getPrice() {
-        return Price;
-    }
-
-    public void setPrice(String price) {
-        Price = price;
-    }
-
     public Vacation(String vacationID, String userName, String from, String departureDate, String departureTime, String destination, String arrivalDate, String arrivalTime, String returnDate, String returnTime, String ticketType, String flightsCompany, String connectionCountry, String isBaggageIncluded, String baggageOptions, String classType, String price) {
         VacationID = vacationID;
         UserName = userName;
@@ -48,6 +40,78 @@ public class Vacation {
         BaggageOptions = baggageOptions;
         ClassType = classType;
         Price = price;
+    }
+
+    public Vacation(String [] data){
+        VacationID = data[0];
+        UserName = data[1];
+        this.from = data[2];
+        DepartureDate = data[3];
+        DepartureTime = data[4];
+        Destination = data[5];
+        ArrivalDate = data[6];
+        ArrivalTime = data[7];
+        ReturnDate = data[8];
+        ReturnTime = data[9];
+        TicketType = data[10];
+        FlightsCompany = data[11];
+        ConnectionCountry = data[12];
+        this.isBaggageIncluded = data[13];
+        BaggageOptions = data[14];
+        ClassType = data[15];
+        Price = data[16];
+    }
+
+    public Vacation(Object [] data){
+        VacationID = (String)data[0];
+        UserName = (String)data[1];
+        this.from = (String)data[2];
+        DepartureDate = (String)data[3];
+        DepartureTime = (String)data[4];
+        Destination = (String)data[5];
+        ArrivalDate = (String)data[6];
+        ArrivalTime = (String)data[7];
+        ReturnDate = (String)data[8];
+        ReturnTime = (String)data[9];
+        TicketType = (String)data[10];
+        FlightsCompany = (String)data[11];
+        ConnectionCountry = (String)data[12];
+        this.isBaggageIncluded = (String)data[13];
+        BaggageOptions = (String)data[14];
+        ClassType = (String)data[15];
+        Price = (String)data[16];
+    }
+
+    public String getPrice() {
+        return Price;
+    }
+
+    public void setPrice(String price) {
+        Price = price;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getArrivalDate() {
+        return ArrivalDate;
+    }
+
+    public void setArrivalDate(String arrivalDate) {
+        ArrivalDate = arrivalDate;
+    }
+
+    public String getArrivalTime() {
+        return ArrivalTime;
+    }
+
+    public void setArrivalTime(String arrivalTime) {
+        ArrivalTime = arrivalTime;
     }
 
     public String getVacationID() {

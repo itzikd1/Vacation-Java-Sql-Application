@@ -261,7 +261,36 @@ class Database {
 
     public Object[] getAllData (String tableName){
         String sql = "SELECT * FROM " + tableName;
-        return runQueryReturnOutput(sql,tableName);
+        return runQueryReturnOutputOfManyRecords(sql,tableName).toArray();
+    }
+
+    private LinkedList<String[]> runQueryReturnOutputOfManyRecords(String sql, String tableName) {
+        ResultSet rs = null;
+        int sizeOfTable = (fieldsOfTables.get(tableName)).length;
+        Connection conn = connect();
+        String[] converted_result = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            LinkedList<String[]> results = new LinkedList<>();
+            try {
+                while (rs.next()) {
+                    String[] tmpItem = new String[sizeOfTable];
+                    for (int i=0; i < sizeOfTable; i++){
+                        tmpItem[i] = rs.getString(i+1);
+                    }
+                    results.add(tmpItem);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                disconnect(conn);
+            }
+            return results;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public int getMaxVacationID (){
