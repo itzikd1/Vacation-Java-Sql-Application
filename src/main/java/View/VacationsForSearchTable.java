@@ -20,10 +20,10 @@ public class VacationsForSearchTable {
     public LocalDate departureDate;
     private static String vacationID;
 
-    public static String getVacationID() {
+
+    public static String get_static_vacationID(){
         return vacationID;
     }
-
     public Vacation getVacation() {
         return vacation;
     }
@@ -83,8 +83,7 @@ public class VacationsForSearchTable {
     public LocalDate returnDate;
 
 
-    public VacationsForSearchTable(Vacation vacation, Button details, Button buy, String vacationID) {
-        this.vacationID = vacationID;
+    public VacationsForSearchTable(Vacation vacation, Button details, Button buy) {
         this.vacation = vacation;
         this.departureDate = LocalDate.parse(vacation.getDepartureDate());
         this.returnDate = LocalDate.parse(vacation.getReturnDate());
@@ -115,9 +114,11 @@ public class VacationsForSearchTable {
         });
 
         details.setOnAction(event -> {
+
             Stage s = (Stage) details.getScene().getWindow();
 //        s.close();
             try {
+                vacationID = vacation.getVacationID();
                 System.out.println(vacationID);
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
                 Stage stage = new Stage();
