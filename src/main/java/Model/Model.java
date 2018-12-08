@@ -77,13 +77,24 @@ public class Model {
                     "ConnectionCity","isBaggageIncluded","BaggageOptions","ClassType", "Price"};
 
             case "Vacation":
-                String Username = result [0];
-                String Password = result [1];
-                String BDay = result [2];
-                String FName = result [3];
-                String LName = result [4];
-                String City = result [5];
-                ans = new User (Username, Password, BDay, FName, LName, City);
+                String VacationID = result [0];
+                String UserName = result [1];
+                String _From = result [2];
+                String DepartureDate = result [3];
+                String DepartureTime = result [4];
+                String Destination = result [5];
+                String ArrivalDate = result [6];
+                String ArrivalTime = result [7];
+                String ReturnDate = result [8];
+                String ReturnTime = result [9];
+                String TicketType = result [10];
+                String FlightsCompany = result [11];
+                String ConnectionCity = result [12];
+                String isBaggageIncluded = result [13];
+                String BaggageOptions = result [14];
+                String ClassType = result [15];
+                String Price = result [16];
+                ans = new Vacation (Username, Password, BDay, FName, LName, City);
                 break;
             // todo: add other cases
         }
