@@ -108,6 +108,24 @@ public class VacationsForSearchTable {
             }
         });
 
+//        buy.setOnAction(event -> {
+//            Stage s = (Stage) details.getScene().getWindow();
+////        s.close();
+//            try {
+//                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
+//                Stage stage = new Stage();
+//                stage.initModality(Modality.APPLICATION_MODAL);
+//                stage.setResizable(true);
+//                stage.setTitle("Details Vacation");
+//                Scene scene = new Scene(root);
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
+        //todo:// remove the notes from this and do this.
+
         details.setText("Details");
 //        details.maxWidth(Double.MAX_VALUE);
 //        details.maxHeight(Double.MAX_VALUE);
