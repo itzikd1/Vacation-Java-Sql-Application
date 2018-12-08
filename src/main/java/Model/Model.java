@@ -71,11 +71,6 @@ public class Model {
                 break;
                 // todo: add other cases
 
-
-            String[] vacationFields = {"VacationID","UserName","_From","DepartureDate","DepartureTime","Destination",
-                    "ArrivalDate","ArrivalTime","ReturnDate","ReturnTime","TicketType","FlightsCompany",
-                    "ConnectionCity","isBaggageIncluded","BaggageOptions","ClassType", "Price"};
-
             case "Vacation":
                 String VacationID = result [0];
                 String UserName = result [1];
@@ -94,10 +89,11 @@ public class Model {
                 String BaggageOptions = result [14];
                 String ClassType = result [15];
                 String Price = result [16];
-                ans = new Vacation (Username, Password, BDay, FName, LName, City);
+                ans = new Vacation (VacationID, UserName, _From, DepartureDate, DepartureTime, Destination,
+                        ArrivalDate,ArrivalTime,ReturnDate,ReturnTime,TicketType,FlightsCompany,ConnectionCity
+                        ,isBaggageIncluded,BaggageOptions,ClassType,Price);
                 break;
             // todo: add other cases
-        }
         }
         return ans;
     }
