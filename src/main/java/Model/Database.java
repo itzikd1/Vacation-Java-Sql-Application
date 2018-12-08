@@ -179,10 +179,11 @@ class Database {
         String buyingRequestsSQL = "CREATE TABLE IF NOT EXISTS BuyingRequests(\n"
                 + "\tRequestID varchar PRIMARY KEY,\n"
                 + "\tVacationID varchar NOT NULL,\n"
+                + "\tSellerUserName varchar NOT NULL,\n"
                 + "\tBuyerUserName varchar NOT NULL,\n"
                 + "\tisApproved bit NOT NULL" + " \n"
                 + ");";
-        String[] buyingRequestsFields = {"RequestID","VacationID","BuyerUserName","isApproved"};
+        String[] buyingRequestsFields = {"RequestID","VacationID","SellerUserName","BuyerUserName","isApproved"};
         fieldsOfTables.put("BuyingRequests" , buyingRequestsFields);
 
         boolean flag1 = runQuery(usersSQL);

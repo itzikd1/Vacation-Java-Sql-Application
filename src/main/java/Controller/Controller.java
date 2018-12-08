@@ -228,11 +228,11 @@ public class Controller {
         return model.get_connected_user_id();
     }
 
-    public boolean insertBuyingRequest(String vacationID) throws V4UException  {
+    public boolean insertBuyingRequest(String vacationID, String Seller_user_name) throws V4UException  {
         String bit = "0"; //because this not approved yet
         String buyerID = get_connected_user_id();
         String req_id = String.valueOf(model.getNextRequestID());
-        String[] details = {req_id,vacationID,buyerID,bit};
+        String[] details = {req_id,vacationID,Seller_user_name,buyerID,bit};
         return model.insertBuyingRequest(details);
     }
 

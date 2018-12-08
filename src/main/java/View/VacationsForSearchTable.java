@@ -134,7 +134,7 @@ public class VacationsForSearchTable {
             if (connected_user) {
                 boolean flag = false;
                 try {
-                    flag = controller.insertBuyingRequest(vacation.getVacationID());
+                    flag = controller.insertBuyingRequest(vacation.getVacationID(),vacation.getUserName());
                 } catch (V4UException e) {
                     System.out.println("error in insert");
                 }
