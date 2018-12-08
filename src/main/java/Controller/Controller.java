@@ -125,9 +125,9 @@ public class Controller {
 
     public String[] readVacation (String id){
         Vacation vacation = (Vacation)model.read("Vacations", id);
-        //todo: String[] details = Vacation.getDetails();
-        //return details;
-        return null;    }
+        String[] details = vacation.getDetails();
+        return details;
+          }
 
     public boolean update (String table_name, Object[]data, String id) throws V4UException{
 

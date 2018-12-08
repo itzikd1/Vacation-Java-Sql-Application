@@ -71,7 +71,7 @@ public class Model {
                 break;
                 // todo: add other cases
 
-            case "Vacation":
+            case "Vacations":
                 String VacationID = result [0];
                 String UserName = result [1];
                 String _From = result [2];

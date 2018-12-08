@@ -82,6 +82,12 @@ public class Vacation {
         Price = (String)data[16];
     }
 
+    public String[] getDetails() {
+            String[] details = {VacationID, UserName, from, DepartureDate, DepartureTime, Destination,ArrivalDate,ArrivalTime,
+                    ReturnDate,ReturnTime,TicketType,FlightsCompany,ConnectionCountry,isBaggageIncluded,BaggageOptions,ClassType,Price};
+            return details;
+    }
+
     public String getPrice() {
         return Price;
     }
