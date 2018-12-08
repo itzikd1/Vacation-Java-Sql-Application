@@ -226,7 +226,6 @@ class Database {
         return runQuery(sql);
     }
 
-    //todo: not sure if there is problem on this function
     public String[] read(String data, String tableName) {
         String[] fields = fieldsOfTables.get(tableName);
         String field = fields[0];
