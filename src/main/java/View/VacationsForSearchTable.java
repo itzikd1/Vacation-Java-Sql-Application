@@ -90,23 +90,39 @@ public class VacationsForSearchTable {
 //        buy.maxHeight(Double.MAX_VALUE);
 
         buy.setOnAction(event -> {
-            BuyVacationWindow bvnw = new BuyVacationWindow(this.vacation);
+            Stage s = (Stage) buy.getScene().getWindow();
+//        s.close();
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("src\\main\\resources\\BuyVacationWindow.fxml"));
-                /*
-                 * if "fx:controller" is not set in fxml
-                 * fxmlLoader.setController(NewWindowController);
-                 */
-                Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("BuyVacationWindow.fxml"));
                 Stage stage = new Stage();
-                stage.setTitle("New Window");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setResizable(true);
+                stage.setTitle("Buy Vacation");
+                Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
-                System.out.println("BUGBUG");
+                e.printStackTrace();
             }
         });
+
+//        buy.setOnAction(event -> {
+//            Stage s = (Stage) details.getScene().getWindow();
+////        s.close();
+//            try {
+//                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
+//                Stage stage = new Stage();
+//                stage.initModality(Modality.APPLICATION_MODAL);
+//                stage.setResizable(true);
+//                stage.setTitle("Details Vacation");
+//                Scene scene = new Scene(root);
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
+        //todo:// remove the notes from this and do this.
 
         details.setText("Details");
 //        details.maxWidth(Double.MAX_VALUE);
