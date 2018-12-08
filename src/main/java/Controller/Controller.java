@@ -1,10 +1,11 @@
 package Controller;
 
-import Model.Vacation;
-
+import Model.Excpetions.NotFilledAllFieldsException;
+import Model.Excpetions.TooYoungException;
 import Model.Excpetions.V4UException;
 import Model.Model;
 import Model.User;
+import Model.Vacation;
 import View.VacationsForSearchTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -34,7 +37,7 @@ public class Controller {
         return singleton;
     }
 
-    public Period getPeriod (Date date) throws TooYoungException {
+    public Period getPeriod(Date date) throws TooYoungException {
         java.util.Date javaDate = new Date(date.getTime());
         LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate now = LocalDate.now();
@@ -204,6 +207,23 @@ public class Controller {
         return vacations;
     }
 
+
+    private boolean chceckVacationDate(Vacation v) {
+        LocalDate localDate = LocalDate.now();
+        String[] TodayDate = localDate.toString().split("-");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date Depart = null;
+        Date current = null;
+        try {
+            Depart = format.parse(v.getDepartureDate());
+            current = format.parse(localDate.toString());
+            if (Depart.compareTo(current) >= 0)
+                return true;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     public String get_connected_user_id() {
         return model.get_connected_user_id();
     }
@@ -215,5 +235,6 @@ public class Controller {
         String[] details = {req_id,vacationID,buyerID,bit};
         return model.insertBuyingRequest(details);
     }
+}
 }
 
