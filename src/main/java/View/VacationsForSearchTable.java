@@ -119,7 +119,6 @@ public class VacationsForSearchTable {
 //        s.close();
             try {
                 vacationID = vacation.getVacationID();
-                System.out.println(vacationID);
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
