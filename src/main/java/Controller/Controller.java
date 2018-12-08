@@ -203,5 +203,17 @@ public class Controller {
         }
         return vacations;
     }
+
+    public String get_connected_user_id() {
+        return model.get_connected_user_id();
+    }
+
+    public boolean insertBuyingRequest(String vacationID) throws V4UException  {
+        String bit = "0"; //because this not approved yet
+        String buyerID = get_connected_user_id();
+        String req_id = String.valueOf(model.getNextRequestID());
+        String[] details = {req_id,vacationID,buyerID,bit};
+        return model.insertBuyingRequest(details);
+    }
 }
 

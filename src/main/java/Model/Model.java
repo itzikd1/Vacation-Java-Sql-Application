@@ -8,6 +8,7 @@ public class Model {
     public Database database = null;
     public User connected_user = null;
     public int vacationIDCounter;
+    public int requestIDCounter;
 
     private Model() {
 
@@ -15,12 +16,18 @@ public class Model {
         //before_hagasha();
         createTables();
         vacationIDCounter = searchForNext() + 1;
+        requestIDCounter = searchForNextRequestID() + 1;
+
 
 
     }
 
     private int searchForNext() {
         return database.getMaxVacationID();
+    }
+
+    private int searchForNextRequestID() {
+        return database.getMaxRequestID();
     }
 
     public static Model getInstance() {
@@ -33,6 +40,11 @@ public class Model {
     public int getNextVacationID (){
         vacationIDCounter += 1;
         return vacationIDCounter - 1;
+    }
+
+    public int getNextRequestID (){
+        requestIDCounter += 1;
+        return requestIDCounter - 1;
     }
 
     private void createDataBase() {
@@ -162,6 +174,18 @@ public class Model {
             return vacations;
         }
         return null;
+    }
+
+
+    public String get_connected_user_id() {
+        if (connected_user!=null)
+            return connected_user.getUsername();
+        return null;
+    }
+
+    public boolean insertBuyingRequest(String[] data) throws V4UException {
+
+        return database.insert("BuyingRequests",data);
     }
 }
 

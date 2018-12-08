@@ -182,7 +182,7 @@ class Database {
                 + "\tBuyerUserName varchar NOT NULL,\n"
                 + "\tisApproved bit NOT NULL" + " \n"
                 + ");";
-        String[] buyingRequestsFields = {"RequestID","VacationID","BuyerUserName,isApproved"};
+        String[] buyingRequestsFields = {"RequestID","VacationID","BuyerUserName","isApproved"};
         fieldsOfTables.put("BuyingRequests" , buyingRequestsFields);
 
         boolean flag1 = runQuery(usersSQL);
@@ -305,6 +305,21 @@ class Database {
     public int getMaxVacationID (){
         String sql = "SELECT VacationID FROM Vacations";
         LinkedList<String> ans = runQueryReturnOutputForOneField(sql,"Vacations", "VacationID");
+        int max = 0;
+        if (ans != null) {
+            for (String num : ans) {
+                int x = Integer.parseInt(num);
+                if (x > max) {
+                    max = x;
+                }
+            }
+        }
+        return max;
+    }
+
+    public int getMaxRequestID (){
+        String sql = "SELECT RequestID FROM BuyingRequests";
+        LinkedList<String> ans = runQueryReturnOutputForOneField(sql,"BuyingRequests", "RequestID");
         int max = 0;
         if (ans != null) {
             for (String num : ans) {

@@ -1,9 +1,12 @@
 package View;
 
+import Controller.Controller;
+import Model.Excpetions.V4UException;
 import Model.Vacation;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -96,22 +99,7 @@ public class VacationsForSearchTable {
 //        buy.maxWidth(Double.MAX_VALUE);
 //        buy.maxHeight(Double.MAX_VALUE);
 
-        buy.setOnAction(event -> {
-            Stage s = (Stage) buy.getScene().getWindow();
-//        s.close();
-            try {
-                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("BuyVacationWindow.fxml"));
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setResizable(true);
-                stage.setTitle("Buy Vacation");
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+
 
         details.setOnAction(event -> {
 
@@ -131,12 +119,42 @@ public class VacationsForSearchTable {
                 e.printStackTrace();
             }
         });
-        //todo:// remove the notes from this and do this.
         //todo:// check if user_id
 
         details.setText("Details");
 //        details.maxWidth(Double.MAX_VALUE);
 //        details.maxHeight(Double.MAX_VALUE);
 
+        Controller controller = Controller.getInstance();
+
+        buy.setOnAction(event -> {
+            boolean connected_user  = true;
+            if (controller.get_connected_user_id()==null)
+                connected_user=false;
+            if (connected_user) {
+                boolean flag = false;
+                try {
+                    flag = controller.insertBuyingRequest(vacation.getVacationID());
+                } catch (V4UException e) {
+                    System.out.println("error in insert");
+                }
+                if (flag) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Request Sent");
+                    alert.setHeaderText("Your request to buy has been sent to Buyer. \nPlease check your requests page soon");
+                    alert.showAndWait();
+                }
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Log in");
+                alert.setHeaderText("Only signed users are allowing to request to buy vacations\nPlease close the window, log in and try again");
+                alert.showAndWait();
+            }
+
+        });
+
     }
+
+
 }
