@@ -70,6 +70,23 @@ public class Model {
                 ans = new User (Username, Password, BDay, FName, LName, City);
                 break;
                 // todo: add other cases
+
+
+            String[] vacationFields = {"VacationID","UserName","_From","DepartureDate","DepartureTime","Destination",
+                    "ArrivalDate","ArrivalTime","ReturnDate","ReturnTime","TicketType","FlightsCompany",
+                    "ConnectionCity","isBaggageIncluded","BaggageOptions","ClassType", "Price"};
+
+            case "Vacation":
+                String Username = result [0];
+                String Password = result [1];
+                String BDay = result [2];
+                String FName = result [3];
+                String LName = result [4];
+                String City = result [5];
+                ans = new User (Username, Password, BDay, FName, LName, City);
+                break;
+            // todo: add other cases
+        }
         }
         return ans;
     }

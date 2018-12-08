@@ -2,8 +2,10 @@ package View;
 
 import Model.Vacation;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -106,7 +108,7 @@ public class VacationsForSearchTable {
             }
         });
 
-//        buy.setOnAction(event -> {
+//        details.setOnAction(event -> {
 //            Stage s = (Stage) details.getScene().getWindow();
 ////        s.close();
 //            try {
