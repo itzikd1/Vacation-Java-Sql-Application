@@ -145,7 +145,7 @@ public class Model {
 
 
     public void before_hagasha() {
-        database.dropTable("Users");
+        database.dropTable("BuyingRequests");
     }
 
     private void clear_connected_user() {
