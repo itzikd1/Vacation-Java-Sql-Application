@@ -50,7 +50,7 @@ public class VacationDetailsWindow implements Initializable {
         l_connectionCity.setText(details[12]);
         l_baggage.setText(details[14]);
         l_classType.setText(details[15]);
-        l_price.setText(details[16]);
+        l_price.setText(details[16] + "$");
     }
 
     public void showDetails(ActionEvent actionEvent) {
