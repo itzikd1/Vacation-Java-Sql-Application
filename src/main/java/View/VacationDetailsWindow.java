@@ -53,17 +53,6 @@ public class VacationDetailsWindow implements Initializable {
         l_price.setText(details[16] + "$");
     }
 
-    public void showDetails(ActionEvent actionEvent) {
-        String vacation = "1";
-        String[] details = controller.readVacation(vacation);
-        l_price.setText("asdasd");
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Security Alert");
-        alert.setHeaderText("Your vacation was published!");
-        alert.showAndWait();
-
-    }
-
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();
         s.close();
