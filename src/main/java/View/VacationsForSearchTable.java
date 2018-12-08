@@ -125,6 +125,7 @@ public class VacationsForSearchTable {
 //            }
 //        });
         //todo:// remove the notes from this and do this.
+        //todo:// check if user_id
 
         details.setText("Details");
 //        details.maxWidth(Double.MAX_VALUE);
