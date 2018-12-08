@@ -69,9 +69,8 @@ public class Model {
                 String City = result [5];
                 ans = new User (Username, Password, BDay, FName, LName, City);
                 break;
-                // todo: add other cases
 
-            case "Vacation":
+            case "Vacations":
                 String VacationID = result [0];
                 String UserName = result [1];
                 String _From = result [2];
@@ -93,7 +92,18 @@ public class Model {
                         ArrivalDate,ArrivalTime,ReturnDate,ReturnTime,TicketType,FlightsCompany,ConnectionCity
                         ,isBaggageIncluded,BaggageOptions,ClassType,Price);
                 break;
-            // todo: add other cases
+            case "Purhcases":
+                String PurchaseID = result[0];
+                String VacationID2 = result[1];
+                String BuyerUserName = result[2];
+                String SellerUserName = result[3];
+                String Price2 = result[4];
+                String PaymentMethod = result[5];
+                String CreditCardNum = result[6];
+                String PayPalUserName = result[7];
+                String DateOfPurchase = result[8];
+                ans = new Purchase(PurchaseID,VacationID2,BuyerUserName,SellerUserName,Price2,PaymentMethod,CreditCardNum,PayPalUserName,DateOfPurchase);
+                break;
         }
         return ans;
     }
