@@ -176,10 +176,20 @@ class Database {
                 "ArrivalDate","ArrivalTime","ReturnDate","ReturnTime","TicketType","FlightsCompany",
                 "ConnectionCity","isBaggageIncluded","BaggageOptions","ClassType", "Price"};
         fieldsOfTables.put("Vacations" , vacationFields);
+        String buyingRequestsSQL = "CREATE TABLE IF NOT EXISTS BuyingRequests(\n"
+                + "\tRequestID varchar PRIMARY KEY,\n"
+                + "\tVacationID varchar NOT NULL,\n"
+                + "\tBuyerUserName varchar NOT NULL,\n"
+                + "\tisApproved bit NOT NULL" + " \n"
+                + ");";
+        String[] buyingRequestsFields = {"RequestID","VacationID","BuyerUserName,isApproved"};
+        fieldsOfTables.put("BuyingRequests" , buyingRequestsFields);
+
         boolean flag1 = runQuery(usersSQL);
         boolean flag2 = runQuery(purchasesSQL);
         boolean flag3 = runQuery(vacationsSQL);
-        return flag1 && flag2 && flag3;
+        boolean flag4 = runQuery(buyingRequestsSQL);
+        return flag1 && flag2 && flag3 && flag4;
     }
 
     /**
