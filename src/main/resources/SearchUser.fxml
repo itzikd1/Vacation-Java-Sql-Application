@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="350.0" minHeight="400.0" minWidth="350.0" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SearchUserView">
+<AnchorPane maxHeight="400.0" maxWidth="350.0" minHeight="400.0" minWidth="350.0" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SearchUserView">
     <children>
         <ImageView fitHeight="400.0" fitWidth="350.0" nodeOrientation="INHERIT" pickOnBounds="true">
             <image>
@@ -32,19 +32,19 @@
                         </ImageView>
                     </children>
                 </Pane>
-                <Button fx:id="search_button" layoutX="121.0" layoutY="116.0" mnemonicParsing="false" onAction="#search" text="Search" />
                 <Button fx:id="BackButton" layoutX="202.0" layoutY="314.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
                 <Label id="Bday" fx:id="Bday" layoutX="99.0" layoutY="150.0" prefHeight="25.0" prefWidth="149.0" />
                 <Label fx:id="Fname" layoutX="99.0" layoutY="189.0" prefHeight="25.0" prefWidth="149.0" />
                 <Label fx:id="Lname" layoutX="99.0" layoutY="231.0" prefHeight="25.0" prefWidth="149.0" />
                 <Label fx:id="City" alignment="TOP_LEFT" layoutX="99.0" layoutY="271.0" prefHeight="25.0" prefWidth="149.0" />
+                <Button fx:id="search_button" layoutX="121.0" layoutY="109.0" mnemonicParsing="false" onAction="#search" text="Search" />
             </children>
         </Pane>
+        <TextField fx:id="tf_username" editable="true" layoutX="129.0" layoutY="98.0" />
         <Label layoutX="37.0" layoutY="102.0" prefHeight="18.0" prefWidth="87.0" text="Type Username:" />
         <Label fx:id="lbl_Bday" layoutX="55.0" layoutY="177.0" prefHeight="18.0" prefWidth="87.0" text="Birth Date:" visible="false" />
         <Label fx:id="lbl_Fname" layoutX="55.0" layoutY="209.0" prefHeight="33.0" prefWidth="87.0" text="First Name:" visible="false" />
         <Label fx:id="lbl_Lname" layoutX="55.0" layoutY="250.0" prefHeight="33.0" prefWidth="87.0" text="Last Name:" visible="false" />
         <Label fx:id="lbl_City" layoutX="56.0" layoutY="290.0" prefHeight="34.0" prefWidth="74.0" text="City:" visible="false" />
-        <TextField fx:id="tf_username" editable="true" layoutX="129.0" layoutY="98.0" />
     </children>
 </AnchorPane>

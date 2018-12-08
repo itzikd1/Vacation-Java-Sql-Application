@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="350.0" minHeight="400.0" minWidth="350.0" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CreateUserView">
+<AnchorPane maxHeight="400.0" maxWidth="350.0" minHeight="400.0" minWidth="350.0" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CreateUserView">
     <children>
         <ImageView fitHeight="400.0" fitWidth="350.0" nodeOrientation="INHERIT" pickOnBounds="true">
             <image>
@@ -38,13 +38,13 @@
                 <Button fx:id="BackButton" layoutX="172.0" layoutY="314.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
             </children>
         </Pane>
-        <TextField fx:id="tf_username" layoutX="129.0" layoutY="98.0" />
         <Label layoutX="55.0" layoutY="102.0" prefHeight="18.0" prefWidth="87.0" text="User Name" />
         <Label layoutX="55.0" layoutY="138.0" prefHeight="18.0" prefWidth="87.0" text="Password" />
         <Label layoutX="55.0" layoutY="177.0" prefHeight="18.0" prefWidth="87.0" text="Birth Date" />
         <Label layoutX="55.0" layoutY="209.0" prefHeight="33.0" prefWidth="87.0" text="First Name" />
         <Label layoutX="55.0" layoutY="250.0" prefHeight="33.0" prefWidth="87.0" text="Last Name" />
         <Label layoutX="56.0" layoutY="290.0" prefHeight="34.0" prefWidth="74.0" text="City" />
+        <TextField fx:id="tf_username" layoutX="129.0" layoutY="98.0" />
         <PasswordField fx:id="tf_password" layoutX="129.0" layoutY="136.0" />
         <DatePicker fx:id="bd" editable="false" layoutX="129.0" layoutY="173.0" prefWidth="148.8" />
         <TextField fx:id="tf_firstName" layoutX="129.0" layoutY="213.0" />
