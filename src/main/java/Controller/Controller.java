@@ -305,24 +305,18 @@ public class Controller {
                 throw new WrongFlyingDatesInfoException();
         }
         else{//return date is null so return time must be null
-            if(!((String)vacation_details[7]).isEmpty())
-                throw new WrongFlyingDatesInfoException();
+//            if(!((String)vacation_details[7]).isEmpty())
+            throw new WrongFlyingDatesInfoException();
         }
-        if(return_date.getValue()!=null)
-            if(returnDate.compareTo(arrivalDate)<0 || arrivalDate.compareTo(departureDate)<0)
-                throw new WrongFlyingDatesInfoException();
+        if(returnDate.compareTo(arrivalDate)<0 || arrivalDate.compareTo(departureDate)<0)
+            throw new WrongFlyingDatesInfoException();
 
         //check if departure date passed.
         LocalDateTime ldt = LocalDateTime.now();
         Date out = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
         if(departureDate.compareTo(out)<0)
             throw new WrongFlyingDatesInfoException();
-        if(return_date.getValue()!=null)
-            details[8] = returnDate.toString(); // return date
-        else{
-            details[8] = "";
-        }
-
+        details[8] = returnDate.toString(); // return date
         details[9] = (String)vacation_details[7]; // return time
         details[10] = (String)vacation_details[8]; //ticket type
         details[11] = (String)vacation_details[9]; //company
@@ -336,6 +330,7 @@ public class Controller {
         details[15] = (String)vacation_details[13]; //class type
         details[16] = (String)vacation_details[14]; //price
 
+        // TODO: 12/10/2018 no fields can be null! 
         return model.insert(tableName, details);
     }
 

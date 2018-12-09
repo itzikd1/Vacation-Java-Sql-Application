@@ -372,6 +372,15 @@ class Database {
         return null;
     }
 
+    public boolean buyingRequestExists(String vacationID, String buyerID) {
+
+        String sql = "SELECT * FROM BuyingRequests WHERE VacationID  = '" + vacationID +
+                "' AND BuyerUserName = '" + buyerID+"'";
+
+        return runQueryReturnOutput(sql,"BuyingRequests")[0]!=null;
+    }
+
+
 
 //    protected void print_table(String table_name) {
 //        if (table_name.equals("Users")) {
