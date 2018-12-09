@@ -6,7 +6,8 @@ import Model.Excpetions.V4UException;
 import Model.Model;
 import Model.User;
 import Model.Vacation;
-import View.VacationsForSearchTable;
+import View.RequestForSellerColumn;
+import View.VacationsForSearchColumn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -20,7 +21,6 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;
-import Model.Excpetions.*;
 
 public class Controller {
 
@@ -194,14 +194,14 @@ public class Controller {
     }
 
 
-    public ObservableList<VacationsForSearchTable> getVacationsForSearch() {
-        ObservableList<VacationsForSearchTable> vacations = FXCollections.observableArrayList();
+    public ObservableList<VacationsForSearchColumn> getVacationsForSearch() {
+        ObservableList<VacationsForSearchColumn> vacations = FXCollections.observableArrayList();
         Object[] o = model.readAll("Vacations");
         for (int i = 0; i < o.length; i++) {
             if (o[i] instanceof Vacation) {
                 Vacation v = (Vacation) o[i];
                 if (chceckVacationDate(v) == true)
-                    vacations.add(new VacationsForSearchTable(v, new Button(), new Button()));
+                    vacations.add(new VacationsForSearchColumn(v, new Button(), new Button()));
             } else System.out.println("wrong table in controller getVacationsForSearch");
         }
         return vacations;
@@ -236,5 +236,10 @@ public class Controller {
         return model.insertBuyingRequest(details);
     }
 
+    public ObservableList<RequestForSellerColumn> getRequestsForSellerTable() {
+        //todo: edit this function.
+        return null;
+
+    }
 }
 

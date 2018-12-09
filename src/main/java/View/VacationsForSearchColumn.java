@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class VacationsForSearchTable {
+public class VacationsForSearchColumn {
     public Vacation vacation;
     public Button details;
     public Button buy;
@@ -86,7 +86,7 @@ public class VacationsForSearchTable {
     public LocalDate returnDate;
 
 
-    public VacationsForSearchTable(Vacation vacation, Button details, Button buy) {
+    public VacationsForSearchColumn(Vacation vacation, Button details, Button buy) {
         this.vacation = vacation;
         this.departureDate = LocalDate.parse(vacation.getDepartureDate());
         this.returnDate = LocalDate.parse(vacation.getReturnDate());
@@ -119,7 +119,7 @@ public class VacationsForSearchTable {
                 e.printStackTrace();
             }
         });
-        //todo:// check if user_id
+
 
         details.setText("Details");
 //        details.maxWidth(Double.MAX_VALUE);

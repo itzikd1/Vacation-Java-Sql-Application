@@ -3,10 +3,8 @@ package View;
 import Controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -35,7 +33,7 @@ public class VacationDetailsWindow implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO: 08/12/2018 pass here the info of what id we want to search and put it in vacation  Itzik
-        String vacationID = VacationsForSearchTable.get_static_vacationID();
+        String vacationID = VacationsForSearchColumn.get_static_vacationID();
         String[] details = controller.readVacation(vacationID);
         l_from.setText(details[2]);
         l_departDate.setText(details[3]);
