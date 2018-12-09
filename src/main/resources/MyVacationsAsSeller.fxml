@@ -18,77 +18,61 @@
             <Image url="@images/background.png" />
          </image>
       </ImageView>
-      <Pane layoutX="121.0" layoutY="44.0" prefHeight="250.0" prefWidth="749.0" style="-fx-background-color: dddddd;">
+      <ScrollPane layoutX="121.0" layoutY="73.0" prefHeight="225.0" prefWidth="749.0">
+        <content>
+            <TableView fx:id="requestsTable" prefHeight="215.0" prefWidth="749.0">
+              <columns>
+                <TableColumn fx:id="requestID" prefWidth="103.99996376037598" text="Request ID" />
+                <TableColumn fx:id="vacationID" prefWidth="103.33334350585938" text="Vacation ID" />
+                  <TableColumn fx:id="buyer" prefWidth="90.66661071777344" text="Buyer" />
+                  <TableColumn fx:id="status" prefWidth="114.0" text="Status" />
+                  <TableColumn fx:id="approve" text="Approve" />
+                  <TableColumn fx:id="decline" prefWidth="103.99996376037598" text="Decline" />
+              </columns>
+            </TableView>
+        </content>
+      </ScrollPane>
+      <Pane layoutX="121.0" layoutY="5.0" prefHeight="67.0" prefWidth="749.0" style="-fx-background-color: ffffff;">
          <children>
-            <ScrollPane prefHeight="250.0" prefWidth="749.0">
-              <content>
-                <AnchorPane prefHeight="250.0" prefWidth="749.0">
-                     <children>
-                        <TableView fx:id="requestsTable" layoutY="68.0" prefHeight="165.0" prefWidth="749.0">
-                          <columns>
-                            <TableColumn fx:id="requestID" prefWidth="103.99996376037598" text="Request ID" />
-                            <TableColumn fx:id="vacationID" prefWidth="103.33334350585938" text="Vacation ID" />
-                              <TableColumn fx:id="buyer" prefWidth="90.66661071777344" text="Buyer" />
-                              <TableColumn fx:id="status" prefWidth="114.0" text="Status" />
-                              <TableColumn fx:id="approve" text="Approve" />
-                              <TableColumn fx:id="decline" prefWidth="103.99996376037598" text="Decline" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
-            <Pane prefHeight="67.0" prefWidth="749.0" style="-fx-background-color: ffffff;">
-               <children>
-                  <Label layoutX="14.0" layoutY="8.0" prefHeight="51.0" prefWidth="656.0" text="Requests to buy my vacations" textFill="#717171">
-                     <font>
-                        <Font name="System Bold" size="31.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="44.0" fitWidth="75.0" layoutX="691.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/register_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
+            <Label layoutX="14.0" layoutY="8.0" prefHeight="51.0" prefWidth="656.0" text="Requests to buy my vacations" textFill="#717171">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="44.0" fitWidth="75.0" layoutX="691.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/register_icon.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="121.0" layoutY="331.0" prefHeight="250.0" prefWidth="749.0" style="-fx-background-color: dddddd;">
+      <Pane layoutX="121.0" layoutY="315.0" prefHeight="67.0" prefWidth="749.0" style="-fx-background-color: ffffff;">
          <children>
-            <ScrollPane prefHeight="250.0" prefWidth="749.0">
-               <content>
-                  <AnchorPane prefHeight="250.0" prefWidth="749.0">
-                     <children>
-                        <TableView fx:id="vacationsTable1" layoutY="68.0" prefHeight="165.0" prefWidth="749.0">
-                           <columns>
-                              <TableColumn fx:id="RequestID1" prefWidth="103.99996376037598" text="Purchase ID" />
-                              <TableColumn fx:id="departDate1" prefWidth="103.33334350585938" text="Vacation ID" />
-                              <TableColumn fx:id="returnDate1" prefWidth="90.66661071777344" text="Buyer" />
-                              <TableColumn fx:id="moreDetails1" prefWidth="114.0" text="Price" />
-                              <TableColumn fx:id="buycolumn1" prefWidth="156.0" text="Confimation" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </ScrollPane>
-            <Pane prefHeight="67.0" prefWidth="749.0" style="-fx-background-color: ffffff;">
-               <children>
-                  <Label layoutX="14.0" layoutY="8.0" prefHeight="51.0" prefWidth="656.0" text="My Selled Vacations" textFill="#717171">
-                     <font>
-                        <Font name="System Bold" size="31.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="44.0" fitWidth="75.0" layoutX="691.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/register_icon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
+            <Label layoutX="14.0" layoutY="8.0" prefHeight="51.0" prefWidth="656.0" text="My Selled Vacations" textFill="#717171">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="44.0" fitWidth="75.0" layoutX="691.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/register_icon.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Button fx:id="BackButton" layoutX="878.0" layoutY="574.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
+      <ScrollPane layoutX="121.0" layoutY="380.0" prefHeight="225.0" prefWidth="749.0">
+         <content>
+            <TableView fx:id="requestsTable1" prefHeight="215.0" prefWidth="749.0">
+               <columns>
+                  <TableColumn fx:id="PurchaseID" prefWidth="103.99996376037598" text="Purchase ID" />
+                  <TableColumn fx:id="VacationID2" prefWidth="103.33334350585938" text="Vacation ID" />
+                  <TableColumn fx:id="BuyerUserName2" prefWidth="90.66661071777344" text="Buyer" />
+                  <TableColumn fx:id="price" prefWidth="114.0" text="Price" />
+                  <TableColumn fx:id="confirmation" prefWidth="156.0" text="Confirmation" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

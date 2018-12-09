@@ -198,6 +198,9 @@ public class Model {
                 return vacations;
             case "BuyingRequests":
                 return buying_req_switch_case(tableName,field,user_name_id);
+            case "Purchases":
+                return purchase_switch_case(tableName,field,user_name_id);
+
 
         }
         return null;
@@ -219,6 +222,24 @@ public class Model {
                     requests[i] = br;
                 }
                 return requests;
+    }
+
+    private  Purchase[] purchase_switch_case(String tableName, String field, String user_name_id) {
+        Object[] items = null;
+        switch (field) {
+            case "SellerUserName":
+                items = database.getAllDataForOneUser(tableName, "SellerUserName", user_name_id);
+                break;
+            case "BuyerUserName":
+                items = database.getAllDataForOneUser(tableName, "BuyerUserName", user_name_id);
+                break;
+        }
+       Purchase[] purchases = new Purchase[items.length];
+        for (int i=0; i< items.length; i++) {
+            Purchase pu = new Purchase((String[]) items[i]);
+            purchases[i] = pu;
+        }
+        return purchases;
     }
 
 

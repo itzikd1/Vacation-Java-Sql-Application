@@ -24,6 +24,18 @@ public class Purchase {
         DateOfPurchase = DateOfPurchase;
     }
 
+    public Purchase(String[] details) {
+        PurchaseID = details[0];
+        VacationID = details[1];
+        BuyerUserName = details[2];
+        SellerUserName = details[3];
+        Price = details[4];
+        PaymentMethod = details[5];
+        CreditCardNum = details[6];
+        PayPalUserName = details[7];
+        DateOfPurchase = details[8];
+    }
+
     public String getPurchaseID() {
         return PurchaseID;
     }

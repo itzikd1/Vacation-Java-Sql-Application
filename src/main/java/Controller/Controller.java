@@ -4,7 +4,9 @@ import Model.Excpetions.*;
 import Model.Model;
 import Model.User;
 import Model.Vacation;
+import Model.Purchase;
 import Model.BuyingRequest;
+import View.PurchaseForSellerColumn;
 import View.RequestForSellerColumn;
 import View.VacationsForSearchColumn;
 import javafx.collections.FXCollections;
@@ -342,6 +344,21 @@ public class Controller {
                     return true;
         }
         return false;
+    }
+
+    public ObservableList<PurchaseForSellerColumn> getPurchasesForSellerTable() {
+        ObservableList<PurchaseForSellerColumn> purchases = FXCollections.observableArrayList();
+        Object[] o = model.readAllForOneUser("Purchases","SellerUserName");
+        for (int i = 0; i < o.length; i++) {
+            if (o[i] instanceof Purchase) {
+                Purchase p = (Purchase) o[i];
+                purchases.add(new PurchaseForSellerColumn(p, new Button()));
+            }
+            else
+                System.out.println("wrong table in controller getPurchasesForSellerTableTable");
+
+        } return purchases;
+
     }
 }
 

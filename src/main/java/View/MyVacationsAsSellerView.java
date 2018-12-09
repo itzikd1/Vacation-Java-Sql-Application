@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Controller;
+import Model.Purchase;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -21,6 +22,8 @@ public class MyVacationsAsSellerView implements Initializable {
     private Controller controller = Controller.getInstance();
 
     public Button BackButton;
+
+    //first table:
     public TableView<RequestForSellerColumn> requestsTable;
     public TableColumn<RequestForSellerColumn, String> requestID;
     public TableColumn<VacationsForSearchColumn, String> vacationID;
@@ -28,18 +31,35 @@ public class MyVacationsAsSellerView implements Initializable {
     public TableColumn<VacationsForSearchColumn, String> status;
     public TableColumn<VacationsForSearchColumn, Button> approve;
     public TableColumn<VacationsForSearchColumn, Button> decline;
+
+    //second table:
+    public TableView<PurchaseForSellerColumn> purchasesTable;
+    public TableColumn<PurchaseForSellerColumn, String> PurchaseID;
+    public TableColumn<PurchaseForSellerColumn, String> VacationID2;
+    public TableColumn<PurchaseForSellerColumn, String> BuyerUserName2;
+    public TableColumn<PurchaseForSellerColumn, String> price;
+    public TableColumn<PurchaseForSellerColumn, String> confirmation;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //first table:
         requestID.setCellValueFactory(new PropertyValueFactory<>("requestID"));
         vacationID.setCellValueFactory(new PropertyValueFactory<>("vacationID"));
         buyer.setCellValueFactory(new PropertyValueFactory<>("BuyerUserName"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         approve.setCellValueFactory(new PropertyValueFactory<>("approve"));
         decline.setCellValueFactory(new PropertyValueFactory<>("decline"));
-        //todo - to edit the SQL query to "wHere user id = .. "
         ObservableList<RequestForSellerColumn> requests = controller.getRequestsForSellerTable();
-
         requestsTable.setItems(requests);
+
+        //second table:
+        PurchaseID.setCellValueFactory(new PropertyValueFactory<>("PurchaseID"));
+        VacationID2.setCellValueFactory(new PropertyValueFactory<>("VacationID"));
+        BuyerUserName2.setCellValueFactory(new PropertyValueFactory<>("BuyerUserName"));
+        price.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        confirmation.setCellValueFactory(new PropertyValueFactory<>("Confirmation"));
+        ObservableList<PurchaseForSellerColumn> purchases = controller.getPurchasesForSellerTable();
+
     }
 
     public void go_main(ActionEvent actionEvent) {
