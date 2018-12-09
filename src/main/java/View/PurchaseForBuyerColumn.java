@@ -11,14 +11,26 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class PurchaseForSellerColumn {
+public class PurchaseForBuyerColumn {
 
     public String PurchaseID;
     public String VacationID;
     public String BuyerUserName;
     public String Price;
+    public String destination;
     public Button Confirmation;
+    public Button Cancel;
     public Button Details;
+    //todo: add cancel option on button Cancel
+
+
+    public Button getCancel() {
+        return Cancel;
+    }
+
+    public void setCancel(Button cancel) {
+        Cancel = cancel;
+    }
 
     public Button getDetails() {
         return Details;
@@ -27,6 +39,15 @@ public class PurchaseForSellerColumn {
     public void setDetails(Button details) {
         Details = details;
     }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
 
     public String getPurchaseID() {
         return PurchaseID;
@@ -68,16 +89,24 @@ public class PurchaseForSellerColumn {
         Confirmation = confirmation;
     }
 
-    public PurchaseForSellerColumn(Purchase p, Button c, Button details) {
-        Confirmation = c;
+    public PurchaseForBuyerColumn(Purchase p, Button confirmation, Button cancel, Button details) {
+        Confirmation = confirmation;
+        Cancel = cancel;
         PurchaseID = p.getPurchaseID();
         VacationID = p.getVacationID();
         BuyerUserName = p.getBuyerUserName();
         Price = p.getPrice();
+        Details = details;
 
         Confirmation.setText("Details");
 
         Confirmation.setOnAction(event -> {
+            System.out.println("todo");
+        });
+
+        Cancel.setText("Cancel");
+
+        Cancel.setOnAction(event -> {
             System.out.println("todo");
         });
 

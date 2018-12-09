@@ -12,14 +12,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class RequestForSellerColumn {
+public class RequestForBuyerColumn {
 
     public String RequestID;
     public String VacationID;
-    public String BuyerUserName;
+    public String SellerUserName;
     public String Status;
-    public Button Approve;
-    public Button Decline;
+    public Button Buy;
+    public Button Cancel;
+    public String destination;
     public Button Details;
 
     public Button getDetails() {
@@ -28,6 +29,14 @@ public class RequestForSellerColumn {
 
     public void setDetails(Button details) {
         Details = details;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public String getRequestID() {
@@ -46,12 +55,12 @@ public class RequestForSellerColumn {
         VacationID = vacationID;
     }
 
-    public String getBuyerUserName() {
-        return BuyerUserName;
+    public String getSellerUserName() {
+        return SellerUserName;
     }
 
-    public void setBuyerUserName(String buyerUserName) {
-        BuyerUserName = buyerUserName;
+    public void setSellerUserName(String sellerUserName) {
+        SellerUserName = sellerUserName;
     }
 
     public String getStatus() {
@@ -62,59 +71,50 @@ public class RequestForSellerColumn {
         Status = status;
     }
 
-    public Button getApprove() {
-        return Approve;
+    public Button getBuy() {
+        return Buy;
     }
 
-    public void setApprove(Button approve) {
-        Approve = approve;
+    public void setBuy(Button buy) {
+        Buy = buy;
     }
 
-    public Button getDecline() {
-        return Decline;
+    public Button getCancel() {
+        return Cancel;
     }
 
-    public void setDecline(Button decline) {
-        Decline = decline;
+    public void setCancel(Button cancel) {
+        Cancel = cancel;
     }
 
-
-
-    public RequestForSellerColumn(BuyingRequest br, Button approve, Button decline, Button details) {
+    public RequestForBuyerColumn(BuyingRequest br, String destination, Button b, Button c, Button details) {
         RequestID = br.getRequestID();
         VacationID = br.getVacationID();
-        BuyerUserName = br.getBuyerUserName();
+        SellerUserName = br.getSellerUserName();
         Status = br.getIsApproved();
-        Approve = approve;
-        Decline = decline;
+        Buy = b;
+        Cancel = c;
+        this.destination = destination;
         Details = details;
 
-        Approve.setText("Approve");
-        Decline.setText("Decline");
         Details.setText("Details");
+        Buy.setText("Buy");
+        Cancel.setText("Cancel");
 
-
-
-        Approve.setOnAction(event -> {
+        Buy.setOnAction(event -> {
             Controller controller = Controller.getInstance();
             boolean flag = false;
-            flag = controller.updateRequest(RequestID,"Approved");
-            if (flag) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Buying Request Approved");
-                alert.setHeaderText("Your confirmation has been sent to Seller. \nPlease check your requests page soon to see if he paid");
-                alert.showAndWait();
-            }
+            //todo: open buy window & updateRequestToBuy as Bought (if bought we should not see this on req table) & sent to Purchase SQL table.
         });
 
-        decline.setOnAction(event -> {
+        Cancel.setOnAction(event -> {
             Controller controller = Controller.getInstance();
             boolean flag = false;
-            flag = controller.updateRequest(RequestID,"Declined");
+            flag = controller.updateRequest(RequestID,"Cancelled");
             if (flag) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Buying Request Declined");
-                alert.setHeaderText("Your Decline has been sent to " + BuyerUserName);
+                alert.setTitle("Buying Request Cancelled");
+                alert.setHeaderText("Your Cancellation has been sent to " + SellerUserName);
                 alert.showAndWait();
             }
         });

@@ -6,9 +6,7 @@ import Model.User;
 import Model.Vacation;
 import Model.Purchase;
 import Model.BuyingRequest;
-import View.PurchaseForSellerColumn;
-import View.RequestForSellerColumn;
-import View.VacationsForSearchColumn;
+import View.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -30,6 +28,7 @@ import java.util.regex.Pattern;
 public class Controller {
 
     private static Controller singleton = null;
+    public static String vacationID; // for vacation details window
     private Model model;
 
     private Controller() {
@@ -218,7 +217,7 @@ public class Controller {
         for (int i = 0; i < o.length; i++) {
             if (o[i] instanceof BuyingRequest) {
                 BuyingRequest b = (BuyingRequest)o[i];
-                requests.add(new RequestForSellerColumn(b, new Button(),new Button()));
+                requests.add(new RequestForSellerColumn(b, new Button(),new Button(), new Button()));
             }
             else
         System.out.println("wrong table in controller getRequestsForSellerTableTable");
@@ -352,10 +351,46 @@ public class Controller {
         for (int i = 0; i < o.length; i++) {
             if (o[i] instanceof Purchase) {
                 Purchase p = (Purchase) o[i];
-                purchases.add(new PurchaseForSellerColumn(p, new Button()));
+                purchases.add(new PurchaseForSellerColumn(p, new Button(), new Button()));
             }
             else
                 System.out.println("wrong table in controller getPurchasesForSellerTableTable");
+
+        } return purchases;
+
+    }
+
+    public boolean updateRequest(String requestID, String status) {
+        return model.updateRequest(requestID, status);
+    }
+
+    public ObservableList<RequestForBuyerColumn> getRequestsForBuyerTable() {
+        ObservableList<RequestForBuyerColumn> requests = FXCollections.observableArrayList();
+        Object[] o = model.readAllForOneUser("BuyingRequests","BuyerUserName");
+        for (int i = 0; i < o.length; i++) {
+            if (o[i] instanceof BuyingRequest) {
+                BuyingRequest b = (BuyingRequest)o[i];
+                String vacationID = b.VacationID;
+                Vacation v = (Vacation)model.read("Vacations",vacationID);
+                requests.add(new RequestForBuyerColumn(b, v.getDestination(), new Button(),new Button(), new Button()));
+            }
+            else
+                System.out.println("wrong table in controller getRequestsForBuyerTableTable");
+
+        } return requests;
+
+    }
+
+    public ObservableList<PurchaseForBuyerColumn> getPurchasesForBuyerTable() {
+        ObservableList<PurchaseForBuyerColumn> purchases = FXCollections.observableArrayList();
+        Object[] o = model.readAllForOneUser("Purchases","BuyerUserName");
+        for (int i = 0; i < o.length; i++) {
+            if (o[i] instanceof Purchase) {
+                Purchase p = (Purchase) o[i];
+                purchases.add(new PurchaseForBuyerColumn(p, new Button(), new Button(), new Button()));
+            }
+            else
+                System.out.println("wrong table in controller getPurchasesForBuyerTableTable");
 
         } return purchases;
 
