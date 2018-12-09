@@ -25,16 +25,18 @@ public class MyVacationsAsSellerView implements Initializable {
     public TableColumn<RequestForSellerColumn, String> requestID;
     public TableColumn<VacationsForSearchColumn, String> vacationID;
     public TableColumn<VacationsForSearchColumn, String> buyer;
+    public TableColumn<VacationsForSearchColumn, String> status;
     public TableColumn<VacationsForSearchColumn, Button> approve;
     public TableColumn<VacationsForSearchColumn, Button> decline;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         requestID.setCellValueFactory(new PropertyValueFactory<>("requestID"));
         vacationID.setCellValueFactory(new PropertyValueFactory<>("vacationID"));
-        buyer.setCellValueFactory(new PropertyValueFactory<>("buyer"));
+        buyer.setCellValueFactory(new PropertyValueFactory<>("BuyerUserName"));
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
         approve.setCellValueFactory(new PropertyValueFactory<>("approve"));
         decline.setCellValueFactory(new PropertyValueFactory<>("decline"));
-
+        //todo - to edit the SQL query to "wHere user id = .. " 
         ObservableList<RequestForSellerColumn> requests = controller.getRequestsForSellerTable();
 
         requestsTable.setItems(requests);
