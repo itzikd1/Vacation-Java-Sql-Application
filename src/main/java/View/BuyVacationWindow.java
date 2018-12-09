@@ -11,6 +11,9 @@ public class BuyVacationWindow implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //itzik tembel
+
+
 //hello this is my code
         //you should take it
     }
