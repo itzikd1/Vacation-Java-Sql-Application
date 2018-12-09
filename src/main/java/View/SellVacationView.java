@@ -92,7 +92,7 @@ public class SellVacationView implements Initializable {
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Your BuyingRequest Failed!");
+            alert.setTitle("Your Request Failed!");
             alert.setHeaderText(e.getMessage());
             alert.showAndWait();
         }
