@@ -36,7 +36,7 @@ public class MyVacationsAsSellerView implements Initializable {
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         approve.setCellValueFactory(new PropertyValueFactory<>("approve"));
         decline.setCellValueFactory(new PropertyValueFactory<>("decline"));
-        //todo - to edit the SQL query to "wHere user id = .. " 
+        //todo - to edit the SQL query to "wHere user id = .. "
         ObservableList<RequestForSellerColumn> requests = controller.getRequestsForSellerTable();
 
         requestsTable.setItems(requests);

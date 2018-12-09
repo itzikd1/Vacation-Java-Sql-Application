@@ -212,7 +212,7 @@ public class Controller {
 
     public ObservableList<RequestForSellerColumn> getRequestsForSellerTable() {
         ObservableList<RequestForSellerColumn> requests = FXCollections.observableArrayList();
-        Object[] o = model.readAll("BuyingRequests");
+        Object[] o = model.readAllForOneUser("BuyingRequests","SellerUserName");
         for (int i = 0; i < o.length; i++) {
             if (o[i] instanceof BuyingRequest) {
                 BuyingRequest b = (BuyingRequest)o[i];
@@ -248,7 +248,7 @@ public class Controller {
     }
 
     public boolean insertBuyingRequest(String vacationID, String Seller_user_name) throws V4UException  {
-        String bit = "0"; //because this not approved yet
+        String bit = "Waiting"; //because this not approved yet
         String buyerID = get_connected_user_id();
         String req_id = String.valueOf(model.getNextRequestID());
         String[] details = {req_id,vacationID,Seller_user_name,buyerID,bit};

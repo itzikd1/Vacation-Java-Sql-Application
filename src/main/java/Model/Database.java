@@ -274,6 +274,11 @@ class Database {
         return runQueryReturnOutputOfManyRecords(sql,tableName).toArray();
     }
 
+    public Object[] getAllDataForOneUser(String tableName,String field, String key) {
+        String sql = "SELECT * FROM " + tableName + " WHERE " + field +" = " + "'" +  key + "'";
+        return runQueryReturnOutputOfManyRecords(sql,tableName).toArray();
+    }
+
     private LinkedList<String[]> runQueryReturnOutputOfManyRecords(String sql, String tableName) {
         ResultSet rs = null;
         int sizeOfTable = (fieldsOfTables.get(tableName)).length;

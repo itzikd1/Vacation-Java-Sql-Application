@@ -184,6 +184,43 @@ public class Model {
         return null;
     }
 
+    public Object[] readAllForOneUser(String tableName, String field) {
+        String user_name_id = get_connected_user_id();
+        Object[] items;
+        switch (tableName) {
+            case "Vacations":
+                items  = database.getAllDataForOneUser(tableName,"UserName", user_name_id);
+                Vacation[] vacations = new Vacation[items.length];
+                for (int i = 0; i < items.length; i++) {
+                    Vacation v = new Vacation((String[]) items[i]);
+                    vacations[i] = v;
+                }
+                return vacations;
+            case "BuyingRequests":
+                return buying_req_switch_case(tableName,field,user_name_id);
+
+        }
+        return null;
+    }
+
+    private  BuyingRequest[] buying_req_switch_case(String tableName, String field, String user_name_id) {
+        Object[] items = null;
+        switch (field) {
+            case "SellerUserName":
+                items = database.getAllDataForOneUser(tableName, "SellerUserName", user_name_id);
+                break;
+            case "BuyerUserName":
+                items = database.getAllDataForOneUser(tableName, "BuyerUserName", user_name_id);
+                break;
+        }
+                BuyingRequest[] requests = new BuyingRequest[items.length];
+                for (int i=0; i< items.length; i++) {
+                    BuyingRequest br = new BuyingRequest((String[]) items[i]);
+                    requests[i] = br;
+                }
+                return requests;
+    }
+
 
     public String get_connected_user_id() {
         if (connected_user!=null)
