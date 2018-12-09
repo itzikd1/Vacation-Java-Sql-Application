@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="598.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyVacationsAsSellerView">
+<AnchorPane prefHeight="598.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyVacationsAsBuyerView">
    <children>
       <ImageView fitHeight="622.0" fitWidth="990.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,17 +24,18 @@
               <columns>
                 <TableColumn fx:id="requestID" prefWidth="103.99996376037598" text="Request ID" />
                 <TableColumn fx:id="vacationID" prefWidth="103.33334350585938" text="Vacation ID" />
-                  <TableColumn fx:id="buyer" prefWidth="90.66661071777344" text="Buyer" />
+                  <TableColumn fx:id="destination" prefWidth="103.33334350585938" text="Destination" />
+                  <TableColumn fx:id="seller" prefWidth="90.66661071777344" text="Seller" />
                   <TableColumn fx:id="status" prefWidth="114.0" text="Status" />
-                  <TableColumn fx:id="approve" text="Approve" />
-                  <TableColumn fx:id="decline" prefWidth="103.99996376037598" text="Decline" />
+                  <TableColumn fx:id="buy" text="Buy" />
+                  <TableColumn fx:id="cancel" prefWidth="103.99996376037598" text="Cancel" />
               </columns>
             </TableView>
         </content>
       </ScrollPane>
       <Pane layoutX="121.0" layoutY="7.0" prefHeight="67.0" prefWidth="749.0" style="-fx-background-color: ffffff;">
          <children>
-            <Label layoutX="14.0" layoutY="8.0" prefHeight="51.0" prefWidth="656.0" text="Requests to buy my vacations" textFill="#717171">
+            <Label layoutX="14.0" layoutY="8.0" prefHeight="51.0" prefWidth="656.0" text="My requests to buy vacations" textFill="#717171">
                <font>
                   <Font name="System Bold" size="31.0" />
                </font>
@@ -48,7 +49,7 @@
       </Pane>
       <Pane layoutX="121.0" layoutY="315.0" prefHeight="67.0" prefWidth="749.0" style="-fx-background-color: ffffff;">
          <children>
-            <Label layoutX="14.0" layoutY="8.0" prefHeight="51.0" prefWidth="656.0" text="My Selled Vacations" textFill="#717171">
+            <Label layoutX="14.0" layoutY="8.0" prefHeight="51.0" prefWidth="656.0" text="My Purchased Vacations" textFill="#717171">
                <font>
                   <Font name="System Bold" size="31.0" />
                </font>
@@ -67,7 +68,8 @@
                <columns>
                   <TableColumn fx:id="PurchaseID" prefWidth="103.99996376037598" text="Purchase ID" />
                   <TableColumn fx:id="VacationID2" prefWidth="103.33334350585938" text="Vacation ID" />
-                  <TableColumn fx:id="BuyerUserName2" prefWidth="90.66661071777344" text="Buyer" />
+                  <TableColumn fx:id="destination2" prefWidth="103.33334350585938" text="Destination" />
+                  <TableColumn fx:id="seller2" prefWidth="90.66661071777344" text="Seller" />
                   <TableColumn fx:id="price" prefWidth="114.0" text="Price" />
                   <TableColumn fx:id="confirmation" prefWidth="156.0" text="Confirmation" />
                </columns>

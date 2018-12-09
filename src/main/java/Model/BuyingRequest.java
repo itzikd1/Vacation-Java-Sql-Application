@@ -14,7 +14,7 @@ public class BuyingRequest {
         VacationID = vacationID;
         SellerUserName = sellerUserName;
         BuyerUserName = buyerUserName;
-        this.isApproved = isApproved; // "Waiting" / "Approved" / "Not Approved"
+        this.isApproved = isApproved; // "Waiting" / "Approved" / "Not Approved" / "Cancelled"
 }
 
     public BuyingRequest(String[] data) {

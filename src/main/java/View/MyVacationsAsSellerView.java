@@ -26,11 +26,11 @@ public class MyVacationsAsSellerView implements Initializable {
     //first table:
     public TableView<RequestForSellerColumn> requestsTable;
     public TableColumn<RequestForSellerColumn, String> requestID;
-    public TableColumn<VacationsForSearchColumn, String> vacationID;
-    public TableColumn<VacationsForSearchColumn, String> buyer;
-    public TableColumn<VacationsForSearchColumn, String> status;
-    public TableColumn<VacationsForSearchColumn, Button> approve;
-    public TableColumn<VacationsForSearchColumn, Button> decline;
+    public TableColumn<RequestForSellerColumn, String> vacationID;
+    public TableColumn<RequestForSellerColumn, String> buyer;
+    public TableColumn<RequestForSellerColumn, String> status;
+    public TableColumn<RequestForSellerColumn, Button> approve;
+    public TableColumn<RequestForSellerColumn, Button> decline;
 
     //second table:
     public TableView<PurchaseForSellerColumn> purchasesTable;
@@ -59,6 +59,8 @@ public class MyVacationsAsSellerView implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<>("Price"));
         confirmation.setCellValueFactory(new PropertyValueFactory<>("Confirmation"));
         ObservableList<PurchaseForSellerColumn> purchases = controller.getPurchasesForSellerTable();
+        purchasesTable.setItems(purchases);
+
 
     }
 
