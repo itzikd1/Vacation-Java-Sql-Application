@@ -31,6 +31,7 @@ public class MyVacationsAsSellerView implements Initializable {
     public TableColumn<RequestForSellerColumn, String> status;
     public TableColumn<RequestForSellerColumn, Button> approve;
     public TableColumn<RequestForSellerColumn, Button> decline;
+    public TableColumn<RequestForSellerColumn, Button> details1;
 
     //second table:
     public TableView<PurchaseForSellerColumn> purchasesTable;
@@ -39,6 +40,7 @@ public class MyVacationsAsSellerView implements Initializable {
     public TableColumn<PurchaseForSellerColumn, String> BuyerUserName2;
     public TableColumn<PurchaseForSellerColumn, String> price;
     public TableColumn<PurchaseForSellerColumn, String> confirmation;
+    public TableColumn<PurchaseForSellerColumn, Button> details2;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -49,6 +51,7 @@ public class MyVacationsAsSellerView implements Initializable {
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         approve.setCellValueFactory(new PropertyValueFactory<>("approve"));
         decline.setCellValueFactory(new PropertyValueFactory<>("decline"));
+        details1.setCellValueFactory(new PropertyValueFactory<>("details"));
         ObservableList<RequestForSellerColumn> requests = controller.getRequestsForSellerTable();
         requestsTable.setItems(requests);
 
@@ -58,6 +61,7 @@ public class MyVacationsAsSellerView implements Initializable {
         BuyerUserName2.setCellValueFactory(new PropertyValueFactory<>("BuyerUserName"));
         price.setCellValueFactory(new PropertyValueFactory<>("Price"));
         confirmation.setCellValueFactory(new PropertyValueFactory<>("Confirmation"));
+        details2.setCellValueFactory(new PropertyValueFactory<>("details"));
         ObservableList<PurchaseForSellerColumn> purchases = controller.getPurchasesForSellerTable();
         purchasesTable.setItems(purchases);
 

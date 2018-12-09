@@ -2,8 +2,15 @@ package View;
 
 import Controller.Controller;
 import Model.BuyingRequest;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class RequestForBuyerColumn {
 
@@ -13,6 +20,24 @@ public class RequestForBuyerColumn {
     public String Status;
     public Button Buy;
     public Button Cancel;
+    public String destination;
+    public Button Details;
+
+    public Button getDetails() {
+        return Details;
+    }
+
+    public void setDetails(Button details) {
+        Details = details;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
 
     public String getRequestID() {
         return RequestID;
@@ -62,14 +87,17 @@ public class RequestForBuyerColumn {
         Cancel = cancel;
     }
 
-    public RequestForBuyerColumn(BuyingRequest br, Button b, Button c) {
+    public RequestForBuyerColumn(BuyingRequest br, String destination, Button b, Button c, Button details) {
         RequestID = br.getRequestID();
         VacationID = br.getVacationID();
         SellerUserName = br.getSellerUserName();
         Status = br.getIsApproved();
         Buy = b;
         Cancel = c;
+        this.destination = destination;
+        Details = details;
 
+        Details.setText("Details");
         Buy.setText("Buy");
         Cancel.setText("Cancel");
 
@@ -88,6 +116,25 @@ public class RequestForBuyerColumn {
                 alert.setTitle("Buying Request Cancelled");
                 alert.setHeaderText("Your Cancellation has been sent to " + SellerUserName);
                 alert.showAndWait();
+            }
+        });
+
+        details.setOnAction(event -> {
+
+            Stage s = (Stage) details.getScene().getWindow();
+//        s.close();
+            try {
+                Controller.vacationID = VacationID;
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setResizable(true);
+                stage.setTitle("Details Vacation");
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="598.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyVacationsAsSellerView">
+<AnchorPane prefHeight="598.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyVacationsAsSellerView">
    <children>
       <ImageView fitHeight="622.0" fitWidth="990.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,6 +28,7 @@
                   <TableColumn fx:id="status" prefWidth="114.0" text="Status" />
                   <TableColumn fx:id="approve" text="Approve" />
                   <TableColumn fx:id="decline" prefWidth="103.99996376037598" text="Decline" />
+                  <TableColumn fx:id="details1" prefWidth="75.0" text="Details" />
               </columns>
             </TableView>
         </content>
@@ -70,6 +71,7 @@
                   <TableColumn fx:id="BuyerUserName2" prefWidth="90.66661071777344" text="Buyer" />
                   <TableColumn fx:id="price" prefWidth="114.0" text="Price" />
                   <TableColumn fx:id="confirmation" prefWidth="156.0" text="Confirmation" />
+                  <TableColumn fx:id="details2" prefWidth="75.0" text="Details" />
                </columns>
             </TableView>
          </content>
