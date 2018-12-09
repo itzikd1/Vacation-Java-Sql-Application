@@ -28,7 +28,6 @@
                           <columns>
                             <TableColumn fx:id="requestID" prefWidth="103.99996376037598" text="Request ID" />
                             <TableColumn fx:id="vacationID" prefWidth="103.33334350585938" text="Vacation ID" />
-                              <TableColumn fx:id="destination" prefWidth="98.66664123535156" text="Destination" />
                               <TableColumn fx:id="buyer" prefWidth="90.66661071777344" text="Buyer" />
                               <TableColumn fx:id="status" prefWidth="114.0" text="Status" />
                               <TableColumn fx:id="approve" text="Approve" />
@@ -65,7 +64,6 @@
                            <columns>
                               <TableColumn fx:id="RequestID1" prefWidth="103.99996376037598" text="Purchase ID" />
                               <TableColumn fx:id="departDate1" prefWidth="103.33334350585938" text="Vacation ID" />
-                              <TableColumn fx:id="to1" prefWidth="98.66664123535156" text="Destination" />
                               <TableColumn fx:id="returnDate1" prefWidth="90.66661071777344" text="Buyer" />
                               <TableColumn fx:id="moreDetails1" prefWidth="114.0" text="Price" />
                               <TableColumn fx:id="buycolumn1" prefWidth="156.0" text="Confimation" />

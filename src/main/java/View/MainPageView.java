@@ -31,6 +31,7 @@ public class MainPageView implements Initializable {
     public Pane login_pane;
     public Button sell_vacation_button;
     public Button search_vacation_button;
+    public Button my_vacations_as_seller;
 
     public TextField tf_username;
     public PasswordField tf_password;
@@ -48,7 +49,7 @@ public class MainPageView implements Initializable {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("CreateUser.fxml"));
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(true);
+            stage.setResizable(false);
             stage.setTitle("Create User");
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -94,7 +95,7 @@ public class MainPageView implements Initializable {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("UpdateUser.fxml"));
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(true);
+            stage.setResizable(false);
             stage.setTitle("UpdateInfo");
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -111,7 +112,7 @@ public class MainPageView implements Initializable {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("SearchUser.fxml"));
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(true);
+            stage.setResizable(false);
             stage.setTitle("Search User");
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -172,6 +173,7 @@ public class MainPageView implements Initializable {
         sign_out.setVisible(true);
         sell_vacation_button.setDisable(false);
         account_settings.setVisible(true);
+        my_vacations_as_seller.setDisable(false);
     }
     private void switchToLogout() {
         account_settings.setVisible(false);
@@ -181,18 +183,19 @@ public class MainPageView implements Initializable {
         sign_out.setVisible(false);
         sell_vacation_button.setDisable(true);
         login_pane.setVisible(true);
+        my_vacations_as_seller.setDisable(true);
     }
 
 
     public void search_vacation(ActionEvent actionEvent) {
-        //todo:// open the window anael did
+        //todo:// open the window anael did.
         Stage s = (Stage) search_vacation_button.getScene().getWindow();
 //        s.close();
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FindMeADeal.fxml"));
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(true);
+            stage.setResizable(false);
             stage.setTitle("Search Vacation");
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -211,6 +214,23 @@ public class MainPageView implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             stage.setTitle("Sell Vacation");
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void my_vacations_seller_command(ActionEvent actionEvent) {
+        Stage s = (Stage) my_vacations_as_seller.getScene().getWindow();
+//        s.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MyVacationsAsSeller.fxml"));
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("My Vacations");
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

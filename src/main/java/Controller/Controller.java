@@ -4,6 +4,7 @@ import Model.Excpetions.*;
 import Model.Model;
 import Model.User;
 import Model.Vacation;
+import Model.BuyingRequest;
 import View.RequestForSellerColumn;
 import View.VacationsForSearchColumn;
 import javafx.collections.FXCollections;
@@ -209,6 +210,21 @@ public class Controller {
         return vacations;
     }
 
+    public ObservableList<RequestForSellerColumn> getRequestsForSellerTable() {
+        ObservableList<RequestForSellerColumn> requests = FXCollections.observableArrayList();
+        Object[] o = model.readAll("BuyingRequests");
+        for (int i = 0; i < o.length; i++) {
+            if (o[i] instanceof BuyingRequest) {
+                BuyingRequest b = (BuyingRequest)o[i];
+                requests.add(new RequestForSellerColumn(b, new Button(),new Button()));
+            }
+            else
+        System.out.println("wrong table in controller getRequestsForSellerTableTable");
+
+        } return requests;
+    }
+
+
 
     private boolean chceckVacationDate(Vacation v) {
         LocalDate localDate = LocalDate.now();
@@ -226,6 +242,7 @@ public class Controller {
         }
         return false;
     }
+
     public String get_connected_user_id() {
         return model.get_connected_user_id();
     }
@@ -238,11 +255,7 @@ public class Controller {
         return model.insertBuyingRequest(details);
     }
 
-    public ObservableList<RequestForSellerColumn> getRequestsForSellerTable() {
-        //todo: edit this function.
-        return null;
 
-    }
 
 
     public boolean insertNewVacation(String tableName, Object[] vacation_details) throws V4UException {

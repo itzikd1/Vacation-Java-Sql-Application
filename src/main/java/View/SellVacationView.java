@@ -92,14 +92,14 @@ public class SellVacationView implements Initializable {
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Your Request Failed!");
+            alert.setTitle("Your BuyingRequest Failed!");
             alert.setHeaderText(e.getMessage());
             alert.showAndWait();
         }
         if(flag) {
             Stage s = (Stage) BackButton.getScene().getWindow();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Your Request's Result");
+            alert.setTitle("Your BuyingRequest's Result");
             alert.setHeaderText("Your vacation was published!");
             alert.showAndWait();
             s.close();

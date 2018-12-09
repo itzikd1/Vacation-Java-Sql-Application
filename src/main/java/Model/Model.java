@@ -163,15 +163,23 @@ public class Model {
         clear_connected_user();
     }
 
-    public Object[] readAll(String tableName){
+    public Object[] readAll(String tableName) {
         Object[] items = database.getAllData(tableName);
-        if (tableName.equals("Vacations")){
-            Vacation[] vacations = new Vacation[items.length];
-            for( int i=0; i<items.length; i++){
-                Vacation v = new Vacation((String[])items[i]);
-                vacations[i] = v;
-            }
-            return vacations;
+        switch (tableName) {
+            case "Vacations":
+                Vacation[] vacations = new Vacation[items.length];
+                for (int i = 0; i < items.length; i++) {
+                    Vacation v = new Vacation((String[]) items[i]);
+                    vacations[i] = v;
+                }
+                return vacations;
+            case "BuyingRequests":
+                BuyingRequest[] requests = new BuyingRequest[items.length];
+                for (int i=0; i< items.length; i++) {
+                    BuyingRequest br = new BuyingRequest((String[]) items[i]);
+                    requests[i] = br;
+                }
+                return requests;
         }
         return null;
     }

@@ -140,7 +140,7 @@ public class VacationsForSearchColumn {
                 }
                 if (flag) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Request Sent");
+                    alert.setTitle("BuyingRequest Sent");
                     alert.setHeaderText("Your request to buy has been sent to Buyer. \nPlease check your requests page soon");
                     alert.showAndWait();
                 }
