@@ -253,5 +253,9 @@ public class Model {
 
         return database.insert("BuyingRequests",data);
     }
+
+    public boolean updateRequest(String requestID, String status) {
+        return database.update_one_field(status,"BuyingRequests","isApproved",requestID);
+    }
 }
 

@@ -360,5 +360,9 @@ public class Controller {
         } return purchases;
 
     }
+
+    public boolean updateRequest(String requestID, String status) {
+        return model.updateRequest(requestID, status);
+    }
 }
 

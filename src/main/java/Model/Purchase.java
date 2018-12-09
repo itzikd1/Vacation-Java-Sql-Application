@@ -21,7 +21,7 @@ public class Purchase {
         PaymentMethod = paymentMethod;
         CreditCardNum = creditCardNum;
         PayPalUserName = payPalUserName;
-        DateOfPurchase = DateOfPurchase;
+        DateOfPurchase = dateOfPurchase;
     }
 
     public Purchase(String[] details) {

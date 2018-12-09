@@ -1,7 +1,8 @@
 package View;
 
+import Controller.Controller;
 import Model.BuyingRequest;
-import Model.Vacation;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
 public class RequestForSellerColumn {
@@ -74,12 +75,29 @@ public class RequestForSellerColumn {
         Approve.setText("Approve");
         Decline.setText("Decline");
 
+
         Approve.setOnAction(event -> {
-            System.out.println("todo");
+            Controller controller = Controller.getInstance();
+            boolean flag = false;
+            flag = controller.updateRequest(RequestID,"Approved");
+            if (flag) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Buying Request Approved");
+                alert.setHeaderText("Your confirmation has been sent to Seller. \nPlease check your requests page soon to see if he paid");
+                alert.showAndWait();
+            }
         });
 
         decline.setOnAction(event -> {
-            System.out.println("todo");
+            Controller controller = Controller.getInstance();
+            boolean flag = false;
+            flag = controller.updateRequest(RequestID,"Declined");
+            if (flag) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Buying Request Declined");
+                alert.setHeaderText("Your Decline has been sent to " + BuyerUserName);
+                alert.showAndWait();
+            }
         });
     }
 }

@@ -269,13 +269,23 @@ class Database {
         return runQuery(sql);
     }
 
+    public boolean update_one_field (String data, String tableName, String field, String key) {
+        String[] fields = fieldsOfTables.get(tableName);
+
+        String pk_field = fields[0];
+        String sql = "UPDATE " + tableName + " SET " + field + " = '" + data +"' WHERE " + pk_field + " LIKE '" + key + "'";
+        return runQuery(sql);
+    }
+
     public Object[] getAllData (String tableName){
         String sql = "SELECT * FROM " + tableName;
         return runQueryReturnOutputOfManyRecords(sql,tableName).toArray();
     }
 
     public Object[] getAllDataForOneUser(String tableName,String field, String key) {
-        String sql = "SELECT * FROM " + tableName + " WHERE " + field +" = " + "'" +  key + "'";
+
+
+        String sql = "SELECT * FROM " + tableName + " WHERE " + field +" = " + "'" +  key + "'" ;
         return runQueryReturnOutputOfManyRecords(sql,tableName).toArray();
     }
 
