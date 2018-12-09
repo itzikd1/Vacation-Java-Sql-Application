@@ -225,9 +225,16 @@ public class Controller {
         } return requests;
     }
 
+    public void setCurrent_buying_request(BuyingRequest current_buying_request) {
+        model.setCurrent_buying_request(current_buying_request);
+    }
+
+    public BuyingRequest getCurrent_buying_request() {
+        return model.getCurrent_buying_request();
+    }
 
 
-    private boolean chceckVacationDate(Vacation v) {
+        private boolean chceckVacationDate(Vacation v) {
         LocalDate localDate = LocalDate.now();
         String[] TodayDate = localDate.toString().split("-");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
