@@ -134,7 +134,7 @@ public class Controller {
         Vacation vacation = (Vacation)model.read("Vacations", id);
         String[] details = vacation.getDetails();
         return details;
-          }
+    }
 
     public boolean update (String table_name, Object[]data, String id) throws V4UException{
 
@@ -220,7 +220,7 @@ public class Controller {
                 requests.add(new RequestForSellerColumn(b, new Button(),new Button(), new Button()));
             }
             else
-        System.out.println("wrong table in controller getRequestsForSellerTableTable");
+                System.out.println("wrong table in controller getRequestsForSellerTableTable");
 
         } return requests;
     }
@@ -308,16 +308,21 @@ public class Controller {
             if(!((String)vacation_details[7]).isEmpty())
                 throw new WrongFlyingDatesInfoException();
         }
-        if(returnDate.compareTo(arrivalDate)<0 || arrivalDate.compareTo(departureDate)<0)
-            throw new WrongFlyingDatesInfoException();
+        if(return_date.getValue()!=null)
+            if(returnDate.compareTo(arrivalDate)<0 || arrivalDate.compareTo(departureDate)<0)
+                throw new WrongFlyingDatesInfoException();
 
         //check if departure date passed.
         LocalDateTime ldt = LocalDateTime.now();
         Date out = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
         if(departureDate.compareTo(out)<0)
             throw new WrongFlyingDatesInfoException();
+        if(return_date.getValue()!=null)
+            details[8] = returnDate.toString(); // return date
+        else{
+            details[8] = "";
+        }
 
-        details[8] = returnDate.toString(); // return date
         details[9] = (String)vacation_details[7]; // return time
         details[10] = (String)vacation_details[8]; //ticket type
         details[11] = (String)vacation_details[9]; //company
