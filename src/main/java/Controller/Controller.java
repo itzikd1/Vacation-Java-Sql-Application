@@ -1,8 +1,6 @@
 package Controller;
 
-import Model.Excpetions.NotFilledAllFieldsException;
-import Model.Excpetions.TooYoungException;
-import Model.Excpetions.V4UException;
+import Model.Excpetions.*;
 import Model.Model;
 import Model.User;
 import Model.Vacation;
@@ -17,10 +15,14 @@ import javafx.scene.control.DatePicker;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class Controller {
 
@@ -48,48 +50,48 @@ public class Controller {
     }
 
 
-    public void insertNewVacation(String tableName, Object[] vacation_details) throws V4UException {
-        DatePicker departure_date, arrival_date, return_date;
-        Date date = null;
-        String[] details = new String[17];
-        details[0] = String.valueOf(model.getNextVacationID());
-        details[1] = model.connected_user.getDetails()[0];
-        details[2] = (String)vacation_details[0]; // from
-        departure_date = (DatePicker) vacation_details[1];
-        if(departure_date.getValue()!=null) {
-            departure_date = (DatePicker) vacation_details[1];
-            date = java.sql.Date.valueOf((departure_date).getValue());
-        }
-        details[3] = date.toString();// departure date
-        details[4] = (String)vacation_details[2]; //departure time
-        details[5] = (String)vacation_details[3]; // destination
-        arrival_date = (DatePicker) vacation_details[4];
-        if(arrival_date.getValue()!=null) {
-            arrival_date = (DatePicker) vacation_details[4];
-            date = java.sql.Date.valueOf((arrival_date).getValue());
-        }
-        details[6] = date.toString(); // arrival date
-        details[7] = (String) vacation_details[5]; // arrival time
-        return_date = (DatePicker) vacation_details[6];
-        if(return_date.getValue()!=null) {
-            return_date = (DatePicker) vacation_details[6];
-            date = java.sql.Date.valueOf((return_date).getValue());
-        }
-        details[8] = date.toString(); // return date
-        details[9] = (String)vacation_details[7]; // return time
-        details[10] = (String)vacation_details[8]; //ticket type
-        details[11] = (String)vacation_details[9]; //company
-        details[12] = (String)vacation_details[10]; //connection country
-        boolean isBaggage = ((CheckBox)vacation_details[11]).isSelected();
-        details[13] = String.valueOf(isBaggage); //boolean baggageinclude
-        details[14] = (String)vacation_details[12]; //baggage options
-        details[15] = (String)vacation_details[13]; //class type
-        details[16] = (String)vacation_details[14]; //price
+//    public boolean insertNewVacation(String tableName, Object[] vacation_details) throws V4UException {
+//        DatePicker departure_date, arrival_date, return_date;
+//        Date date = null;
+//        String[] details = new String[17];
+//        details[0] = String.valueOf(model.getNextVacationID());
+//        details[1] = model.connected_user.getDetails()[0];
+//        details[2] = (String)vacation_details[0]; // from
+//        departure_date = (DatePicker) vacation_details[1];
+//        if(departure_date.getValue()!=null) {
+//            departure_date = (DatePicker) vacation_details[1];
+//            date = java.sql.Date.valueOf((departure_date).getValue());
+//        }
+//        details[3] = date.toString();// departure date
+//        details[4] = (String)vacation_details[2]; //departure time
+//        details[5] = (String)vacation_details[3]; // destination
+//        arrival_date = (DatePicker) vacation_details[4];
+//        if(arrival_date.getValue()!=null) {
+//            arrival_date = (DatePicker) vacation_details[4];
+//            date = java.sql.Date.valueOf((arrival_date).getValue());
+//        }
+//        details[6] = date.toString(); // arrival date
+//        details[7] = (String) vacation_details[5]; // arrival time
+//        return_date = (DatePicker) vacation_details[6];
+//        if(return_date.getValue()!=null) {
+//            return_date = (DatePicker) vacation_details[6];
+//            date = java.sql.Date.valueOf((return_date).getValue());
+//        }
+//        details[8] = date.toString(); // return date
+//        details[9] = (String)vacation_details[7]; // return time
+//        details[10] = (String)vacation_details[8]; //ticket type
+//        details[11] = (String)vacation_details[9]; //company
+//        details[12] = (String)vacation_details[10]; //connection country
+//        boolean isBaggage = ((CheckBox)vacation_details[11]).isSelected();
+//        details[13] = String.valueOf(isBaggage); //boolean baggageinclude
+//        details[14] = (String)vacation_details[12]; //baggage options
+//        details[15] = (String)vacation_details[13]; //class type
+//        details[16] = (String)vacation_details[14]; //price
+//
+//        return model.insert(tableName, details);
+//    }
 
-        model.insert(tableName, details);
-    }
-
-    public void insertNewUser(String table_name, Object[] data) throws V4UException {
+    public boolean insertNewUser(String table_name, Object[] data) throws V4UException {
         DatePicker bd;
 
         Date date=null;
@@ -113,7 +115,7 @@ public class Controller {
             Period p =getPeriod(date);
         }
         details[2] = date.toString(); //date string YYYY-MM-DD
-        model.insert(table_name, details);
+        return model.insert(table_name, details);
     }
 
     public boolean delete_user(){
@@ -240,6 +242,93 @@ public class Controller {
         //todo: edit this function.
         return null;
 
+    }
+
+
+    public boolean insertNewVacation(String tableName, Object[] vacation_details) throws V4UException {
+
+        List<Integer> notEmptyStringFields = new ArrayList<>(Arrays.asList(0,2,3,5,8,9,13,14));
+        for(int i = 0; i < notEmptyStringFields.size();i++){
+            if(((String)(vacation_details[notEmptyStringFields.get(i)])).isEmpty())
+                throw new NotFilledAllFieldsException();
+        }
+
+        DatePicker departure_date, arrival_date, return_date;
+        Date departureDate = null;
+        Date arrivalDate = null;
+        Date returnDate = null;
+        String[] details = new String[17];
+        details[0] = String.valueOf(model.getNextVacationID());// TODO: 12/8/2018 but if insertion fails? raanan
+        details[1] = model.connected_user.getDetails()[0];
+        details[2] = (String)vacation_details[0]; // from
+        departure_date = (DatePicker) vacation_details[1];
+        if(departure_date.getValue()!=null) {
+            departure_date = (DatePicker) vacation_details[1];
+            departureDate = java.sql.Date.valueOf((departure_date).getValue());
+        }
+        else throw new NotFilledAllFieldsException();
+        details[3] = departureDate.toString();// departure date
+        details[4] = (String)vacation_details[2]; //departure time
+        if (!checkLegalTimeStamp(details[4]))
+            throw new WrongFlyingDatesInfoException();
+        details[5] = (String)vacation_details[3]; // destination
+        arrival_date = (DatePicker) vacation_details[4];
+        if(arrival_date.getValue()!=null) {
+            arrival_date = (DatePicker) vacation_details[4];
+            arrivalDate = java.sql.Date.valueOf((arrival_date).getValue());
+        }
+        else throw new NotFilledAllFieldsException();
+
+        details[6] = arrivalDate.toString(); // arrival date
+        details[7] = (String) vacation_details[5]; // arrival time
+        if (!checkLegalTimeStamp(details[7]))
+            throw new WrongFlyingDatesInfoException();
+        return_date = (DatePicker) vacation_details[6];
+        if(return_date.getValue()!=null) {
+            return_date = (DatePicker) vacation_details[6];
+            returnDate = java.sql.Date.valueOf((return_date).getValue());
+            if(checkLegalTimeStamp((String)vacation_details[7])==false)
+                throw new WrongFlyingDatesInfoException();
+        }
+        else{//return date is null so return time must be null
+            if(!((String)vacation_details[7]).isEmpty())
+                throw new WrongFlyingDatesInfoException();
+        }
+        if(returnDate.compareTo(arrivalDate)<0 || arrivalDate.compareTo(departureDate)<0)
+            throw new WrongFlyingDatesInfoException();
+
+        //check if departure date passed.
+        LocalDateTime ldt = LocalDateTime.now();
+        Date out = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+        if(departureDate.compareTo(out)<0)
+            throw new WrongFlyingDatesInfoException();
+
+        details[8] = returnDate.toString(); // return date
+        details[9] = (String)vacation_details[7]; // return time
+        details[10] = (String)vacation_details[8]; //ticket type
+        details[11] = (String)vacation_details[9]; //company
+        details[12] = (String)vacation_details[10]; //connection country
+        boolean isBaggage = ((CheckBox)vacation_details[11]).isSelected();
+        details[13] = String.valueOf(isBaggage); //boolean baggageinclude
+        details[14] = (String)vacation_details[12]; //baggage options
+        if(isBaggage==false && !details[14].isEmpty()
+                || isBaggage==true && details[14].isEmpty())
+            throw new WrongBaggageInfoException();
+        details[15] = (String)vacation_details[13]; //class type
+        details[16] = (String)vacation_details[14]; //price
+
+        return model.insert(tableName, details);
+    }
+
+    private boolean checkLegalTimeStamp(String time) {
+        if(Pattern.matches("[0-9]{2}[:]{1}[0-9]{2}",time)){
+            String hour = "" + time.charAt(0)+time.charAt(1);
+            String minute = "" + time.charAt(3)+time.charAt(4);
+            if(Pattern.matches("[0-1]{1}[0-9]",hour) || Pattern.matches("[2]{1}[0-9]{1}",hour))
+                if(Pattern.matches("[0-5]{1}[0-9]{1}",minute))
+                    return true;
+        }
+        return false;
     }
 }
 

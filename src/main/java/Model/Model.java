@@ -57,8 +57,8 @@ public class Model {
     }
 
 
-    public void insert(String table_name, String[] data) throws V4UException {
-        database.insert(table_name, data);
+    public boolean insert(String table_name, String[] data) throws V4UException {
+        return database.insert(table_name, data);
     }
 
     public boolean delete_user() {

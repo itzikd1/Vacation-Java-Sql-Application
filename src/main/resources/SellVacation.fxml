@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="448.0" maxWidth="700.0" minHeight="400.0" minWidth="700.0" prefHeight="448.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SellVacationView">
+<AnchorPane maxHeight="448.0" maxWidth="700.0" minHeight="400.0" minWidth="700.0" prefHeight="448.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SellVacationView">
     <children>
         <ImageView fitHeight="447.0" fitWidth="713.0" nodeOrientation="INHERIT" pickOnBounds="true">
             <image>
@@ -34,19 +34,19 @@
                         </ImageView>
                     </children>
                 </Pane>
-              <TextField fx:id="from" editable="true" layoutX="138.0" layoutY="78.0" />
-              <DatePicker fx:id="departureDate" editable="true" layoutX="136.0" layoutY="114.0" prefWidth="148.8" />
-              <TextField fx:id="departureTime" layoutX="136.0" layoutY="151.0" />
-            <DatePicker fx:id="arrivalDate" editable="true" layoutX="136.0" layoutY="188.0" prefWidth="148.8" />
-            <TextField fx:id="arrivalTime" editable="true" layoutX="136.0" layoutY="230.0" />
-            <TextField fx:id="classType" layoutX="136.0" layoutY="270.0" />
-            <TextField fx:id="company" layoutX="136.0" layoutY="315.0" />
-              <TextField fx:id="destination" layoutX="446.0" layoutY="73.0" />
-            <DatePicker fx:id="returnDate" editable="true" layoutX="446.0" layoutY="114.0" prefWidth="148.8" />
-            <TextField fx:id="returnTime" layoutX="446.0" layoutY="150.0" />
-            <TextField fx:id="ticketType" layoutX="446.0" layoutY="188.0" />
-            <TextField fx:id="connectionCity" layoutX="446.0" layoutY="225.0" />
-            <TextField fx:id="Price" layoutX="446.0" layoutY="266.0" />
+              <TextField fx:id="from" editable="true" layoutX="138.0" layoutY="78.0" promptText="Airport City" />
+              <DatePicker fx:id="departureDate" editable="false" layoutX="136.0" layoutY="114.0" prefWidth="148.8" />
+              <TextField fx:id="departureTime" layoutX="136.0" layoutY="151.0" promptText="HH:MM format" />
+            <DatePicker fx:id="arrivalDate" editable="false" layoutX="136.0" layoutY="188.0" prefWidth="148.8" />
+            <TextField fx:id="arrivalTime" editable="true" layoutX="136.0" layoutY="230.0" promptText="HH:MM format" />
+            <TextField fx:id="classType" layoutX="136.0" layoutY="270.0" promptText="Economy/Business/First" />
+            <TextField fx:id="company" layoutX="136.0" layoutY="315.0" promptText="Write company name" />
+              <TextField fx:id="destination" layoutX="446.0" layoutY="73.0" promptText="Airport City" />
+            <DatePicker fx:id="returnDate" editable="false" layoutX="446.0" layoutY="114.0" prefWidth="148.8" />
+            <TextField fx:id="returnTime" layoutX="446.0" layoutY="150.0" promptText="HH:MM format" />
+            <TextField fx:id="ticketType" layoutX="446.0" layoutY="188.0" promptText="Direct / Connection" />
+            <TextField fx:id="connectionCity" layoutX="446.0" layoutY="225.0" promptText="on direct flights, keep empty" />
+            <TextField fx:id="Price" layoutX="446.0" layoutY="266.0" promptText="Write only numbers in $" />
             <TextField fx:id="baggageInfo" layoutX="446.0" layoutY="306.0" promptText="Type info about baggage" />
                 <Button fx:id="publish_for_sale_button" layoutX="172.0" layoutY="362.0" mnemonicParsing="false" onAction="#publish" text="Publish" />
                 <Button fx:id="BackButton" layoutX="445.0" layoutY="362.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
@@ -59,8 +59,8 @@
               <Label layoutX="338.0" layoutY="69.0" prefHeight="33.0" prefWidth="87.0" text="Destination" />
               <Label layoutX="336.0" layoutY="110.0" prefHeight="33.0" prefWidth="87.0" text="Return Date" />
               <Label layoutX="338.0" layoutY="146.0" prefHeight="34.0" prefWidth="87.0" text="Return Time" />
-            <Label layoutX="339.0" layoutY="262.0" prefHeight="34.0" prefWidth="87.0" text="Price" />
-            <Label layoutX="27.0" layoutY="311.0" prefHeight="33.0" prefWidth="87.0" text="Company" />
+            <Label layoutX="339.0" layoutY="262.0" prefHeight="34.0" prefWidth="87.0" text="Price ($)" />
+            <Label layoutX="27.0" layoutY="311.0" prefHeight="33.0" prefWidth="112.0" text="Airline" />
             </children>
         </Pane>
         <Label layoutX="55.0" layoutY="102.0" prefHeight="18.0" prefWidth="87.0" text="From" />
