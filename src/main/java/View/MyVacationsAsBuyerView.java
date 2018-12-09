@@ -30,6 +30,7 @@ public class MyVacationsAsBuyerView implements Initializable {
     public TableColumn<RequestForBuyerColumn, String> status;
     public TableColumn<RequestForBuyerColumn, Button> buy;
     public TableColumn<RequestForBuyerColumn, Button> cancel;
+    public TableColumn<RequestForBuyerColumn, Button> details1;
 
     //second table:
     public TableView<PurchaseForBuyerColumn> purchasesTable;
@@ -39,6 +40,7 @@ public class MyVacationsAsBuyerView implements Initializable {
     public TableColumn<PurchaseForBuyerColumn, String> destination2;
     public TableColumn<PurchaseForBuyerColumn, String> price;
     public TableColumn<PurchaseForBuyerColumn, String> confirmation;
+    public TableColumn<RequestForBuyerColumn, Button> details2;
     //todo: destination - to that somwhow from SQL
 
     @Override
@@ -50,7 +52,8 @@ public class MyVacationsAsBuyerView implements Initializable {
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         buy.setCellValueFactory(new PropertyValueFactory<>("buy"));
         cancel.setCellValueFactory(new PropertyValueFactory<>("cancel"));
-        destination.setCellValueFactory(new PropertyValueFactory<>("destination")); //todo: to get the destination from SQL
+        destination.setCellValueFactory(new PropertyValueFactory<>("destination"));
+        details1.setCellValueFactory(new PropertyValueFactory<>("Details"));
         ObservableList<RequestForBuyerColumn> requests = controller.getRequestsForBuyerTable();
         requestsTable.setItems(requests);
 
@@ -61,6 +64,7 @@ public class MyVacationsAsBuyerView implements Initializable {
         destination2.setCellValueFactory(new PropertyValueFactory<>("destination"));
         price.setCellValueFactory(new PropertyValueFactory<>("Price"));
         confirmation.setCellValueFactory(new PropertyValueFactory<>("Confirmation"));
+        details2.setCellValueFactory(new PropertyValueFactory<>("Details"));
         ObservableList<PurchaseForBuyerColumn> purchases = controller.getPurchasesForBuyerTable();
         purchasesTable.setItems(purchases);
 
