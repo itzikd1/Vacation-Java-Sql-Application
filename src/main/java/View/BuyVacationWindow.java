@@ -1,6 +1,6 @@
 package View;
 
-import Model.Vacation;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -11,7 +11,13 @@ public class BuyVacationWindow implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//hello this is my code
+        //hello this is my code
         //you should take it
+    }
+
+    public void go_main(ActionEvent actionEvent) {
+    }
+
+    public void pay(ActionEvent actionEvent) {
     }
 }
