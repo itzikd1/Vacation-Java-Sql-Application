@@ -103,6 +103,13 @@ public class RequestForBuyerColumn {
 
         Buy.setOnAction(event -> {
             Controller controller = Controller.getInstance();
+            if (!Status.equals("Approved")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Can't Buy");
+                alert.setHeaderText("Seller doesn't approved your request yet.\nYou can buy only approved vacations");
+                alert.showAndWait();
+                return;
+            }
             boolean flag = false;
             //todo: open buy window & updateRequestToBuy as Bought (if bought we should not see this on req table) & sent to Purchase SQL table.
         });
