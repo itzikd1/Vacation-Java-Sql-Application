@@ -97,6 +97,27 @@ public class RequestForSellerColumn {
 
         Approve.setOnAction(event -> {
             Controller controller = Controller.getInstance();
+            if (Status.equals("Cancelled")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Can't Approve");
+                alert.setHeaderText("The Buyer has been cancelled his request. \nYou can't approve cancelled requests");
+                alert.showAndWait();
+                return;
+            }
+            else if (Status.equals("Approved")){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Can't Approve");
+                alert.setHeaderText("You already approved this request. \nYou can't approve the same request more than once");
+                alert.showAndWait();
+                return;
+            }
+            else if (Status.equals("Declined")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Can't Approve");
+                alert.setHeaderText("You already not approved this request. \nSorry, but this is too late to regret");
+                alert.showAndWait();
+                return;
+            }
             boolean flag = false;
             flag = controller.updateRequest(RequestID,"Approved");
             if (flag) {
@@ -109,6 +130,13 @@ public class RequestForSellerColumn {
 
         decline.setOnAction(event -> {
             Controller controller = Controller.getInstance();
+            if (!Status.equals("Waiting")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Can't Decline");
+                alert.setHeaderText("Only waiting request can be declined. \nYou can't regret now, sorry! too late");
+                alert.showAndWait();
+                return;
+            }
             boolean flag = false;
             flag = controller.updateRequest(RequestID,"Declined");
             if (flag) {
@@ -128,7 +156,7 @@ public class RequestForSellerColumn {
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setResizable(true);
+                stage.setResizable(false);
                 stage.setTitle("Details Vacation");
                 Scene scene = new Scene(root);
                 stage.setScene(scene);

@@ -8,7 +8,18 @@ public class Model {
     public Database database = null;
     public User connected_user = null;
     public int vacationIDCounter;
-    public int requestIDCounter;
+    private int requestIDCounter;
+    private BuyingRequest current_buying_request = null; //for buying window
+
+
+    public BuyingRequest getCurrent_buying_request() {
+        return current_buying_request;
+    }
+
+    public void setCurrent_buying_request(BuyingRequest current_buying_request) {
+        this.current_buying_request = current_buying_request;
+    }
+
 
     private Model() {
 
@@ -21,6 +32,7 @@ public class Model {
 
 
     }
+
 
     private int searchForNext() {
         return database.getMaxVacationID();
