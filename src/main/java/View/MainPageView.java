@@ -173,7 +173,7 @@ public class MainPageView implements Initializable {
         login_button.setVisible(false);
         sign_up_button.setVisible(false);
         sign_out.setVisible(true);
-        sell_vacation_button.setDisable(false);
+        //sell_vacation_button.setDisable(false);
         account_settings.setVisible(true);
         my_vacations_as_seller.setDisable(false);
         my_vacations_as_buyer.setDisable(false);
@@ -184,7 +184,7 @@ public class MainPageView implements Initializable {
         sign_up_button.setVisible(true);
         cleanTextFields();
         sign_out.setVisible(false);
-        sell_vacation_button.setDisable(true);
+        //sell_vacation_button.setDisable(true);
         login_pane.setVisible(true);
         my_vacations_as_seller.setDisable(true);
         my_vacations_as_buyer.setDisable(true);
@@ -209,6 +209,13 @@ public class MainPageView implements Initializable {
     }
 
     public void sell_vacation(ActionEvent actionEvent) {
+        if (controller.get_connected_user_id() ==null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Log in");
+            alert.setHeaderText("Only signed users are allowing to public vacations for sell\nPlease log in and try again");
+            alert.showAndWait();
+            return;
+        }
         Stage s = (Stage) sell_vacation_button.getScene().getWindow();
 //        s.close();
         try {
