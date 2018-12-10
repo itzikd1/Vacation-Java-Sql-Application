@@ -41,7 +41,7 @@ public class Controller {
         return singleton;
     }
 
-    public boolean insert_vacation(String creditCard, String payMentMethod, String PayPalUserName) {
+    public boolean insert_purchase(String creditCard, String payMentMethod, String PayPalUserName) {
         boolean flag_remove = model.delete_buying_request();
         if (!flag_remove)
             return false;
