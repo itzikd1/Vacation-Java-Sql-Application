@@ -58,8 +58,8 @@ public class Controller {
        purchase_details[2] = getCurrent_buying_request().getBuyerUserName();
        purchase_details[3] = getCurrent_buying_request().getSellerUserName();
        purchase_details[4] = current_vacation.getPrice();
-       purchase_details[5] = creditCard;
-       purchase_details[6] = payMentMethod;
+        purchase_details[5] = payMentMethod;
+        purchase_details[6] = creditCard;
        purchase_details[7] = PayPalUserName;
        //date of today:
         LocalDate date = LocalDate.now();
