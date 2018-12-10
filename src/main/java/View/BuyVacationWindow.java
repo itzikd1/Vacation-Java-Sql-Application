@@ -3,10 +3,8 @@ package View;
 import Controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +14,9 @@ public class BuyVacationWindow implements Initializable {
     public RadioButton r2;
     public RadioButton r1;
     public Button BackButton;
+    public TextField CardCompany;
+    public TextField CardNumber;
+    public TextField PayPalUser;
     public boolean buttonStatus=false;
     private Controller controller = Controller.getInstance();
 
@@ -26,12 +27,12 @@ public class BuyVacationWindow implements Initializable {
 
 
     public void go_main(ActionEvent actionEvent) {
-        // TODO: 10/12/2018  doesnt not work for some reason  Itzik
-//        Stage s = (Stage) BackButton.getScene().getWindow();
-//        s.close();
+        Stage s = (Stage) BackButton.getScene().getWindow();
+        s.close();
     }
 
     public void pay(ActionEvent actionEvent) {
+        // TODO: 10/12/2018 update database with request  Itzik
     }
 
     public void toggleChange(ActionEvent actionEvent) {
@@ -39,14 +40,15 @@ public class BuyVacationWindow implements Initializable {
         if (buttonStatus==false)
         {
             buttonStatus=true;
-            System.out.println("false");
+            PayPalUser.setDisable(false);
+            CardNumber.setDisable(true);
+            CardCompany.setDisable(true);
         }
         else {
             buttonStatus=false;
-            System.out.println("true");
+            PayPalUser.setDisable(true);
+            CardNumber.setDisable(false);
+            CardCompany.setDisable(false);
         }
-        // TODO: 10/12/2018 if this works (wait for maor to finshe connection) then here we chose
-        // TODO: between paypal and regular payment, button diable...enable..  Itzik
-
     }
 }

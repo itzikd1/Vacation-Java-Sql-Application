@@ -36,7 +36,7 @@
                 </Pane>
                 <TextField fx:id="CardNumber" editable="true" layoutX="132.0" layoutY="221.0" promptText="Card Number 16 Digits" />
                 <TextField fx:id="CardCompany" layoutX="132.0" layoutY="186.0" promptText="Visa / Master Card" />
-                <TextField fx:id="PayPalUser" editable="true" layoutX="132.0" layoutY="257.0" promptText="UserName" />
+                <TextField fx:id="PayPalUser" disable="true" editable="true" layoutX="132.0" layoutY="257.0" promptText="UserName" />
                 <Button fx:id="Pay" layoutX="53.0" layoutY="422.0" mnemonicParsing="false" onAction="#pay" text="Pay" />
                 <Button fx:id="BackButton" layoutX="184.0" layoutY="422.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
                 <Label layoutX="14.0" layoutY="225.0" prefHeight="18.0" prefWidth="112.0" text="Credit Card Number" />
