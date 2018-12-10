@@ -25,7 +25,7 @@ public class BuyVacationWindow implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        price.setText(controller.getPriceForCurrentVacation());
+        price.setText(controller.getPriceForCurrentVacation()+"$");
     }
 
 
@@ -63,7 +63,7 @@ public class BuyVacationWindow implements Initializable {
             }
         }
         // TODO: 10/12/2018 after getting maors code,fix here and add alert  Itzik
-//        controller.insert_purchase(Cardnumber,payMentMethod,Paypaluser);
+           controller.insert_purchase(Cardnumber,payMentMethod,Paypaluser);
     }
 
     public void toggleChange(ActionEvent actionEvent) {
