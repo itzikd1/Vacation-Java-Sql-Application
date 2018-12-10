@@ -97,12 +97,12 @@ public class SellVacationView implements Initializable {
             alert.showAndWait();
         }
         if(flag) {
-            Stage s = (Stage) BackButton.getScene().getWindow();
+//            Stage s = (Stage) BackButton.getScene().getWindow();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Your BuyingRequest's Result");
             alert.setHeaderText("Your vacation was published!");
             alert.showAndWait();
-            s.close();
+//            s.close();
         }
 
     }
