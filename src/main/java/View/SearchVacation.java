@@ -3,11 +3,13 @@ import Controller.Controller;
 import Model.Vacation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -16,6 +18,8 @@ import java.util.ResourceBundle;
 public class SearchVacation implements Initializable {
 
     private Controller controller = Controller.getInstance();
+    public Button BackButton;
+
 
     public TableView<VacationsForSearchColumn> vacationsTable;
     public TableColumn<VacationsForSearchColumn, String> from;
@@ -49,5 +53,10 @@ public class SearchVacation implements Initializable {
                 "1","12-12-1990","1","1","1","1","1",
                 "1","1","1"));
         return v;
+    }
+
+    public void go_main(ActionEvent actionEvent) {
+        Stage s = (Stage) BackButton.getScene().getWindow();
+        s.close();
     }
 }
