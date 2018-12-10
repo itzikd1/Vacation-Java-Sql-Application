@@ -20,6 +20,10 @@ public class VacationsForSearchColumn {
     public Button buy;
     public String from;
     public String destination;
+
+
+
+    public String SellerUserName;
     public LocalDate departureDate;
 
 
@@ -84,6 +88,14 @@ public class VacationsForSearchColumn {
 
     public LocalDate returnDate;
 
+    public String getSellerUserName() {
+        return SellerUserName;
+    }
+
+    public void setSellerUserName(String sellerUserName) {
+        SellerUserName = sellerUserName;
+    }
+
 
     public VacationsForSearchColumn(Vacation vacation, Button details, Button buy) {
         this.vacation = vacation;
@@ -93,6 +105,7 @@ public class VacationsForSearchColumn {
         this.destination = vacation.getDestination();
         this.details = details;
         this.buy = buy;
+        this.SellerUserName = vacation.getUserName();
 
         buy.setText("Buy");
 //        buy.maxWidth(Double.MAX_VALUE);
@@ -132,6 +145,13 @@ public class VacationsForSearchColumn {
                 connected_user=false;
             if (connected_user) {
                 boolean flag = false;
+                if (controller.get_connected_user_id().equals(this.SellerUserName)) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Your request to buy has been cancelled");
+                    alert.setHeaderText("You can't but vacation from yourself");
+                    alert.showAndWait();
+                    return;
+                }
                 try {
                     flag = controller.insertBuyingRequest(vacation.getVacationID(),vacation.getUserName());
                 } catch (V4UException e) {

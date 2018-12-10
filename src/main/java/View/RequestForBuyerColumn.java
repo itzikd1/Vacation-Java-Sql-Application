@@ -128,7 +128,6 @@ public class RequestForBuyerColumn {
             }
 //        });
             boolean flag = false;
-            //todo: open buy window & updateRequestToBuy as Bought (if bought we should not see this on req table) & sent to Purchase SQL table.
         });
 
         Cancel.setOnAction(event -> {

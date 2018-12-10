@@ -63,7 +63,17 @@ public class BuyVacationWindow implements Initializable {
             }
         }
         // TODO: 10/12/2018 after getting maors code,fix here and add alert  Itzik
-           controller.insert_purchase(Cardnumber,payMentMethod,Paypaluser);
+           boolean flag = controller.insert_purchase(Cardnumber,payMentMethod,Paypaluser);
+        if (flag) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("The vacation is yours! enjoy it!");
+            alert.showAndWait();
+            Stage s = (Stage) BackButton.getScene().getWindow();
+            s.close();
+        }
+        else
+            System.out.println("problem in inserting purchase");
     }
 
     public void toggleChange(ActionEvent actionEvent) {

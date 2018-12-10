@@ -24,6 +24,7 @@ public class SearchVacation implements Initializable {
     public TableColumn<VacationsForSearchColumn, LocalDate> returnDate;
     public TableColumn<VacationsForSearchColumn, Button> moreDetails;
     public TableColumn<VacationsForSearchColumn, Button> buycolumn;
+    public TableColumn<VacationsForSearchColumn, String> seller;
 
     //public Button b = new Button();
 
@@ -35,6 +36,7 @@ public class SearchVacation implements Initializable {
         returnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         moreDetails.setCellValueFactory(new PropertyValueFactory<>("details"));
         buycolumn.setCellValueFactory(new PropertyValueFactory<>("buy"));
+        seller.setCellValueFactory(new PropertyValueFactory<>("SellerUserName"));
 
         ObservableList<VacationsForSearchColumn> vacations = controller.getVacationsForSearch();
         //vacationsTable.setItems(tryme());
