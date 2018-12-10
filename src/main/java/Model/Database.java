@@ -348,6 +348,21 @@ class Database {
         return max;
     }
 
+    public int getMaxPurchaseID (){
+        String sql = "SELECT PurchaseID FROM Purchases";
+        LinkedList<String> ans = runQueryReturnOutputForOneField(sql,"Purchases", "PurchaseID");
+        int max = 0;
+        if (ans != null) {
+            for (String num : ans) {
+                int x = Integer.parseInt(num);
+                if (x > max) {
+                    max = x;
+                }
+            }
+        }
+        return max;
+    }
+
     private LinkedList<String> runQueryReturnOutputForOneField(String sql, String tableName, String fiealdName) {
         ResultSet rs = null;
         Connection conn = connect();
