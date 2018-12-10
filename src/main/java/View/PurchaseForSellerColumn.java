@@ -17,8 +17,8 @@ public class PurchaseForSellerColumn {
     public String VacationID;
     public String BuyerUserName;
     public String Price;
-    public Button Confirmation;
     public Button Details;
+    public String destination;
 
     public Button getDetails() {
         return Details;
@@ -60,27 +60,24 @@ public class PurchaseForSellerColumn {
         Price = price;
     }
 
-    public Button getConfirmation() {
-        return Confirmation;
+
+    public String getDestination() {
+        return destination;
     }
 
-    public void setConfirmation(Button confirmation) {
-        Confirmation = confirmation;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
-    public PurchaseForSellerColumn(Purchase p, Button c, Button details) {
-        Confirmation = c;
+    public PurchaseForSellerColumn(Purchase p, String Destination, Button details) {
+        Details = details;
         PurchaseID = p.getPurchaseID();
         VacationID = p.getVacationID();
         BuyerUserName = p.getBuyerUserName();
         Price = p.getPrice();
+        destination = Destination;
 
-        Confirmation.setText("Details");
-
-        Confirmation.setOnAction(event -> {
-            System.out.println("todo");
-        });
-
+        Details.setText("Details");
         Details.setOnAction(event -> {
 
             Stage s = (Stage) details.getScene().getWindow();

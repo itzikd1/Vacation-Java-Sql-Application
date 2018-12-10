@@ -10,11 +10,22 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.print.attribute.standard.Destination;
 import java.io.IOException;
 
 public class RequestForSellerColumn {
 
     public String RequestID;
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public String destination;
     public String VacationID;
     public String BuyerUserName;
     public String Status;
@@ -80,7 +91,7 @@ public class RequestForSellerColumn {
 
 
 
-    public RequestForSellerColumn(BuyingRequest br, Button approve, Button decline, Button details) {
+    public RequestForSellerColumn(BuyingRequest br,String Destination, Button approve, Button decline, Button details) {
         RequestID = br.getRequestID();
         VacationID = br.getVacationID();
         BuyerUserName = br.getBuyerUserName();
@@ -88,6 +99,7 @@ public class RequestForSellerColumn {
         Approve = approve;
         Decline = decline;
         Details = details;
+        destination = Destination;
 
         Approve.setText("Approve");
         Decline.setText("Decline");

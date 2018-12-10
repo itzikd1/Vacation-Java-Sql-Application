@@ -38,8 +38,7 @@ public class MyVacationsAsBuyerView implements Initializable {
     public TableColumn<PurchaseForBuyerColumn, String> seller2;
     public TableColumn<PurchaseForBuyerColumn, String> destination2;
     public TableColumn<PurchaseForBuyerColumn, String> price;
-    public TableColumn<PurchaseForBuyerColumn, String> confirmation;
-    public TableColumn<RequestForBuyerColumn, Button> details2;
+    public TableColumn<PurchaseForSellerColumn, Button> details2;
     //todo: destination - to that somwhow from SQL
 
     @Override
@@ -62,7 +61,6 @@ public class MyVacationsAsBuyerView implements Initializable {
         seller2.setCellValueFactory(new PropertyValueFactory<>("SellerUserName"));
         destination2.setCellValueFactory(new PropertyValueFactory<>("destination"));
         price.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        confirmation.setCellValueFactory(new PropertyValueFactory<>("Confirmation"));
         details2.setCellValueFactory(new PropertyValueFactory<>("Details"));
         ObservableList<PurchaseForBuyerColumn> purchases = controller.getPurchasesForBuyerTable();
         purchasesTable.setItems(purchases);

@@ -16,11 +16,13 @@ public class PurchaseForBuyerColumn {
     public String PurchaseID;
     public String VacationID;
     public String BuyerUserName;
+    public String SellerUserName;
     public String Price;
     public String destination;
-    public Button Confirmation;
     public Button Cancel;
     public Button Details;
+
+
     //todo: add cancel option on button Cancel
 
 
@@ -81,35 +83,31 @@ public class PurchaseForBuyerColumn {
         Price = price;
     }
 
-    public Button getConfirmation() {
-        return Confirmation;
+    public String getSellerUserName() {
+        return SellerUserName;
     }
 
-    public void setConfirmation(Button confirmation) {
-        Confirmation = confirmation;
+    public void setSellerUserName(String sellerUserName) {
+        SellerUserName = sellerUserName;
     }
 
-    public PurchaseForBuyerColumn(Purchase p, Button confirmation, Button cancel, Button details) {
-        Confirmation = confirmation;
+    public PurchaseForBuyerColumn(Purchase p, String Destination, Button cancel, Button details) {
         Cancel = cancel;
         PurchaseID = p.getPurchaseID();
         VacationID = p.getVacationID();
         BuyerUserName = p.getBuyerUserName();
         Price = p.getPrice();
         Details = details;
+        destination = Destination;
+        SellerUserName = p.getSellerUserName();
 
-        Confirmation.setText("Details");
-
-        Confirmation.setOnAction(event -> {
-            System.out.println("todo");
-        });
 
         Cancel.setText("Cancel");
 
         Cancel.setOnAction(event -> {
             System.out.println("todo");
         });
-
+        Details.setText("Details");
         Details.setOnAction(event -> {
 
             Stage s = (Stage) details.getScene().getWindow();
