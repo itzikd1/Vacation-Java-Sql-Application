@@ -108,6 +108,7 @@ public class RequestForBuyerColumn {
                 alert.setTitle("Can't Buy");
                 alert.setHeaderText("Seller doesn't approved your request yet.\nYou can buy only approved vacations");
                 alert.showAndWait();
+                //blabla
                 return;
             }
             controller.setCurrent_buying_request(br);
