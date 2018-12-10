@@ -36,9 +36,9 @@
                   <Font name="System Bold" size="31.0" />
                </font>
             </Label>
-            <ImageView fitHeight="44.0" fitWidth="75.0" layoutX="691.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="67.0" fitWidth="77.0" layoutX="680.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/register_icon.png" />
+                  <Image url="@images/request_icon.png" />
                </image>
             </ImageView>
          </children>
@@ -50,9 +50,9 @@
                   <Font name="System Bold" size="31.0" />
                </font>
             </Label>
-            <ImageView fitHeight="44.0" fitWidth="75.0" layoutX="691.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="67.0" fitWidth="77.0" layoutX="682.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/register_icon.png" />
+                  <Image url="@images/my_ordered_vacations_icon.png" />
                </image>
             </ImageView>
          </children>
