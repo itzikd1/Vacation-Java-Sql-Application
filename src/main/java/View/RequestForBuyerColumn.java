@@ -111,6 +111,22 @@ public class RequestForBuyerColumn {
                 return;
             }
             controller.setCurrent_buying_request(br);
+            Stage s = (Stage) details.getScene().getWindow();
+//        s.close();
+            try {
+                Controller.vacationID = VacationID;
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("BuyVacationWindow.fxml"));
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setResizable(false);
+                stage.setTitle("Buy");
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+//        });
             boolean flag = false;
             //todo: open buy window & updateRequestToBuy as Bought (if bought we should not see this on req table) & sent to Purchase SQL table.
         });
