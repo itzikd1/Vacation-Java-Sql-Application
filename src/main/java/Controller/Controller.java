@@ -41,6 +41,19 @@ public class Controller {
         return singleton;
     }
 
+    public boolean pay_for_vacation() {
+        String request_id = getCurrent_buying_request().getRequestID();
+        boolean flag_remove = model.delete_buying_request();
+        if (!flag_remove)
+            return false;
+        readVacation(getCurrent_buying_request().getVacationID());
+        Vacation current_vacation = model.getCurrent_buying_vacation();
+        String[] purchase_details = new String[9];
+       // purchase_details[0] =
+       // boolean flag_insert_purchase = model.insert()
+        return true;
+    }
+
     public Period getPeriod(Date date) throws TooYoungException {
         java.util.Date javaDate = new Date(date.getTime());
         LocalDate birthdate = javaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -132,6 +145,7 @@ public class Controller {
 
     public String[] readVacation (String id){
         Vacation vacation = (Vacation)model.read("Vacations", id);
+        model.setCurrent_buying_vacation(vacation);
         String[] details = vacation.getDetails();
         return details;
     }
