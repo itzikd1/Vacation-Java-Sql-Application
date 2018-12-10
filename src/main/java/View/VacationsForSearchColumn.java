@@ -148,7 +148,7 @@ public class VacationsForSearchColumn {
                 if (controller.get_connected_user_id().equals(this.SellerUserName)) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Your request to buy has been cancelled");
-                    alert.setHeaderText("You can't but vacation from yourself");
+                    alert.setHeaderText("You can't buy vacation from yourself");
                     alert.showAndWait();
                     return;
                 }
@@ -162,6 +162,13 @@ public class VacationsForSearchColumn {
                     alert.setTitle("BuyingRequest Sent");
                     alert.setHeaderText("Your request to buy has been sent to Buyer. \nPlease check your requests page soon");
                     alert.showAndWait();
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Why Buying again?!");
+                    alert.setHeaderText("You already request to buy this vacation. \nPlease keep calm and check your requests page soon");
+                    alert.showAndWait();
+
                 }
             }
             else {
