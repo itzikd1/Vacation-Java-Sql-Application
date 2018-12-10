@@ -38,7 +38,7 @@ public class MainPageView implements Initializable {
     public TextField tf_username;
     public PasswordField tf_password;
     private Controller controller = Controller.getInstance();
-    //todo: Commit of 10/12/2018 - 19:00 final version
+    //todo: Commit of 10/12/2018 - 19:00 final version ..
 
 //todo: to show message when user log in and log out (only if he have new sell or buying request or purchase)
 
