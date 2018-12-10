@@ -262,7 +262,7 @@ public class Controller {
     }
 
 
-        private boolean chceckVacationDate(Vacation v) {
+    private boolean chceckVacationDate(Vacation v) {
         LocalDate localDate = LocalDate.now();
         String[] TodayDate = localDate.toString().split("-");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -290,9 +290,6 @@ public class Controller {
         String[] details = {req_id,vacationID,Seller_user_name,buyerID,bit};
         return model.insertBuyingRequest(details);
     }
-
-
-
 
     public boolean insertNewVacation(String tableName, Object[] vacation_details) throws V4UException {
 
@@ -363,6 +360,13 @@ public class Controller {
                 || isBaggage==true && details[14].isEmpty())
             throw new WrongBaggageInfoException();
         details[15] = (String)vacation_details[13]; //class type
+        try{
+            Integer.parseInt((String)vacation_details[14]);
+        }
+        catch(Exception e){
+            throw new WrongPricesInsertedException();
+        }
+
         details[16] = (String)vacation_details[14]; //price
 
         // TODO: 12/10/2018 no fields can be null! 
