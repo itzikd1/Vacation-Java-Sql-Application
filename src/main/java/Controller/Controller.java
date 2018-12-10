@@ -41,6 +41,12 @@ public class Controller {
         return singleton;
     }
 
+    public String getPriceForCurrentVacation() {
+        String vacation_id = getCurrent_buying_request().getVacationID();
+        return model.getPriceForCurrentVacation();
+        //todo:
+    }
+
     public boolean insert_purchase(String creditCard, String payMentMethod, String PayPalUserName) {
         boolean flag_remove = model.delete_buying_request();
         if (!flag_remove)

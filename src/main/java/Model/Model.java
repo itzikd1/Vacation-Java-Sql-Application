@@ -295,5 +295,9 @@ public class Model {
     public boolean updateRequest(String requestID, String status) {
         return database.update_one_field(status,"BuyingRequests","isApproved",requestID);
     }
+
+    public String getPriceForCurrentVacation() {
+        return database.getPriceForCurrentVacation(current_buying_request.getVacationID())[0];
+    }
 }
 

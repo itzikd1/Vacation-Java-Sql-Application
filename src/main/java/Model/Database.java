@@ -395,6 +395,10 @@ class Database {
         return runQueryReturnOutput(sql,"BuyingRequests")[0]!=null;
     }
 
+    public String[] getPriceForCurrentVacation(String vacationID) {
+        String sql = "SELECT Price FROM Vacations WHERE VacationID  = '" + vacationID + "'";
+        return runQueryReturnOutput(sql, "Vacations");
+    }
 
 
 //    protected void print_table(String table_name) {
