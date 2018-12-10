@@ -44,7 +44,7 @@ public class Controller {
     public String getPriceForCurrentVacation() {
         String vacation_id = getCurrent_buying_request().getVacationID();
         return model.getPriceForCurrentVacation();
-        //todo:
+        //todo: connect this to controller and ind insert_purchase also
     }
 
     public boolean insert_purchase(String creditCard, String payMentMethod, String PayPalUserName) {
