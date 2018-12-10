@@ -10,9 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BuyVacationWindow implements Initializable {
-    public ToggleButton toggleButton;
-    public RadioButton r2;
-    public RadioButton r1;
+    public ToggleButton toggleButton = new ToggleButton("Card");
     public Button BackButton;
     public TextField CardCompany;
     public TextField CardNumber;
@@ -41,14 +39,20 @@ public class BuyVacationWindow implements Initializable {
         {
             buttonStatus=true;
             PayPalUser.setDisable(false);
+            toggleButton.setText("PayPal");
             CardNumber.setDisable(true);
             CardCompany.setDisable(true);
         }
         else {
             buttonStatus=false;
+            toggleButton.setText("Credit Card");
             PayPalUser.setDisable(true);
             CardNumber.setDisable(false);
             CardCompany.setDisable(false);
         }
+    }
+
+    public void priceUpdate(ActionEvent actionEvent) {
+        // TODO: 10/12/2018 update price here of vacation threw bind id  Itzik
     }
 }
