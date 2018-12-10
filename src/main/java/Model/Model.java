@@ -228,12 +228,12 @@ public class Model {
                 items = database.getAllDataForOneUser(tableName, "BuyerUserName", user_name_id);
                 break;
         }
-                BuyingRequest[] requests = new BuyingRequest[items.length];
-                for (int i=0; i< items.length; i++) {
-                    BuyingRequest br = new BuyingRequest((String[]) items[i]);
-                    requests[i] = br;
-                }
-                return requests;
+        BuyingRequest[] requests = new BuyingRequest[items.length];
+        for (int i=0; i< items.length; i++) {
+            BuyingRequest br = new BuyingRequest((String[]) items[i]);
+            requests[i] = br;
+        }
+        return requests;
     }
 
     private  Purchase[] purchase_switch_case(String tableName, String field, String user_name_id) {
@@ -246,7 +246,7 @@ public class Model {
                 items = database.getAllDataForOneUser(tableName, "BuyerUserName", user_name_id);
                 break;
         }
-       Purchase[] purchases = new Purchase[items.length];
+        Purchase[] purchases = new Purchase[items.length];
         for (int i=0; i< items.length; i++) {
             Purchase pu = new Purchase((String[]) items[i]);
             purchases[i] = pu;
@@ -263,7 +263,9 @@ public class Model {
 
     public boolean insertBuyingRequest(String[] data) throws V4UException {
 
-        return database.insert("BuyingRequests",data);
+        if(!database.buyingRequestExists(data[1],data[3]))
+            return database.insert("BuyingRequests",data);
+        return false;
     }
 
     public boolean updateRequest(String requestID, String status) {
