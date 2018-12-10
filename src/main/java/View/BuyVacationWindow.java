@@ -71,13 +71,13 @@ public class BuyVacationWindow implements Initializable {
         if (buttonStatus == false) {
             buttonStatus = true;
             PayPalUser.setDisable(false);
-            toggleButton.setText("PayPal");
+            toggleButton.setText("Credit card");
             CardNumber.setDisable(true);
             CardCompany.setDisable(true);
 
         } else {
             buttonStatus = false;
-            toggleButton.setText("Credit Card");
+            toggleButton.setText("PayPal");
             PayPalUser.setDisable(true);
             CardNumber.setDisable(false);
             CardCompany.setDisable(false);
