@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="531.0" maxWidth="600.0" minHeight="400.0" minWidth="340.0" prefHeight="531.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BuyVacationWindow">
+<AnchorPane maxHeight="531.0" maxWidth="600.0" minHeight="400.0" minWidth="340.0" prefHeight="531.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BuyVacationWindow">
     <children>
         <ImageView fitHeight="543.0" fitWidth="465.0" layoutY="-9.0" nodeOrientation="INHERIT" pickOnBounds="true">
             <image>
@@ -43,7 +43,7 @@
             <TextField fx:id="price" disable="true" editable="false" layoutX="68.0" layoutY="75.0" />
             <Label layoutX="18.0" layoutY="80.0" prefHeight="18.0" prefWidth="100.0" text="Price" />
               <Label layoutX="18.0" layoutY="203.0" prefHeight="21.0" prefWidth="106.0" text="Card Company" />
-            <ToggleButton fx:id="toggleButton" layoutX="96.0" layoutY="127.0" maxHeight="51.0" maxWidth="154.0" minHeight="25.0" minWidth="87.0" mnemonicParsing="false" onAction="#toggleChange" prefHeight="51.0" prefWidth="154.0" text="Credit Card" />
+            <ToggleButton fx:id="toggleButton" layoutX="96.0" layoutY="127.0" maxHeight="51.0" maxWidth="154.0" minHeight="25.0" minWidth="87.0" mnemonicParsing="false" onAction="#toggleChange" prefHeight="51.0" prefWidth="154.0" text="PayPal" />
             </children>
         </Pane>
     </children>
