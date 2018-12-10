@@ -39,7 +39,14 @@ public class MainPageView implements Initializable {
     public PasswordField tf_password;
     private Controller controller = Controller.getInstance();
 
-//todo: to show message when user log in and log out (only if he have new sell or buying request)
+//todo: to show message when user log in and log out (only if he have new sell or buying request or purchase)
+    /**todo: אשראי מספרים בלבד
+//להוסיף גו בק בדף חיפוש
+//לשנות עיצוב דף חיפוש כמו השאר
+//להכין אייקונים לכל מה שנשאר
+//להכין אייקון לדף הראשי
+     *///
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
