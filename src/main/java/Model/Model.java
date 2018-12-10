@@ -9,8 +9,16 @@ public class Model {
     public User connected_user = null;
     public int vacationIDCounter;
     private int requestIDCounter;
-    private BuyingRequest current_buying_request = null; //for buying window
+    private BuyingRequest current_buying_request = null; //only while user clicked on BUY button to pay this info will be updated
+    private Vacation current_buying_vacation = null; //only while user try to buy or show details of vacation this will update
 
+    public Vacation getCurrent_buying_vacation() {
+        return current_buying_vacation;
+    }
+
+    public void setCurrent_buying_vacation(Vacation current_buying_vacation) {
+        this.current_buying_vacation = current_buying_vacation;
+    }
 
     public BuyingRequest getCurrent_buying_request() {
         return current_buying_request;
@@ -77,6 +85,11 @@ public class Model {
         boolean flag =  database.delete(connected_user.getUsername(), "Users");
         if (flag)
             log_out();
+        return flag;
+    }
+
+    public boolean delete_buying_request() {
+        boolean flag =  database.delete(getCurrent_buying_request().getRequestID(), "BuyingRequest");
         return flag;
     }
 

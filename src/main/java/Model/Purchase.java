@@ -36,6 +36,7 @@ public class Purchase {
         DateOfPurchase = details[8];
     }
 
+
     public String getPurchaseID() {
         return PurchaseID;
     }
