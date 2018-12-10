@@ -40,7 +40,7 @@
                 <Button fx:id="BackButton" layoutX="200.0" layoutY="311.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
                 <Label layoutX="14.0" layoutY="225.0" prefHeight="18.0" prefWidth="112.0" text="Credit Card Number" />
               <Label layoutX="14.0" layoutY="260.0" prefHeight="18.0" prefWidth="100.0" text="PayPal Username" />
-            <TextField fx:id="CardCompany11" disable="true" editable="false" layoutX="136.0" layoutY="78.0" onAction="#priceUpdate" promptText="Price" />
+            <TextField fx:id="price" disable="true" editable="false" layoutX="136.0" layoutY="78.0" onAction="#priceUpdate" promptText="Price" />
             <Label layoutX="18.0" layoutY="80.0" prefHeight="18.0" prefWidth="100.0" text="Price" />
               <Label layoutX="13.0" layoutY="190.0" prefHeight="21.0" prefWidth="106.0" text="Card Company" />
             <ToggleButton fx:id="toggleButton" layoutX="93.0" layoutY="128.0" maxHeight="25.0" maxWidth="87.0" minHeight="25.0" minWidth="87.0" mnemonicParsing="false" onAction="#toggleChange" prefHeight="25.0" prefWidth="87.0" text="Credit Card" />

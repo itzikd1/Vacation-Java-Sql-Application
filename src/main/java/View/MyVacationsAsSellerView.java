@@ -1,7 +1,6 @@
 package View;
 
 import Controller.Controller;
-import Model.Purchase;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -12,8 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 public class MyVacationsAsSellerView implements Initializable {
@@ -71,5 +68,14 @@ public class MyVacationsAsSellerView implements Initializable {
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();
         s.close();
+    }
+
+    public void refresh(ActionEvent actionEvent) {
+        requestsTable.setVisible(false);
+        ObservableList<RequestForSellerColumn> requests = controller.getRequestsForSellerTable();
+        requestsTable.setItems(requests);
+        ObservableList<PurchaseForSellerColumn> purchases = controller.getPurchasesForSellerTable();
+        purchasesTable.setItems(purchases);
+        requestsTable.setVisible(true);
     }
 }

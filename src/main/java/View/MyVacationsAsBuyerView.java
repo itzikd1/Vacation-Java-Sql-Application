@@ -1,7 +1,6 @@
 package View;
 
 import Controller.Controller;
-import Model.Purchase;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -73,5 +72,14 @@ public class MyVacationsAsBuyerView implements Initializable {
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();
         s.close();
+    }
+
+    public void refresh(ActionEvent actionEvent) {
+        requestsTable.setVisible(false);
+        ObservableList<RequestForBuyerColumn> requests = controller.getRequestsForBuyerTable();
+        requestsTable.setItems(requests);
+        ObservableList<PurchaseForBuyerColumn> purchases = controller.getPurchasesForBuyerTable();
+        purchasesTable.setItems(purchases);
+        requestsTable.setVisible(true);
     }
 }

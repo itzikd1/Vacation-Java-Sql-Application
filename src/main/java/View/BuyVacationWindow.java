@@ -18,6 +18,7 @@ public class BuyVacationWindow implements Initializable {
     public TextField CardCompany;
     public TextField CardNumber;
     public TextField PayPalUser;
+    public TextField price;
     public boolean buttonStatus = false;
     private Controller controller = Controller.getInstance();
 
@@ -72,12 +73,16 @@ public class BuyVacationWindow implements Initializable {
             toggleButton.setText("PayPal");
             CardNumber.setDisable(true);
             CardCompany.setDisable(true);
+            price.setText("55$");
+
         } else {
             buttonStatus = false;
             toggleButton.setText("Credit Card");
             PayPalUser.setDisable(true);
             CardNumber.setDisable(false);
             CardCompany.setDisable(false);
+            price.setText("150$");
+
         }
     }
 
