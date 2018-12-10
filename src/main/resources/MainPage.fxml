@@ -98,7 +98,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button fx:id="search_vacation_button" layoutX="40.0" layoutY="87.0" mnemonicParsing="false" onAction="#search_vacation" prefHeight="26.0" prefWidth="206.0" text="Search Vacation" />
+            <Button fx:id="search_vacation_button" layoutX="40.0" layoutY="87.0" mnemonicParsing="false" onAction="#search_vacation" prefHeight="26.0" prefWidth="206.0" text="All Vacations" />
             <Button fx:id="sell_vacation_button" disable="true" layoutX="40.0" layoutY="131.0" mnemonicParsing="false" onAction="#sell_vacation" prefHeight="26.0" prefWidth="206.0" text="Sell your Vacation" />
             <Button fx:id="my_vacations_as_seller" disable="true" layoutX="41.0" layoutY="175.0" mnemonicParsing="false" onAction="#my_vacations_seller_command" prefHeight="26.0" prefWidth="206.0" text="My Vacations As Seller" />
             <Button fx:id="my_vacations_as_buyer" disable="true" layoutX="40.0" layoutY="216.0" mnemonicParsing="false" onAction="#my_vacations_buyer_command" prefHeight="26.0" prefWidth="206.0" text="My Vacations As Buyer" />
