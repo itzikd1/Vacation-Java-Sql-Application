@@ -78,4 +78,5 @@ public class MyVacationsAsSellerView implements Initializable {
         purchasesTable.setItems(purchases);
         requestsTable.setVisible(true);
     }
+    // TODO: 10/12/2018 refresh button workd, need to update automatily after ALERT message  Itzik
 }
