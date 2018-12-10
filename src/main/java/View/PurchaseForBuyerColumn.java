@@ -20,19 +20,22 @@ public class PurchaseForBuyerColumn {
     public String SellerUserName;
     public String Price;
     public String destination;
-    public Button Cancel;
+
+    public Button getCancel() {
+        return cancel;
+    }
+
+    public void setCancel(Button cancel) {
+        this.cancel = cancel;
+    }
+
+    public Button cancel;
     public Button Details;
 
 
 
 
-    public Button getCancel() {
-        return Cancel;
-    }
 
-    public void setCancel(Button cancel) {
-        Cancel = cancel;
-    }
 
     public Button getDetails() {
         return Details;
@@ -91,8 +94,8 @@ public class PurchaseForBuyerColumn {
         SellerUserName = sellerUserName;
     }
 
-    public PurchaseForBuyerColumn(Purchase p, String Destination, Button cancel, Button details) {
-        Cancel = cancel;
+    public PurchaseForBuyerColumn(Purchase p, String Destination, Button Cancel, Button details) {
+        cancel = Cancel;
         PurchaseID = p.getPurchaseID();
         VacationID = p.getVacationID();
         BuyerUserName = p.getBuyerUserName();
@@ -102,10 +105,10 @@ public class PurchaseForBuyerColumn {
         SellerUserName = p.getSellerUserName();
 
 
-        Cancel.setText("Cancel");
+        cancel.setText("Cancel");
 
 
-        Cancel.setOnAction(event -> {
+        cancel.setOnAction(event -> {
             //todo: add cancel option on button Cancel
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Not Implemented");

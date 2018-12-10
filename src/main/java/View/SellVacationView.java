@@ -102,7 +102,7 @@ public class SellVacationView implements Initializable {
             alert.setTitle("Vacation Published");
             alert.setHeaderText("Your vacation was published!");
             alert.showAndWait();
-//            s.close();
+            s.close();
         }
 
     }

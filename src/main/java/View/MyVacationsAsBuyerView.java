@@ -39,6 +39,7 @@ public class MyVacationsAsBuyerView implements Initializable {
     public TableColumn<PurchaseForBuyerColumn, String> destination2;
     public TableColumn<PurchaseForBuyerColumn, String> price;
     public TableColumn<PurchaseForSellerColumn, Button> details2;
+    public TableColumn<PurchaseForBuyerColumn, Button> cancel2;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,6 +62,7 @@ public class MyVacationsAsBuyerView implements Initializable {
         destination2.setCellValueFactory(new PropertyValueFactory<>("destination"));
         price.setCellValueFactory(new PropertyValueFactory<>("Price"));
         details2.setCellValueFactory(new PropertyValueFactory<>("Details"));
+        cancel2.setCellValueFactory(new PropertyValueFactory<>("cancel"));
         ObservableList<PurchaseForBuyerColumn> purchases = controller.getPurchasesForBuyerTable();
         purchasesTable.setItems(purchases);
 

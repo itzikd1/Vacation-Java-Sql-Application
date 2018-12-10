@@ -66,6 +66,7 @@
             <TableColumn fx:id="seller2" prefWidth="90.66661071777344" text="Seller" />
             <TableColumn fx:id="price" prefWidth="114.0" text="Price" />
             <TableColumn fx:id="details2" prefWidth="75.0" text="Details" />
+            <TableColumn fx:id="cancel2" prefWidth="103.99996376037598" text="Cancel" />
          </columns>
       </TableView>
       <Button layoutX="884.0" layoutY="253.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
