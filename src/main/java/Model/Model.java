@@ -9,6 +9,7 @@ public class Model {
     public User connected_user = null;
     public int vacationIDCounter;
     private int requestIDCounter;
+    private int purchaseIDCounter;
     private BuyingRequest current_buying_request = null; //only while user clicked on BUY button to pay this info will be updated
     private Vacation current_buying_vacation = null; //only while user try to buy or show details of vacation this will update
 
@@ -36,9 +37,14 @@ public class Model {
         createTables();
         vacationIDCounter = searchForNext() + 1;
         requestIDCounter = searchForNextRequestID() + 1;
+        purchaseIDCounter = searchForNextPurchaseID()  + 1;
 
 
 
+    }
+
+    private int searchForNextPurchaseID() {
+        return database.getMaxPurchaseID();
     }
 
 
@@ -65,6 +71,11 @@ public class Model {
     public int getNextRequestID (){
         requestIDCounter += 1;
         return requestIDCounter - 1;
+    }
+
+    public int getNextPurchaseID (){
+        purchaseIDCounter += 1;
+        return purchaseIDCounter - 1;
     }
 
     private void createDataBase() {

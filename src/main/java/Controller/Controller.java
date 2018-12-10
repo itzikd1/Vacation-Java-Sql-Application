@@ -41,17 +41,31 @@ public class Controller {
         return singleton;
     }
 
-    public boolean pay_for_vacation() {
-        String request_id = getCurrent_buying_request().getRequestID();
+    public boolean insert_vacation(String creditCard, String payMentMethod, String PayPalUserName) {
         boolean flag_remove = model.delete_buying_request();
         if (!flag_remove)
             return false;
-        readVacation(getCurrent_buying_request().getVacationID());
+        readVacation(getCurrent_buying_request().getVacationID()); //this is neccsary for the next line
         Vacation current_vacation = model.getCurrent_buying_vacation();
         String[] purchase_details = new String[9];
-       // purchase_details[0] =
-       // boolean flag_insert_purchase = model.insert()
-        return true;
+       purchase_details[0] = String.valueOf(model.getNextPurchaseID());
+       purchase_details[1] = current_vacation.getVacationID();
+       purchase_details[2] = getCurrent_buying_request().getBuyerUserName();
+       purchase_details[3] = getCurrent_buying_request().getSellerUserName();
+       purchase_details[4] = current_vacation.getPrice();
+       purchase_details[5] = creditCard;
+       purchase_details[6] = payMentMethod;
+       purchase_details[7] = PayPalUserName;
+       //date of today:
+        LocalDate date = LocalDate.now();
+        purchase_details[8] = date.toString();
+        boolean flag_insert_purchase = false;
+        try {
+            flag_insert_purchase = model.insert("Purchases",purchase_details);
+        } catch (V4UException e) {
+            System.out.println(e.getMessage());
+        }
+        return flag_insert_purchase;
     }
 
     public Period getPeriod(Date date) throws TooYoungException {
