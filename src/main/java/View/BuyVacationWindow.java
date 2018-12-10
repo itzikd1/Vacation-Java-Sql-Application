@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Controller;
+import Model.Excpetions.WrongPricesInsertedException;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -62,6 +63,16 @@ public class BuyVacationWindow implements Initializable {
                 alert.showAndWait();
                 return;
             }
+        }
+        try{
+            Integer.parseInt((String)Cardnumber);
+        }
+        catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please insert only digits in credit card field");
+            alert.showAndWait();
+            return;
         }
            boolean flag = controller.insert_purchase(Cardnumber,payMentMethod,Paypaluser);
         if (flag) {
