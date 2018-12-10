@@ -39,7 +39,6 @@ public class MyVacationsAsBuyerView implements Initializable {
     public TableColumn<PurchaseForBuyerColumn, String> destination2;
     public TableColumn<PurchaseForBuyerColumn, String> price;
     public TableColumn<PurchaseForSellerColumn, Button> details2;
-    //todo: destination - to that somwhow from SQL
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

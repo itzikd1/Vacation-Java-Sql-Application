@@ -296,7 +296,7 @@ public class Controller {
         Date arrivalDate = null;
         Date returnDate = null;
         String[] details = new String[17];
-        details[0] = String.valueOf(model.getNextVacationID());// TODO: 12/8/2018 but if insertion fails? raanan
+        details[0] = String.valueOf(model.getNextVacationID());//
         details[1] = model.connected_user.getDetails()[0];
         details[2] = (String)vacation_details[0]; // from
         departure_date = (DatePicker) vacation_details[1];
@@ -361,7 +361,6 @@ public class Controller {
 
         details[16] = (String)vacation_details[14]; //price
 
-        // TODO: 12/10/2018 no fields can be null! 
         return model.insert(tableName, details);
     }
 

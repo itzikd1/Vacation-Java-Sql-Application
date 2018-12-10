@@ -146,7 +146,6 @@ public class MainPageView implements Initializable {
             }
         }
         //login_pane.setVisible(false);
-        //TODO: to setVisible false to pane and replace it with something else (MAOR) (Second time)
     }
 
 
@@ -192,7 +191,6 @@ public class MainPageView implements Initializable {
 
 
     public void search_vacation(ActionEvent actionEvent) {
-        //todo:// open the window anael did.
         Stage s = (Stage) search_vacation_button.getScene().getWindow();
 //        s.close();
         try {

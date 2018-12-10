@@ -5,6 +5,7 @@ import Model.Purchase;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -23,7 +24,6 @@ public class PurchaseForBuyerColumn {
     public Button Details;
 
 
-    //todo: add cancel option on button Cancel
 
 
     public Button getCancel() {
@@ -104,8 +104,13 @@ public class PurchaseForBuyerColumn {
 
         Cancel.setText("Cancel");
 
+
         Cancel.setOnAction(event -> {
-            System.out.println("todo");
+            //todo: add cancel option on button Cancel
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Not Implemented");
+            alert.setHeaderText("Will do that on next part of work.\n you can buy vacations so enjoy!!! bye");
+            alert.showAndWait();
         });
         Details.setText("Details");
         Details.setOnAction(event -> {

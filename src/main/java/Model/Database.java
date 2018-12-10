@@ -67,7 +67,6 @@ class Database {
         String[] fields = fieldsOfTables.get(tableName);
         String[] result = new String[fields.length];
         ResultSetMetaData metadata = rs.getMetaData();
-        //todo: change this or create a new method to get an array of arrays of result or somerthing smarter.
 
         try {
             while (rs.next()) {

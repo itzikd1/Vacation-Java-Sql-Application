@@ -9,8 +9,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    // TODO: 28/10/2018 sign up gives an alert that sucess and logs in Itzik
-    // TODO: 28/10/2018 when creating a connected_user with same name, need to return the right error (connected_user taken) and not general error Itzik
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MainPage.fxml"));

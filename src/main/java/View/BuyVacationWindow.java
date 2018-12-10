@@ -49,20 +49,20 @@ public class BuyVacationWindow implements Initializable {
                 alert.setTitle("Missing Fields");
                 alert.setHeaderText("Please Fill Your Credit Card Number And Company");
                 alert.showAndWait();
+                return;
             }
         } else {
             if (PayPalUser.getLength() != 0) {
                 Paypaluser = PayPalUser.getText();
                 payMentMethod = "PayPal";
-                // TODO: 10/12/2018 update database with request  Itzik
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Missing PayPal User");
                 alert.setHeaderText("Please Fill Your PayPal UserName");
                 alert.showAndWait();
+                return;
             }
         }
-        // TODO: 10/12/2018 after getting maors code,fix here and add alert  Itzik
            boolean flag = controller.insert_purchase(Cardnumber,payMentMethod,Paypaluser);
         if (flag) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -72,8 +72,12 @@ public class BuyVacationWindow implements Initializable {
             Stage s = (Stage) BackButton.getScene().getWindow();
             s.close();
         }
-        else
+        else {
             System.out.println("problem in inserting purchase");
+            return;
+        }
+
+
     }
 
     public void toggleChange(ActionEvent actionEvent) {

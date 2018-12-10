@@ -67,7 +67,6 @@ public class CreateUserView implements Initializable {
 //        fxmlLoader.getController();
 //        MainPageView mainPageView = fxmlLoader.getController();
 //        mainPageView.disable_loginInfo();
-        //TODO: catch the controller
 
     }
 
