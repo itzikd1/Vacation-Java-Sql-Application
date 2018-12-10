@@ -45,6 +45,16 @@ public class BuyVacationWindow implements Initializable {
                 Cardnumber = CardNumber.getText();
                 payMentMethod = "Credit Card";
                 CreditCard = CardCompany.getText();
+                try{
+                    Integer.parseInt((String)Cardnumber);
+                }
+                catch(Exception e){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Please insert only digits in credit card field");
+                    alert.showAndWait();
+                    return;
+                }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Missing Fields");
@@ -63,16 +73,6 @@ public class BuyVacationWindow implements Initializable {
                 alert.showAndWait();
                 return;
             }
-        }
-        try{
-            Integer.parseInt((String)Cardnumber);
-        }
-        catch(Exception e){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Please insert only digits in credit card field");
-            alert.showAndWait();
-            return;
         }
            boolean flag = controller.insert_purchase(Cardnumber,payMentMethod,Paypaluser);
         if (flag) {
