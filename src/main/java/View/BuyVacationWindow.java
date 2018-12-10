@@ -72,6 +72,7 @@ public class BuyVacationWindow implements Initializable {
             alert.setTitle("Error");
             alert.setHeaderText("Please insert only digits in credit card field");
             alert.showAndWait();
+            return;
         }
            boolean flag = controller.insert_purchase(Cardnumber,payMentMethod,Paypaluser);
         if (flag) {
