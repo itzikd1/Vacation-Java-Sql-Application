@@ -74,7 +74,6 @@ public class BuyVacationWindow implements Initializable {
             toggleButton.setText("PayPal");
             CardNumber.setDisable(true);
             CardCompany.setDisable(true);
-            price.setText("55$");
 
         } else {
             buttonStatus = false;
@@ -82,12 +81,8 @@ public class BuyVacationWindow implements Initializable {
             PayPalUser.setDisable(true);
             CardNumber.setDisable(false);
             CardCompany.setDisable(false);
-            price.setText("150$");
-
         }
     }
 
-    public void priceUpdate(ActionEvent actionEvent) {
-        // TODO: 10/12/2018 update price here of vacation threw bind id  Itzik
-    }
+
 }
