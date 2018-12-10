@@ -297,7 +297,7 @@ public class Model {
     }
 
     public String getPriceForCurrentVacation() {
-        return database.getPriceForCurrentVacation(current_buying_request.getVacationID())[0];
+        return database.getPriceForCurrentVacation(current_buying_request.getVacationID());
     }
 }
 

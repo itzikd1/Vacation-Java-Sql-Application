@@ -5,6 +5,7 @@ import java.util.*;
 
 
 import Model.Excpetions.V4UException;
+import sun.awt.image.ImageWatched;
 
 class Database {
 
@@ -395,9 +396,10 @@ class Database {
         return runQueryReturnOutput(sql,"BuyingRequests")[0]!=null;
     }
 
-    public String[] getPriceForCurrentVacation(String vacationID) {
-        String sql = "SELECT Price FROM Vacations WHERE VacationID  = '" + vacationID + "'";
-        return runQueryReturnOutput(sql, "Vacations");
+    public String getPriceForCurrentVacation(String vacationID) {
+        String sql = "SELECT * FROM Vacations WHERE VacationID  = '" + vacationID + "'";
+        LinkedList<String> tmp = runQueryReturnOutputForOneField(sql, "Vacations","Price");
+        return tmp.get(0);
     }
 
 
