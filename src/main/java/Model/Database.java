@@ -151,7 +151,7 @@ class Database {
                 + "  \n"
                 + ");";
         String[] purchasesFields = {"PurchaseID","VacationID","BuyerUserName","SellerUserName",
-                "Price","PaymentMethod","CreditCardNum", "PayPalUserName, DateOfPurchase"};
+                "Price","PaymentMethod","CreditCardNum", "PayPalUserName", "DateOfPurchase"};
         fieldsOfTables.put("Purchases" , purchasesFields);
         String vacationsSQL = "CREATE TABLE IF NOT EXISTS Vacations(\n"
                 + "\tVacationID varchar PRIMARY KEY,\n"

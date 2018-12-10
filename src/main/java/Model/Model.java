@@ -33,7 +33,7 @@ public class Model {
     private Model() {
 
         createDataBase();
-        //before_hagasha();
+       // before_hagasha();
         createTables();
         vacationIDCounter = searchForNext() + 1;
         requestIDCounter = searchForNextRequestID() + 1;
@@ -100,7 +100,7 @@ public class Model {
     }
 
     public boolean delete_buying_request() {
-        boolean flag =  database.delete(getCurrent_buying_request().getRequestID(), "BuyingRequest");
+        boolean flag =  database.delete(getCurrent_buying_request().getRequestID(), "BuyingRequests");
         return flag;
     }
 
@@ -181,7 +181,7 @@ public class Model {
 
 
     public void before_hagasha() {
-        database.dropTable("BuyingRequests");
+        database.dropTable("Purchases");
     }
 
     private void clear_connected_user() {
