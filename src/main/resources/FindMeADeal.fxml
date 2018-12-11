@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="522.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SearchVacation">
+<AnchorPane prefHeight="522.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SearchVacation">
    <children>
       <ImageView fitHeight="522.0" fitWidth="834.0" layoutX="-19.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,7 +19,7 @@
       </ImageView>
     <AnchorPane layoutX="-96.0" layoutY="-30.0" minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="896.0">
          <children>
-            <Button fx:id="BackButton" layoutX="467.0" layoutY="512.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
+            <Button fx:id="BackButton" layoutX="800.0" layoutY="511.0" mnemonicParsing="false" onAction="#go_main" text="Main Menu" />
          </children></AnchorPane>
       <Pane layoutX="50.0" layoutY="10.0" prefHeight="67.0" prefWidth="728.0" style="-fx-background-color: ffffff;">
          <children>
@@ -28,9 +28,9 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <ImageView fitHeight="44.0" fitWidth="75.0" layoutX="670.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="67.0" fitWidth="60.0" layoutX="661.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/search_icon.png" />
+                  <Image url="@images/search__vacations_icon.png" />
                </image>
             </ImageView>
          </children>
