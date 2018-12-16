@@ -104,6 +104,15 @@ public class Model {
         return flag;
     }
 
+    public boolean delete_all_buying_requets_for_vacationID() {
+        boolean flag = database.deleteAllVacations(current_buying_vacation.getVacationID(),"BuyingRequests" );
+        return flag;
+    }
+
+    public int get_num_of_fields(String table_name) {
+        return database.get_num_of_fields(table_name);
+    }
+
     public Object read(String table_name, String pk) {
         String[] result = database.read(pk,table_name);
         Object ans= null;
@@ -136,9 +145,10 @@ public class Model {
                 String BaggageOptions = result [14];
                 String ClassType = result [15];
                 String Price = result [16];
+                String Status = result[17];
                 ans = new Vacation (VacationID, UserName, _From, DepartureDate, DepartureTime, Destination,
                         ArrivalDate,ArrivalTime,ReturnDate,ReturnTime,TicketType,FlightsCompany,ConnectionCity
-                        ,isBaggageIncluded,BaggageOptions,ClassType,Price);
+                        ,isBaggageIncluded,BaggageOptions,ClassType,Price, Status);
                 break;
             case "Purhcases":
                 String PurchaseID = result[0];
@@ -181,7 +191,9 @@ public class Model {
 
 
     public void before_hagasha() {
+        database.dropTable("Vacations");
         database.dropTable("Purchases");
+        database.dropTable("BuyingRequests");
     }
 
     private void clear_connected_user() {
@@ -298,6 +310,11 @@ public class Model {
 
     public String getPriceForCurrentVacation() {
         return database.getPriceForCurrentVacation(current_buying_request.getVacationID());
+    }
+
+    public boolean delete_vacation() {
+
+        return database.update_one_field("Sold","Vacations","Status",current_buying_vacation.getVacationID());
     }
 }
 

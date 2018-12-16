@@ -51,7 +51,7 @@ public class SearchVacation implements Initializable {
         ObservableList<Vacation> v = FXCollections.observableArrayList();
         v.add(new Vacation("0","1","1","12-12-1990","1","1","12-12-1990",
                 "1","12-12-1990","1","1","1","1","1",
-                "1","1","1"));
+                "1","1","1","Not"));
         return v;
     }
 

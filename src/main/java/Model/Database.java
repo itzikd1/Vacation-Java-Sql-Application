@@ -22,6 +22,10 @@ class Database {
         fieldsOfTables = new HashMap<String, String[]>();
     }
 
+    public int get_num_of_fields(String table_name) {
+        return fieldsOfTables.get(table_name).length;
+    }
+
     protected String getUrl() {
         return url;
     }
@@ -169,12 +173,13 @@ class Database {
                 + "\tisBaggageIncluded bit ,\n" // o or 1
                 + "\tBaggageOptions varchar,\n"
                 + "\tClassType varchar NOT NULL,\n"
-                + "\tPrice varchar NOT NULL"
+                + "\tPrice varchar NOT NULL,"
+                + "\tStatus varchar NOT NULL"
                 + " \n"
                 + ");";
         String[] vacationFields = {"VacationID","UserName","_From","DepartureDate","DepartureTime","Destination",
                 "ArrivalDate","ArrivalTime","ReturnDate","ReturnTime","TicketType","FlightsCompany",
-                "ConnectionCity","isBaggageIncluded","BaggageOptions","ClassType", "Price"};
+                "ConnectionCity","isBaggageIncluded","BaggageOptions","ClassType", "Price","Status"};
         fieldsOfTables.put("Vacations" , vacationFields);
         String buyingRequestsSQL = "CREATE TABLE IF NOT EXISTS BuyingRequests(\n"
                 + "\tRequestID varchar PRIMARY KEY,\n"
@@ -399,6 +404,12 @@ class Database {
         String sql = "SELECT * FROM Vacations WHERE VacationID  = '" + vacationID + "'";
         LinkedList<String> tmp = runQueryReturnOutputForOneField(sql, "Vacations","Price");
         return tmp.get(0);
+    }
+
+    public boolean deleteAllVacations(String vacationID, String tableName) {
+            String[] fields = fieldsOfTables.get(tableName);
+            String sql = "DELETE FROM " + tableName + " WHERE " + "VacationID" + " = '" + vacationID + "'";
+            return runQuery(sql);
     }
 
 

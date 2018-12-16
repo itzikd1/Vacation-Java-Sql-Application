@@ -20,9 +20,10 @@ public class Vacation {
     private String BaggageOptions;
     private String ClassType;
     private String Price;
+    private String Status;
 
 
-    public Vacation(String vacationID, String userName, String from, String departureDate, String departureTime, String destination, String arrivalDate, String arrivalTime, String returnDate, String returnTime, String ticketType, String flightsCompany, String connectionCountry, String isBaggageIncluded, String baggageOptions, String classType, String price) {
+    public Vacation(String vacationID, String userName, String from, String departureDate, String departureTime, String destination, String arrivalDate, String arrivalTime, String returnDate, String returnTime, String ticketType, String flightsCompany, String connectionCountry, String isBaggageIncluded, String baggageOptions, String classType, String price, String status) {
         VacationID = vacationID;
         UserName = userName;
         this.from = from;
@@ -40,9 +41,10 @@ public class Vacation {
         BaggageOptions = baggageOptions;
         ClassType = classType;
         Price = price;
+        Status = status;
     }
 
-    public Vacation(String [] data){
+    public Vacation(String [] data) {
         VacationID = data[0];
         UserName = data[1];
         this.from = data[2];
@@ -60,6 +62,15 @@ public class Vacation {
         BaggageOptions = data[14];
         ClassType = data[15];
         Price = data[16];
+        Status = data[17];
+    }
+
+        public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
     }
 
     public Vacation(Object [] data){
@@ -84,7 +95,7 @@ public class Vacation {
 
     public String[] getDetails() {
             String[] details = {VacationID, UserName, from, DepartureDate, DepartureTime, Destination,ArrivalDate,ArrivalTime,
-                    ReturnDate,ReturnTime,TicketType,FlightsCompany,ConnectionCountry,isBaggageIncluded,BaggageOptions,ClassType,Price};
+                    ReturnDate,ReturnTime,TicketType,FlightsCompany,ConnectionCountry,isBaggageIncluded,BaggageOptions,ClassType,Price, Status};
             return details;
     }
 

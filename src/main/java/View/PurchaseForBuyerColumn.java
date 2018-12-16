@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class PurchaseForBuyerColumn {
-    //todo: delete the vacation from Vacations SQL table while user buyed it
 
     public String PurchaseID;
     public String VacationID;

@@ -85,7 +85,7 @@ public class SellVacationView implements Initializable {
         _price = Price.getText();
         _company = company.getText();
 
-        Object[] vacation_details = new Object[]{_from,departureDate, _departureTime,_destination,arrivalDate,_arrivalTime,returnDate,_returnTime,_ticketType,_company,_connectionCity,baggage,_baggageInfo,_classType,_price};
+        Object[] vacation_details = new Object[]{_from,departureDate, _departureTime,_destination,arrivalDate,_arrivalTime,returnDate,_returnTime,_ticketType,_company,_connectionCity,baggage,_baggageInfo,_classType,_price,"Available"};
         boolean flag = false;
         try {
             flag = controller.insertNewVacation("Vacations", vacation_details);
@@ -102,7 +102,7 @@ public class SellVacationView implements Initializable {
             alert.setTitle("Vacation Published");
             alert.setHeaderText("Your vacation was published!");
             alert.showAndWait();
-            s.close();
+            //s.close();
         }
 
     }

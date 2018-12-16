@@ -70,7 +70,12 @@ public class Controller {
         } catch (V4UException e) {
             System.out.println(e.getMessage());
         }
-        return flag_insert_purchase;
+        boolean flag_of_remove_from_vacations = false;
+        if (flag_insert_purchase) {
+            flag_of_remove_from_vacations = model.delete_vacation();
+        }
+        boolean flag_of_remove_of_all_buying_requests = model.delete_all_buying_requets_for_vacationID();
+        return  flag_insert_purchase && flag_of_remove_from_vacations && flag_of_remove_of_all_buying_requests;
     }
 
     public Period getPeriod(Date date) throws TooYoungException {
@@ -237,7 +242,7 @@ public class Controller {
         for (int i = 0; i < o.length; i++) {
             if (o[i] instanceof Vacation) {
                 Vacation v = (Vacation) o[i];
-                if (chceckVacationDate(v) == true)
+                if (chceckVacationDate(v) == true && v.getStatus().equals("Available"))
                     vacations.add(new VacationsForSearchColumn(v, new Button(), new Button()));
             } else System.out.println("wrong table in controller getVacationsForSearch");
         }
@@ -295,7 +300,7 @@ public class Controller {
         Date departureDate = null;
         Date arrivalDate = null;
         Date returnDate = null;
-        String[] details = new String[17];
+        String[] details = new String[model.get_num_of_fields("Vacations")];
         details[0] = String.valueOf(model.getNextVacationID());//
         details[1] = model.connected_user.getDetails()[0];
         details[2] = (String)vacation_details[0]; // from
@@ -360,6 +365,7 @@ public class Controller {
         }
 
         details[16] = (String)vacation_details[14]; //price
+        details[17] = (String)vacation_details[15];
 
         return model.insert(tableName, details);
     }
