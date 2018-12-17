@@ -1,7 +1,6 @@
 package View;
+
 import Controller.Controller;
-import Model.Vacation;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -19,7 +18,6 @@ public class SearchVacation implements Initializable {
 
     private Controller controller = Controller.getInstance();
     public Button BackButton;
-
 
     public TableView<VacationsForSearchRow> vacationsTable;
     public TableColumn<VacationsForSearchRow, String> from;

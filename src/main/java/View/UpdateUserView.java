@@ -9,8 +9,6 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -37,7 +35,6 @@ public class UpdateUserView implements Initializable {
         tf_city.setText(details[5]);
         //birthday
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
         //convert String to LocalDate
         LocalDate localDate = LocalDate.parse(details[2], formatter);
         bd.setValue(localDate);
@@ -48,7 +45,6 @@ public class UpdateUserView implements Initializable {
         /*
         show current connected_user's details by default
          */
-
         String user, city, ln, fn, password;
         Date date = new Date();
 
@@ -57,7 +53,6 @@ public class UpdateUserView implements Initializable {
         ln = tf_lastName.getText();
         fn = tf_firstName.getText();
         password = tf_password.getText();
-
 
         Object[] updatedDetails = new Object[]{user, password, date, fn, ln, city};
         updatedDetails[2] = bd.getValue();
@@ -69,7 +64,6 @@ public class UpdateUserView implements Initializable {
             alert.setTitle("Error");
             alert.setHeaderText(e.getMessage());
             alert.showAndWait();
-
         }
         if (flag) {
             Stage s = (Stage) BackButton.getScene().getWindow();
@@ -81,23 +75,8 @@ public class UpdateUserView implements Initializable {
         }
     }
 
-
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();
         s.close();
-//        try {
-//            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MainPage.fxml"));
-//            Stage stage = new Stage();
-//            stage.initModality(Modality.APPLICATION_MODAL);
-//            stage.setResizable(true);
-//            stage.setTitle("Vacation4U");
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
-
-
 }
