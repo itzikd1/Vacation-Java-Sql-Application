@@ -1,23 +1,23 @@
 package View;
 
 import Controller.Controller;
-import Model.Excpetions.V4UException;
 import Model.Vacation;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class MyVacationsRow {
     public Vacation vacation;
     public Button details;
-    public Button edit;
     public Button delete;
     public String from;
     public String destination;
@@ -25,9 +25,9 @@ public class MyVacationsRow {
     public LocalDate departureDate;
 
 
-   // public static String get_static_vacationID(){
-        //return vacationID;
-   // }
+    // public static String get_static_vacationID(){
+    //return vacationID;
+    // }
     public Vacation getVacation() {
         return vacation;
     }
@@ -44,20 +44,12 @@ public class MyVacationsRow {
         this.details = details;
     }
 
-    public Button getEdit() {
-        return edit;
-    }
-
-    public void setEdit(Button edit) {
-        this.edit = edit;
-    }
-
     public Button getDelete() {
         return delete;
     }
 
     public void setDelete(Button delete) {
-        this.delete= delete;
+        this.delete = delete;
     }
 
     public String getFrom() {
@@ -103,17 +95,15 @@ public class MyVacationsRow {
     }
 
 
-    public MyVacationsRow(Vacation vacation, Button details, Button edit, Button delete) {
+    public MyVacationsRow(Vacation vacation, Button details, Button delete) {
         this.vacation = vacation;
         this.departureDate = LocalDate.parse(vacation.getDepartureDate());
         this.returnDate = LocalDate.parse(vacation.getReturnDate());
         this.from = vacation.getFrom();
         this.destination = vacation.getDestination();
         this.details = details;
-        this.edit = edit;
-        this.delete=delete;
+        this.delete = delete;
 
-        edit.setText("Edit");
         delete.setText("Delete");
         details.setText("Details");
 //        buy.maxWidth(Double.MAX_VALUE);
@@ -141,53 +131,22 @@ public class MyVacationsRow {
 
         Controller controller = Controller.getInstance();
 
+//
+//        edit.setOnAction(event -> {
+//            controller.edit_myVacation(vacation.getVacationID());
+//        });
 
-        // TODO: 17/12/2018 delete function  Itzik
+
         delete.setOnAction(event -> {
-            controller.delete_myVacation();
+            Alert alert = new Alert(Alert.AlertType.WARNING,
+                    "Are you sure you want to delete this vacation?",
+                    ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.YES) {
+                controller.delete_myVacation(vacation.getVacationID());
+            }
         });
 
-        // TODO: 17/12/2018 edit function  Itzik
-        edit.setOnAction(event -> {
-            boolean connected_user  = true;
-            if (controller.get_connected_user_id()==null)
-                connected_user=false;
-            if (connected_user) {
-                boolean flag = false;
-                if (controller.get_connected_user_id().equals(this.SellerUserName)) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Your request to buy has been cancelled");
-                    alert.setHeaderText("You can't buy vacation from yourself");
-                    alert.showAndWait();
-                    return;
-                }
-                try {
-                    flag = controller.insertBuyingRequest(vacation.getVacationID(),vacation.getUserName());
-                } catch (V4UException e) {
-                    System.out.println("error in insert");
-                }
-                if (flag) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("BuyingRequest Sent");
-                    alert.setHeaderText("Your request to buy has been sent to Buyer. \nPlease check your requests page soon");
-                    alert.showAndWait();
-                }
-                else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Why Buying again?!");
-                    alert.setHeaderText("You already request to buy this vacation. \nPlease keep calm and check your requests page soon");
-                    alert.showAndWait();
-
-                }
-            }
-            else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Log in");
-                alert.setHeaderText("Only signed users are allowing to request to buy vacations\nPlease close the window, log in and try again");
-                alert.showAndWait();
-            }
-
-        });
 
     }
 
