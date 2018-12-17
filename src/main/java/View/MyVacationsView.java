@@ -15,7 +15,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class MyVacations implements Initializable {
+public class MyVacationsView implements Initializable {
 
     private Controller controller = Controller.getInstance();
     public Button BackButton;
