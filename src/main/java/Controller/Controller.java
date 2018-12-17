@@ -475,6 +475,19 @@ public class Controller {
         model.delete_myVacation(vacationID);
     }
 
+    public ObservableList<MyVacationForTradeRow> getMyVacationsForTrade() {
+        ObservableList<MyVacationForTradeRow> vacations = FXCollections.observableArrayList();
+        Object[] o = model.readAll("Vacations");
+        for (int i = 0; i < o.length; i++) {
+            if (o[i] instanceof Vacation) {
+                Vacation v = (Vacation) o[i];
+                if (v.getUserName().equals(model.connected_user.getUsername()))
+                    vacations.add(new MyVacationForTradeRow(v, new Button(), new Button()));
+            } else System.out.println("wrong table in controller getVacationsForSearch");
+        }
+        return vacations;
+    }
+
 
 //    public void edit_myVacation(String vacationID) {
 //        model.updateMyVacation(vacationID);

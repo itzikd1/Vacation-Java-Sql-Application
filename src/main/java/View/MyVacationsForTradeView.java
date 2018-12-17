@@ -1,7 +1,5 @@
 package View;
 import Controller.Controller;
-import Model.Vacation;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -27,7 +25,7 @@ public class MyVacationsForTradeView implements Initializable {
     public TableColumn<MyVacationForTradeRow, LocalDate> departDate;
     public TableColumn<MyVacationForTradeRow, LocalDate> returnDate;
     public TableColumn<MyVacationForTradeRow, Button> moreDetails;
-    public TableColumn<MyVacationForTradeRow, Button> choose;
+    public TableColumn<MyVacationForTradeRow, Button> trade;
 
     //public Button b = new Button();
 
@@ -38,7 +36,7 @@ public class MyVacationsForTradeView implements Initializable {
         departDate.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
         returnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         moreDetails.setCellValueFactory(new PropertyValueFactory<>("details"));
-        choose.getCellValueFactory(new PropertyValueFactory<>("Choose");
+        trade.setCellValueFactory(new PropertyValueFactory<>("Choose"));
 
         ObservableList<MyVacationForTradeRow> vacations = controller.getMyVacationsForTrade();
         vacationsTable.setItems(vacations);
