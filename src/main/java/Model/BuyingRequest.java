@@ -8,13 +8,15 @@ public class BuyingRequest {
     public String SellerUserName;
     public String BuyerUserName;
     public String isApproved;
+    public String tradeID;
 
-    public BuyingRequest(String requestID, String vacationID, String sellerUserName, String buyerUserName, String isApproved) {
+    public BuyingRequest(String requestID, String vacationID, String sellerUserName, String buyerUserName, String isApproved, String trade_id) {
         RequestID = requestID;
         VacationID = vacationID;
         SellerUserName = sellerUserName;
         BuyerUserName = buyerUserName;
         this.isApproved = isApproved; // "Waiting" / "Approved" / "Not Approved" / "Cancelled"
+        tradeID=trade_id;
 }
 
     public BuyingRequest(String[] data) {
@@ -23,6 +25,7 @@ public class BuyingRequest {
         SellerUserName = data[2];
         BuyerUserName = data[3];
         this.isApproved = data[4];
+        tradeID = data[5];
     }
 
 

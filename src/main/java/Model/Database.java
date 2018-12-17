@@ -186,9 +186,10 @@ class Database {
                 + "\tVacationID varchar NOT NULL,\n"
                 + "\tSellerUserName varchar NOT NULL,\n"
                 + "\tBuyerUserName varchar NOT NULL,\n"
-                + "\tisApproved bit NOT NULL" + " \n"
+                + "\tisApproved bit NOT NULL," + " \n"
+                + "\ttradeID varchar" + " \n"
                 + ");";
-        String[] buyingRequestsFields = {"RequestID","VacationID","SellerUserName","BuyerUserName","isApproved"};
+        String[] buyingRequestsFields = {"RequestID","VacationID","SellerUserName","BuyerUserName","isApproved", "tradeID"};
         fieldsOfTables.put("BuyingRequests" , buyingRequestsFields);
 
         boolean flag1 = runQuery(usersSQL);

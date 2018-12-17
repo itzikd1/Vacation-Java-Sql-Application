@@ -29,6 +29,7 @@ public class SearchVacation implements Initializable {
     public TableColumn<VacationsForSearchRow, Button> moreDetails;
     public TableColumn<VacationsForSearchRow, Button> buycolumn;
     public TableColumn<VacationsForSearchRow, String> seller;
+    public TableColumn<VacationsForSearchRow, Button> tradecolumn;
 
     //public Button b = new Button();
 
@@ -41,19 +42,20 @@ public class SearchVacation implements Initializable {
         moreDetails.setCellValueFactory(new PropertyValueFactory<>("details"));
         buycolumn.setCellValueFactory(new PropertyValueFactory<>("buy"));
         seller.setCellValueFactory(new PropertyValueFactory<>("SellerUserName"));
+        tradecolumn.setCellValueFactory(new PropertyValueFactory<>("trade"));
 
         ObservableList<VacationsForSearchRow> vacations = controller.getVacationsForSearch();
         //vacationsTable.setItems(tryme());
         vacationsTable.setItems(vacations);
     }
 
-    private ObservableList<Vacation> tryme() {
-        ObservableList<Vacation> v = FXCollections.observableArrayList();
-        v.add(new Vacation("0","1","1","12-12-1990","1","1","12-12-1990",
-                "1","12-12-1990","1","1","1","1","1",
-                "1","1","1","Not"));
-        return v;
-    }
+//    private ObservableList<Vacation> tryme() {
+//        ObservableList<Vacation> v = FXCollections.observableArrayList();
+//        v.add(new Vacation("0","1","1","12-12-1990","1","1","12-12-1990",
+//                "1","12-12-1990","1","1","1","1","1",
+//                "1","1","1","Not"));
+//        return v;
+//    }
 
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();
