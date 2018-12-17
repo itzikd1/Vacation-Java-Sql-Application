@@ -108,12 +108,10 @@ public class SellVacationView implements Initializable {
 
     }
 
-
     private Controller controller = Controller.getInstance();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
 //    public void update_info(ActionEvent actionEvent) {
@@ -147,19 +145,5 @@ public class SellVacationView implements Initializable {
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();
         s.close();
-//        try {
-//            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MainPage.fxml"));
-//            Stage stage = new Stage();
-//            stage.initModality(Modality.APPLICATION_MODAL);
-//            stage.setResizable(true);
-//            stage.setTitle("Vacation4U");
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
-
-
 }

@@ -20,7 +20,10 @@ public class PurchaseForBuyerRow {
     public String SellerUserName;
     public String Price;
     public String destination;
+    public Button cancel;
+    public Button Details;
 
+    //<editor-fold desc="Get and Set">
     public Button getCancel() {
         return cancel;
     }
@@ -28,14 +31,6 @@ public class PurchaseForBuyerRow {
     public void setCancel(Button cancel) {
         this.cancel = cancel;
     }
-
-    public Button cancel;
-    public Button Details;
-
-
-
-
-
 
     public Button getDetails() {
         return Details;
@@ -52,7 +47,6 @@ public class PurchaseForBuyerRow {
     public void setDestination(String destination) {
         this.destination = destination;
     }
-
 
     public String getPurchaseID() {
         return PurchaseID;
@@ -93,6 +87,7 @@ public class PurchaseForBuyerRow {
     public void setSellerUserName(String sellerUserName) {
         SellerUserName = sellerUserName;
     }
+    //</editor-fold>
 
     public PurchaseForBuyerRow(Purchase p, String Destination, Button Cancel, Button details) {
         cancel = Cancel;
@@ -103,10 +98,8 @@ public class PurchaseForBuyerRow {
         Details = details;
         destination = Destination;
         SellerUserName = p.getSellerUserName();
-
-
         cancel.setText("Cancel");
-
+        Details.setText("Details");
 
         cancel.setOnAction(event -> {
             //todo: add cancel option on button Cancel
@@ -115,11 +108,9 @@ public class PurchaseForBuyerRow {
             alert.setHeaderText("Will do that on next part of work.\n you can buy vacations so enjoy!!! bye");
             alert.showAndWait();
         });
-        Details.setText("Details");
-        Details.setOnAction(event -> {
 
+        Details.setOnAction(event -> {
             Stage s = (Stage) details.getScene().getWindow();
-//        s.close();
             try {
                 Controller.vacationID = VacationID;
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
@@ -134,6 +125,5 @@ public class PurchaseForBuyerRow {
                 e.printStackTrace();
             }
         });
-
     }
 }

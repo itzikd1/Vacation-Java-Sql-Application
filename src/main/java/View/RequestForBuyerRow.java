@@ -23,6 +23,7 @@ public class RequestForBuyerRow {
     public String destination;
     public Button Details;
 
+    //<editor-fold desc="Get and Set">
     public Button getDetails() {
         return Details;
     }
@@ -86,6 +87,7 @@ public class RequestForBuyerRow {
     public void setCancel(Button cancel) {
         Cancel = cancel;
     }
+    //</editor-fold>
 
     public RequestForBuyerRow(BuyingRequest br, String destination, Button b, Button c, Button details) {
         RequestID = br.getRequestID();
@@ -96,7 +98,6 @@ public class RequestForBuyerRow {
         Cancel = c;
         this.destination = destination;
         Details = details;
-
         Details.setText("Details");
         Buy.setText("Buy");
         Cancel.setText("Cancel");
@@ -133,7 +134,7 @@ public class RequestForBuyerRow {
         Cancel.setOnAction(event -> {
             Controller controller = Controller.getInstance();
             boolean flag = false;
-            flag = controller.updateRequest(RequestID,"Cancelled");
+            flag = controller.updateRequest(RequestID, "Cancelled");
             if (flag) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Buying Request Cancelled");
@@ -143,9 +144,7 @@ public class RequestForBuyerRow {
         });
 
         details.setOnAction(event -> {
-
             Stage s = (Stage) details.getScene().getWindow();
-//        s.close();
             try {
                 Controller.vacationID = VacationID;
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));

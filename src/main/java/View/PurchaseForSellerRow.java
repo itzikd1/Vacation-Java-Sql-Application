@@ -20,6 +20,7 @@ public class PurchaseForSellerRow {
     public Button Details;
     public String destination;
 
+    //<editor-fold desc="Get and Set">
     public Button getDetails() {
         return Details;
     }
@@ -60,7 +61,6 @@ public class PurchaseForSellerRow {
         Price = price;
     }
 
-
     public String getDestination() {
         return destination;
     }
@@ -68,6 +68,7 @@ public class PurchaseForSellerRow {
     public void setDestination(String destination) {
         this.destination = destination;
     }
+    //</editor-fold>
 
     public PurchaseForSellerRow(Purchase p, String Destination, Button details) {
         Details = details;
@@ -76,12 +77,10 @@ public class PurchaseForSellerRow {
         BuyerUserName = p.getBuyerUserName();
         Price = p.getPrice();
         destination = Destination;
-
         Details.setText("Details");
-        Details.setOnAction(event -> {
 
+        Details.setOnAction(event -> {
             Stage s = (Stage) details.getScene().getWindow();
-//        s.close();
             try {
                 Controller.vacationID = VacationID;
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
@@ -96,6 +95,5 @@ public class PurchaseForSellerRow {
                 e.printStackTrace();
             }
         });
-
     }
 }
