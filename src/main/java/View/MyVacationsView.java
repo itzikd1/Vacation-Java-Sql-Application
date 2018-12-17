@@ -21,14 +21,14 @@ public class MyVacationsView implements Initializable {
     public Button BackButton;
 
 
-    public TableView<MyVacations> vacationsTable;
-    public TableColumn<MyVacations, String> from;
-    public TableColumn<MyVacations, String> to;
-    public TableColumn<MyVacations, LocalDate> departDate;
-    public TableColumn<MyVacations, LocalDate> returnDate;
-    public TableColumn<MyVacations, Button> moreDetails;
-    public TableColumn<MyVacations, Button> edit;
-    public TableColumn<MyVacations, Button> delete;
+    public TableView<MyVacationsRow> vacationsTable;
+    public TableColumn<MyVacationsRow, String> from;
+    public TableColumn<MyVacationsRow, String> to;
+    public TableColumn<MyVacationsRow, LocalDate> departDate;
+    public TableColumn<MyVacationsRow, LocalDate> returnDate;
+    public TableColumn<MyVacationsRow, Button> moreDetails;
+    public TableColumn<MyVacationsRow, Button> edit;
+    public TableColumn<MyVacationsRow, Button> delete;
 
     //public Button b = new Button();
 
@@ -43,7 +43,7 @@ public class MyVacationsView implements Initializable {
         delete.setCellValueFactory(new PropertyValueFactory<>("delete"));
 
         // TODO: 17/12/2018 edit  Itzik
-        ObservableList<MyVacations> vacations = controller.getMyVacations();
+        ObservableList<MyVacationsRow> vacations = controller.getMyVacations();
         //vacationsTable.setItems(tryme());
         vacationsTable.setItems(vacations);
     }
