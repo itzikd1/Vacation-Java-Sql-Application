@@ -250,6 +250,20 @@ public class Controller {
     }
 
 
+    public ObservableList<MyVacations> getMyVacations() {
+        ObservableList<MyVacations> vacations = FXCollections.observableArrayList();
+        Object[] o = model.readAll("Vacations");
+        for (int i = 0; i < o.length; i++) {
+            if (o[i] instanceof Vacation) {
+                Vacation v = (Vacation) o[i];
+                if (v.getUserName().equals(model.connected_user.getUsername()))
+                    vacations.add(new MyVacations(v, new Button(), new Button(), new Button()));
+            } else System.out.println("wrong table in controller getVacationsForSearch");
+        }
+        return vacations;
+    }
+
+
     public void setCurrent_buying_request(BuyingRequest current_buying_request) {
         model.setCurrent_buying_request(current_buying_request);
     }

@@ -21,14 +21,14 @@ public class MyVacationsView implements Initializable {
     public Button BackButton;
 
 
-    public TableView<VacationsForSearchRow> vacationsTable;
-    public TableColumn<VacationsForSearchRow, String> from;
-    public TableColumn<VacationsForSearchRow, String> to;
-    public TableColumn<VacationsForSearchRow, LocalDate> departDate;
-    public TableColumn<VacationsForSearchRow, LocalDate> returnDate;
-    public TableColumn<VacationsForSearchRow, Button> moreDetails;
-    public TableColumn<VacationsForSearchRow, Button> buycolumn;
-    public TableColumn<VacationsForSearchRow, String> seller;
+    public TableView<MyVacations> vacationsTable;
+    public TableColumn<MyVacations, String> from;
+    public TableColumn<MyVacations, String> to;
+    public TableColumn<MyVacations, LocalDate> departDate;
+    public TableColumn<MyVacations, LocalDate> returnDate;
+    public TableColumn<MyVacations, Button> moreDetails;
+    public TableColumn<MyVacations, Button> edit;
+    public TableColumn<MyVacations, Button> delete;
 
     //public Button b = new Button();
 
@@ -39,10 +39,11 @@ public class MyVacationsView implements Initializable {
         departDate.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
         returnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         moreDetails.setCellValueFactory(new PropertyValueFactory<>("details"));
-        buycolumn.setCellValueFactory(new PropertyValueFactory<>("buy"));
-        seller.setCellValueFactory(new PropertyValueFactory<>("SellerUserName"));
+        edit.setCellValueFactory(new PropertyValueFactory<>("edit"));
+        delete.setCellValueFactory(new PropertyValueFactory<>("delete"));
 
-        ObservableList<VacationsForSearchRow> vacations = controller.getVacationsForSearch();
+        // TODO: 17/12/2018 edit  Itzik
+        ObservableList<MyVacations> vacations = controller.getMyVacations();
         //vacationsTable.setItems(tryme());
         vacationsTable.setItems(vacations);
     }

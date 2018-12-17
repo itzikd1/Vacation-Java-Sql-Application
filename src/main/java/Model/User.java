@@ -32,7 +32,7 @@ public class User {
         return details;
     }
 
-    protected String getUsername() {
+    public String getUsername() {
         return Username;
     }
 
