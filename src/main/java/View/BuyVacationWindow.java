@@ -75,6 +75,7 @@ public class BuyVacationWindow implements Initializable {
             }
         }
            boolean flag = controller.insert_purchase(Cardnumber,payMentMethod,Paypaluser);
+        //todo: for maor
         if (flag) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Confirmation");

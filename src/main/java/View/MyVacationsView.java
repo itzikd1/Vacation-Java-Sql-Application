@@ -19,6 +19,7 @@ public class MyVacationsView implements Initializable {
 
     private Controller controller = Controller.getInstance();
     public Button BackButton;
+    public Button refresh;
 
 
     public TableView<MyVacationsRow> vacationsTable;
@@ -27,7 +28,6 @@ public class MyVacationsView implements Initializable {
     public TableColumn<MyVacationsRow, LocalDate> departDate;
     public TableColumn<MyVacationsRow, LocalDate> returnDate;
     public TableColumn<MyVacationsRow, Button> moreDetails;
-    public TableColumn<MyVacationsRow, Button> edit;
     public TableColumn<MyVacationsRow, Button> delete;
 
     //public Button b = new Button();
@@ -39,7 +39,6 @@ public class MyVacationsView implements Initializable {
         departDate.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
         returnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         moreDetails.setCellValueFactory(new PropertyValueFactory<>("details"));
-        edit.setCellValueFactory(new PropertyValueFactory<>("edit"));
         delete.setCellValueFactory(new PropertyValueFactory<>("delete"));
 
         // TODO: 17/12/2018 edit  Itzik
@@ -54,6 +53,13 @@ public class MyVacationsView implements Initializable {
                 "1","12-12-1990","1","1","1","1","1",
                 "1","1","1","Not"));
         return v;
+    }
+
+    public void refresh(ActionEvent actionEvent){
+        vacationsTable.setVisible(false);
+        ObservableList<MyVacationsRow> requests = controller.getMyVacations();
+        vacationsTable.setItems(requests);
+        vacationsTable.setVisible(true);
     }
 
     public void go_main(ActionEvent actionEvent) {

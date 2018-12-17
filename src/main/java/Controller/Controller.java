@@ -257,7 +257,7 @@ public class Controller {
             if (o[i] instanceof Vacation) {
                 Vacation v = (Vacation) o[i];
                 if (v.getUserName().equals(model.connected_user.getUsername()))
-                    vacations.add(new MyVacationsRow(v, new Button(), new Button(), new Button()));
+                    vacations.add(new MyVacationsRow(v, new Button(), new Button()));
             } else System.out.println("wrong table in controller getVacationsForSearch");
         }
         return vacations;
@@ -471,21 +471,13 @@ public class Controller {
 
     }
 
-    public void delete_myVacation() {
-        model.delete_myVacation();
+    public void delete_myVacation(String vacationID) {
+        model.delete_myVacation(vacationID);
     }
 
-    public ObservableList<MyVacationForTradeRow> getMyVacationsForTrade() {
-        ObservableList<MyVacationsRow> vacations = FXCollections.observableArrayList();
-        Object[] o = model.readAll("Vacations");
-        for (int i = 0; i < o.length; i++) {
-            if (o[i] instanceof Vacation) {
-                Vacation v = (Vacation) o[i];
-                if (v.getUserName().equals(model.connected_user.getUsername()))
-                    vacations.add(new MyVacationsRow(v, new Button(), new Button(), new Button()));
-            } else System.out.println("wrong table in controller getVacationsForSearch");
-        }
-        return vacations;
-    }
+
+//    public void edit_myVacation(String vacationID) {
+//        model.updateMyVacation(vacationID);
+//    }
 }
 
