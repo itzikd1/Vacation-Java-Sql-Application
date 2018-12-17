@@ -61,7 +61,7 @@ public class MyVacationsView implements Initializable {
         vacationsTable.setItems(requests);
         vacationsTable.setVisible(true);
     }
-    
+
     public void go_main(ActionEvent actionEvent) {
         Stage s = (Stage) BackButton.getScene().getWindow();
         s.close();
