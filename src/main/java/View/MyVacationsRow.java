@@ -32,6 +32,7 @@ public class MyVacationsRow {
         return vacation;
     }
 
+    //<editor-fold desc="GetSet">
     public void setVacation(Vacation vacation) {
         this.vacation = vacation;
     }
@@ -93,6 +94,7 @@ public class MyVacationsRow {
     public void setSellerUserName(String sellerUserName) {
         SellerUserName = sellerUserName;
     }
+    //</editor-fold>
 
 
     public MyVacationsRow(Vacation vacation, Button details, Button delete) {
@@ -106,8 +108,6 @@ public class MyVacationsRow {
 
         delete.setText("Delete");
         details.setText("Details");
-//        buy.maxWidth(Double.MAX_VALUE);
-//        buy.maxHeight(Double.MAX_VALUE);
 
 
         details.setOnAction(event -> {
@@ -130,11 +130,6 @@ public class MyVacationsRow {
         });
 
         Controller controller = Controller.getInstance();
-
-//
-//        edit.setOnAction(event -> {
-//            controller.edit_myVacation(vacation.getVacationID());
-//        });
 
 
         delete.setOnAction(event -> {
