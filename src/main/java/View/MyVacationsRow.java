@@ -24,10 +24,6 @@ public class MyVacationsRow {
     public String SellerUserName;
     public LocalDate departureDate;
 
-
-    // public static String get_static_vacationID(){
-    //return vacationID;
-    // }
     public Vacation getVacation() {
         return vacation;
     }
@@ -96,7 +92,6 @@ public class MyVacationsRow {
     }
     //</editor-fold>
 
-
     public MyVacationsRow(Vacation vacation, Button details, Button delete) {
         this.vacation = vacation;
         this.departureDate = LocalDate.parse(vacation.getDepartureDate());
@@ -105,15 +100,11 @@ public class MyVacationsRow {
         this.destination = vacation.getDestination();
         this.details = details;
         this.delete = delete;
-
         delete.setText("Delete");
         details.setText("Details");
 
-
         details.setOnAction(event -> {
-
             Stage s = (Stage) details.getScene().getWindow();
-//        s.close();
             try {
                 Controller.vacationID = vacation.getVacationID();
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
@@ -131,7 +122,6 @@ public class MyVacationsRow {
 
         Controller controller = Controller.getInstance();
 
-
         delete.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.WARNING,
                     "Are you sure you want to delete this vacation?",
@@ -141,9 +131,5 @@ public class MyVacationsRow {
                 controller.delete_myVacation(vacation.getVacationID());
             }
         });
-
-
     }
-
-
 }

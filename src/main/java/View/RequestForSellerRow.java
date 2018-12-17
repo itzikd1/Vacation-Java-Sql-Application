@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.print.attribute.standard.Destination;
 import java.io.IOException;
 
 public class RequestForSellerRow {
@@ -33,6 +32,7 @@ public class RequestForSellerRow {
     public Button Decline;
     public Button Details;
 
+    //<editor-fold desc="Get and Set">
     public Button getDetails() {
         return Details;
     }
@@ -88,8 +88,7 @@ public class RequestForSellerRow {
     public void setDecline(Button decline) {
         Decline = decline;
     }
-
-
+    //</editor-fold>
 
     public RequestForSellerRow(BuyingRequest br, String Destination, Button approve, Button decline, Button details) {
         RequestID = br.getRequestID();
@@ -100,12 +99,9 @@ public class RequestForSellerRow {
         Decline = decline;
         Details = details;
         destination = Destination;
-
         Approve.setText("Approve");
         Decline.setText("Decline");
         Details.setText("Details");
-
-
 
         Approve.setOnAction(event -> {
             Controller controller = Controller.getInstance();
@@ -115,15 +111,13 @@ public class RequestForSellerRow {
                 alert.setHeaderText("The Buyer has been cancelled his request. \nYou can't approve cancelled requests");
                 alert.showAndWait();
                 return;
-            }
-            else if (Status.equals("Approved")){
+            } else if (Status.equals("Approved")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Can't Approve");
                 alert.setHeaderText("You already approved this request. \nYou can't approve the same request more than once");
                 alert.showAndWait();
                 return;
-            }
-            else if (Status.equals("Declined")) {
+            } else if (Status.equals("Declined")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Can't Approve");
                 alert.setHeaderText("You already not approved this request. \nSorry, but this is too late to regret");
@@ -131,7 +125,7 @@ public class RequestForSellerRow {
                 return;
             }
             boolean flag = false;
-            flag = controller.updateRequest(RequestID,"Approved");
+            flag = controller.updateRequest(RequestID, "Approved");
             if (flag) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Buying Request Approved");
@@ -150,7 +144,7 @@ public class RequestForSellerRow {
                 return;
             }
             boolean flag = false;
-            flag = controller.updateRequest(RequestID,"Declined");
+            flag = controller.updateRequest(RequestID, "Declined");
             if (flag) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Buying Request Declined");
@@ -160,9 +154,7 @@ public class RequestForSellerRow {
         });
 
         details.setOnAction(event -> {
-
             Stage s = (Stage) details.getScene().getWindow();
-//        s.close();
             try {
                 Controller.vacationID = VacationID;
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));

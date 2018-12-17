@@ -21,24 +21,17 @@ public class VacationsForSearchRow {
     public String from;
     public String destination;
     public Button trade;
-
-
     public String SellerUserName;
     public LocalDate departureDate;
-
-
     public Button getTrade() {
         return trade;
     }
 
+    //<editor-fold desc="Get and Set">
     public void setTrade(Button trade) {
         this.trade = trade;
     }
 
-
-   // public static String get_static_vacationID(){
-        //return vacationID;
-   // }
     public Vacation getVacation() {
         return vacation;
     }
@@ -104,7 +97,7 @@ public class VacationsForSearchRow {
     public void setSellerUserName(String sellerUserName) {
         SellerUserName = sellerUserName;
     }
-
+    //</editor-fold>
 
     public VacationsForSearchRow(Vacation vacation, Button details, Button buy, Button trade) {
         this.vacation = vacation;
@@ -118,18 +111,15 @@ public class VacationsForSearchRow {
         this.trade = trade;
 
         trade.setText("Trade");
-
         buy.setText("Buy");
-//        buy.maxWidth(Double.MAX_VALUE);
-//        buy.maxHeight(Double.MAX_VALUE);
+        details.setText("Details");
 
         Controller controller = Controller.getInstance();
 
-
         trade.setOnAction(event -> {
-            boolean connected_user  = true;
-            if (controller.get_connected_user_id()==null)
-                connected_user=false;
+            boolean connected_user = true;
+            if (controller.get_connected_user_id() == null)
+                connected_user = false;
             if (connected_user) {
                 boolean flag = false;
                 if (controller.get_connected_user_id().equals(this.SellerUserName)) {
@@ -141,8 +131,7 @@ public class VacationsForSearchRow {
                 }
                 try {
                     //todo:// open window for choosing vacation for trade and send a request to buyer and call to this setTradeId
-
-                    flag = controller.insertBuyingRequest(vacation.getVacationID(),vacation.getUserName());
+                    flag = controller.insertBuyingRequest(vacation.getVacationID(), vacation.getUserName());
                 } catch (V4UException e) {
                     System.out.println("error in insert");
                 }
@@ -151,16 +140,13 @@ public class VacationsForSearchRow {
                     alert.setTitle("Buying Request Sent");
                     alert.setHeaderText("Your request to trade has been sent to Buyer. \nPlease check your requests page soon");
                     alert.showAndWait();
-                }
-                else {
+                } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Why Buying again?!");
                     alert.setHeaderText("You already request to buy/trade this vacation. \nPlease keep calm and check your requests page soon");
                     alert.showAndWait();
-
                 }
-            }
-            else {
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Log in");
                 alert.setHeaderText("Only signed users are allowing to request to buy vacations\nPlease close the window, log in and try again");
@@ -169,9 +155,7 @@ public class VacationsForSearchRow {
         });
 
         details.setOnAction(event -> {
-
             Stage s = (Stage) details.getScene().getWindow();
-//        s.close();
             try {
                 Controller.vacationID = vacation.getVacationID();
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
@@ -187,16 +171,10 @@ public class VacationsForSearchRow {
             }
         });
 
-
-        details.setText("Details");
-//        details.maxWidth(Double.MAX_VALUE);
-//        details.maxHeight(Double.MAX_VALUE);
-
-
         buy.setOnAction(event -> {
-            boolean connected_user  = true;
-            if (controller.get_connected_user_id()==null)
-                connected_user=false;
+            boolean connected_user = true;
+            if (controller.get_connected_user_id() == null)
+                connected_user = false;
             if (connected_user) {
                 boolean flag = false;
                 if (controller.get_connected_user_id().equals(this.SellerUserName)) {
@@ -207,7 +185,7 @@ public class VacationsForSearchRow {
                     return;
                 }
                 try {
-                    flag = controller.insertBuyingRequest(vacation.getVacationID(),vacation.getUserName());
+                    flag = controller.insertBuyingRequest(vacation.getVacationID(), vacation.getUserName());
                 } catch (V4UException e) {
                     System.out.println("error in insert");
                 }
@@ -216,25 +194,18 @@ public class VacationsForSearchRow {
                     alert.setTitle("BuyingRequest Sent");
                     alert.setHeaderText("Your request to buy has been sent to Buyer. \nPlease check your requests page soon");
                     alert.showAndWait();
-                }
-                else {
+                } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Why Buying again?!");
                     alert.setHeaderText("You already request to buy this vacation. \nPlease keep calm and check your requests page soon");
                     alert.showAndWait();
-
                 }
-            }
-            else {
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Log in");
                 alert.setHeaderText("Only signed users are allowing to request to buy vacations\nPlease close the window, log in and try again");
                 alert.showAndWait();
             }
-
         });
-
     }
-
-
 }
