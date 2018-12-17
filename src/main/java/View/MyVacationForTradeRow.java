@@ -123,9 +123,39 @@ public class MyVacationForTradeRow {
 
         Controller controller = Controller.getInstance();
         choose.setOnAction(event -> {
+            boolean flag = false;
             Stage s = (Stage) choose.getScene().getWindow();
             controller.setTradeId(vacation.getVacationID());
+            try {
+                flag = controller.insertBuyingRequest(vacation.getVacationID(),vacation.getUserName());
+            } catch (V4UException e) {
+                e.printStackTrace();
+            }
+            if (flag) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Trade request");
+                alert.setHeaderText("your request for trade has been sent to seller!\n please check soon your requests page!");
+                alert.showAndWait();
+            }
+            else {
+                System.out.println("problem in inserting trade request");
+            }
             s.close();
         });
     }
 }
+
+/**
+ todo:
+ יוזר שולח בקשה לקנייה או החלפה
+ אם קנייה:
+ סלר מאשר
+ יוזר מאמת ששילם
+ סלר מ..  אשר קבלת תשלום
+ העסקה התבצעה
+
+ אם החלפה:
+ סלר מאשר
+**/
+
+//todo: to open a new trades requests table & move the history of purchases to another page.

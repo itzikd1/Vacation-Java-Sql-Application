@@ -129,14 +129,16 @@ public class VacationsForSearchRow {
                     alert.showAndWait();
                     return;
                 }
-                try {
+
                     //todo:// open window for choosing vacation for trade and send a request to buyer and call to this setTradeId
                     try {
+                       // Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
 
                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MyVacationForTrade.fxml"));
                         Stage stage = new Stage();
                         stage.initModality(Modality.APPLICATION_MODAL);
                         stage.setResizable(true);
+
                         stage.setTitle("Choose one vacation");
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
@@ -145,21 +147,6 @@ public class VacationsForSearchRow {
                         e.printStackTrace();
                     }
 
-                    flag = controller.insertBuyingRequest(vacation.getVacationID(),vacation.getUserName());
-                } catch (V4UException e) {
-                    System.out.println("error in insert");
-                }
-                if (flag) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Buying Request Sent");
-                    alert.setHeaderText("Your request to trade has been sent to Buyer. \nPlease check your requests page soon");
-                    alert.showAndWait();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Why Buying again?!");
-                    alert.setHeaderText("You already request to buy/trade this vacation. \nPlease keep calm and check your requests page soon");
-                    alert.showAndWait();
-                }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Log in");
