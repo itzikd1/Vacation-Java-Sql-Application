@@ -5,20 +5,37 @@ import Model.Purchase;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class PurchaseForSellerColumn {
+public class PurchaseForBuyerRow {
 
     public String PurchaseID;
     public String VacationID;
     public String BuyerUserName;
+    public String SellerUserName;
     public String Price;
-    public Button Details;
     public String destination;
+
+    public Button getCancel() {
+        return cancel;
+    }
+
+    public void setCancel(Button cancel) {
+        this.cancel = cancel;
+    }
+
+    public Button cancel;
+    public Button Details;
+
+
+
+
+
 
     public Button getDetails() {
         return Details;
@@ -27,6 +44,15 @@ public class PurchaseForSellerColumn {
     public void setDetails(Button details) {
         Details = details;
     }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
 
     public String getPurchaseID() {
         return PurchaseID;
@@ -60,23 +86,35 @@ public class PurchaseForSellerColumn {
         Price = price;
     }
 
-
-    public String getDestination() {
-        return destination;
+    public String getSellerUserName() {
+        return SellerUserName;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setSellerUserName(String sellerUserName) {
+        SellerUserName = sellerUserName;
     }
 
-    public PurchaseForSellerColumn(Purchase p, String Destination, Button details) {
-        Details = details;
+    public PurchaseForBuyerRow(Purchase p, String Destination, Button Cancel, Button details) {
+        cancel = Cancel;
         PurchaseID = p.getPurchaseID();
         VacationID = p.getVacationID();
         BuyerUserName = p.getBuyerUserName();
         Price = p.getPrice();
+        Details = details;
         destination = Destination;
+        SellerUserName = p.getSellerUserName();
 
+
+        cancel.setText("Cancel");
+
+
+        cancel.setOnAction(event -> {
+            //todo: add cancel option on button Cancel
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Not Implemented");
+            alert.setHeaderText("Will do that on next part of work.\n you can buy vacations so enjoy!!! bye");
+            alert.showAndWait();
+        });
         Details.setText("Details");
         Details.setOnAction(event -> {
 

@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import javax.print.attribute.standard.Destination;
 import java.io.IOException;
 
-public class RequestForSellerColumn {
+public class RequestForSellerRow {
 
     public String RequestID;
 
@@ -91,7 +91,7 @@ public class RequestForSellerColumn {
 
 
 
-    public RequestForSellerColumn(BuyingRequest br,String Destination, Button approve, Button decline, Button details) {
+    public RequestForSellerRow(BuyingRequest br, String Destination, Button approve, Button decline, Button details) {
         RequestID = br.getRequestID();
         VacationID = br.getVacationID();
         BuyerUserName = br.getBuyerUserName();

@@ -21,25 +21,25 @@ public class MyVacationsAsBuyerView implements Initializable {
     public Button BackButton;
 
     //first table:
-    public TableView<RequestForBuyerColumn> requestsTable;
-    public TableColumn<RequestForBuyerColumn, String> requestID;
-    public TableColumn<RequestForBuyerColumn, String> vacationID;
-    public TableColumn<RequestForBuyerColumn, String> destination;
-    public TableColumn<RequestForBuyerColumn, String> seller;
-    public TableColumn<RequestForBuyerColumn, String> status;
-    public TableColumn<RequestForBuyerColumn, Button> buy;
-    public TableColumn<RequestForBuyerColumn, Button> cancel;
-    public TableColumn<RequestForBuyerColumn, Button> details1;
+    public TableView<RequestForBuyerRow> requestsTable;
+    public TableColumn<RequestForBuyerRow, String> requestID;
+    public TableColumn<RequestForBuyerRow, String> vacationID;
+    public TableColumn<RequestForBuyerRow, String> destination;
+    public TableColumn<RequestForBuyerRow, String> seller;
+    public TableColumn<RequestForBuyerRow, String> status;
+    public TableColumn<RequestForBuyerRow, Button> buy;
+    public TableColumn<RequestForBuyerRow, Button> cancel;
+    public TableColumn<RequestForBuyerRow, Button> details1;
 
     //second table:
-    public TableView<PurchaseForBuyerColumn> purchasesTable;
-    public TableColumn<PurchaseForBuyerColumn, String> PurchaseID;
-    public TableColumn<PurchaseForBuyerColumn, String> VacationID2;
-    public TableColumn<PurchaseForBuyerColumn, String> seller2;
-    public TableColumn<PurchaseForBuyerColumn, String> destination2;
-    public TableColumn<PurchaseForBuyerColumn, String> price;
-    public TableColumn<PurchaseForSellerColumn, Button> details2;
-    public TableColumn<PurchaseForBuyerColumn, Button> cancel2;
+    public TableView<PurchaseForBuyerRow> purchasesTable;
+    public TableColumn<PurchaseForBuyerRow, String> PurchaseID;
+    public TableColumn<PurchaseForBuyerRow, String> VacationID2;
+    public TableColumn<PurchaseForBuyerRow, String> seller2;
+    public TableColumn<PurchaseForBuyerRow, String> destination2;
+    public TableColumn<PurchaseForBuyerRow, String> price;
+    public TableColumn<PurchaseForSellerRow, Button> details2;
+    public TableColumn<PurchaseForBuyerRow, Button> cancel2;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,7 +52,7 @@ public class MyVacationsAsBuyerView implements Initializable {
         cancel.setCellValueFactory(new PropertyValueFactory<>("cancel"));
         destination.setCellValueFactory(new PropertyValueFactory<>("destination"));
         details1.setCellValueFactory(new PropertyValueFactory<>("Details"));
-        ObservableList<RequestForBuyerColumn> requests = controller.getRequestsForBuyerTable();
+        ObservableList<RequestForBuyerRow> requests = controller.getRequestsForBuyerTable();
         requestsTable.setItems(requests);
 
         //second table:
@@ -63,7 +63,7 @@ public class MyVacationsAsBuyerView implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<>("Price"));
         details2.setCellValueFactory(new PropertyValueFactory<>("Details"));
         cancel2.setCellValueFactory(new PropertyValueFactory<>("cancel"));
-        ObservableList<PurchaseForBuyerColumn> purchases = controller.getPurchasesForBuyerTable();
+        ObservableList<PurchaseForBuyerRow> purchases = controller.getPurchasesForBuyerTable();
         purchasesTable.setItems(purchases);
 
     }
@@ -75,9 +75,9 @@ public class MyVacationsAsBuyerView implements Initializable {
 
     public void refresh(ActionEvent actionEvent) {
         requestsTable.setVisible(false);
-        ObservableList<RequestForBuyerColumn> requests = controller.getRequestsForBuyerTable();
+        ObservableList<RequestForBuyerRow> requests = controller.getRequestsForBuyerTable();
         requestsTable.setItems(requests);
-        ObservableList<PurchaseForBuyerColumn> purchases = controller.getPurchasesForBuyerTable();
+        ObservableList<PurchaseForBuyerRow> purchases = controller.getPurchasesForBuyerTable();
         purchasesTable.setItems(purchases);
         requestsTable.setVisible(true);
     }

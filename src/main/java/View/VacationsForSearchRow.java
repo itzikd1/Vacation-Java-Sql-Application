@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class VacationsForSearchColumn {
+public class VacationsForSearchRow {
     public Vacation vacation;
     public Button details;
     public Button buy;
@@ -97,7 +97,7 @@ public class VacationsForSearchColumn {
     }
 
 
-    public VacationsForSearchColumn(Vacation vacation, Button details, Button buy) {
+    public VacationsForSearchRow(Vacation vacation, Button details, Button buy) {
         this.vacation = vacation;
         this.departureDate = LocalDate.parse(vacation.getDepartureDate());
         this.returnDate = LocalDate.parse(vacation.getReturnDate());

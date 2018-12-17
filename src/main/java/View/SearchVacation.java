@@ -21,14 +21,14 @@ public class SearchVacation implements Initializable {
     public Button BackButton;
 
 
-    public TableView<VacationsForSearchColumn> vacationsTable;
-    public TableColumn<VacationsForSearchColumn, String> from;
-    public TableColumn<VacationsForSearchColumn, String> to;
-    public TableColumn<VacationsForSearchColumn, LocalDate> departDate;
-    public TableColumn<VacationsForSearchColumn, LocalDate> returnDate;
-    public TableColumn<VacationsForSearchColumn, Button> moreDetails;
-    public TableColumn<VacationsForSearchColumn, Button> buycolumn;
-    public TableColumn<VacationsForSearchColumn, String> seller;
+    public TableView<VacationsForSearchRow> vacationsTable;
+    public TableColumn<VacationsForSearchRow, String> from;
+    public TableColumn<VacationsForSearchRow, String> to;
+    public TableColumn<VacationsForSearchRow, LocalDate> departDate;
+    public TableColumn<VacationsForSearchRow, LocalDate> returnDate;
+    public TableColumn<VacationsForSearchRow, Button> moreDetails;
+    public TableColumn<VacationsForSearchRow, Button> buycolumn;
+    public TableColumn<VacationsForSearchRow, String> seller;
 
     //public Button b = new Button();
 
@@ -42,7 +42,7 @@ public class SearchVacation implements Initializable {
         buycolumn.setCellValueFactory(new PropertyValueFactory<>("buy"));
         seller.setCellValueFactory(new PropertyValueFactory<>("SellerUserName"));
 
-        ObservableList<VacationsForSearchColumn> vacations = controller.getVacationsForSearch();
+        ObservableList<VacationsForSearchRow> vacations = controller.getVacationsForSearch();
         //vacationsTable.setItems(tryme());
         vacationsTable.setItems(vacations);
     }

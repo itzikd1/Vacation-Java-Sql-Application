@@ -21,25 +21,25 @@ public class MyVacationsAsSellerView implements Initializable {
     public Button BackButton;
 
     //first table:
-    public TableView<RequestForSellerColumn> requestsTable;
-    public TableColumn<RequestForSellerColumn, String> requestID;
-    public TableColumn<RequestForSellerColumn, String> vacationID;
-    public TableColumn<RequestForSellerColumn, String> buyer;
-    public TableColumn<RequestForSellerColumn, String> status;
-    public TableColumn<RequestForSellerColumn, Button> approve;
-    public TableColumn<RequestForSellerColumn, Button> decline;
-    public TableColumn<RequestForSellerColumn, Button> details1;
-    public TableColumn<RequestForSellerColumn, String> destination;
+    public TableView<RequestForSellerRow> requestsTable;
+    public TableColumn<RequestForSellerRow, String> requestID;
+    public TableColumn<RequestForSellerRow, String> vacationID;
+    public TableColumn<RequestForSellerRow, String> buyer;
+    public TableColumn<RequestForSellerRow, String> status;
+    public TableColumn<RequestForSellerRow, Button> approve;
+    public TableColumn<RequestForSellerRow, Button> decline;
+    public TableColumn<RequestForSellerRow, Button> details1;
+    public TableColumn<RequestForSellerRow, String> destination;
 
 
     //second table:
-    public TableView<PurchaseForSellerColumn> purchasesTable;
-    public TableColumn<PurchaseForSellerColumn, String> PurchaseID;
-    public TableColumn<PurchaseForSellerColumn, String> VacationID2;
-    public TableColumn<PurchaseForSellerColumn, String> buyer2;
-    public TableColumn<PurchaseForSellerColumn, String> price;
-    public TableColumn<PurchaseForSellerColumn, Button> details2;
-    public TableColumn<PurchaseForSellerColumn, String> destination2;
+    public TableView<PurchaseForSellerRow> purchasesTable;
+    public TableColumn<PurchaseForSellerRow, String> PurchaseID;
+    public TableColumn<PurchaseForSellerRow, String> VacationID2;
+    public TableColumn<PurchaseForSellerRow, String> buyer2;
+    public TableColumn<PurchaseForSellerRow, String> price;
+    public TableColumn<PurchaseForSellerRow, Button> details2;
+    public TableColumn<PurchaseForSellerRow, String> destination2;
 
 
     @Override
@@ -53,7 +53,7 @@ public class MyVacationsAsSellerView implements Initializable {
         decline.setCellValueFactory(new PropertyValueFactory<>("decline"));
         details1.setCellValueFactory(new PropertyValueFactory<>("details"));
         destination.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        ObservableList<RequestForSellerColumn> requests = controller.getRequestsForSellerTable();
+        ObservableList<RequestForSellerRow> requests = controller.getRequestsForSellerTable();
         requestsTable.setItems(requests);
 
         //second table:
@@ -63,7 +63,7 @@ public class MyVacationsAsSellerView implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<>("Price"));
         details2.setCellValueFactory(new PropertyValueFactory<>("details"));
         destination2.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        ObservableList<PurchaseForSellerColumn> purchases = controller.getPurchasesForSellerTable();
+        ObservableList<PurchaseForSellerRow> purchases = controller.getPurchasesForSellerTable();
         purchasesTable.setItems(purchases);
 
 
@@ -76,9 +76,9 @@ public class MyVacationsAsSellerView implements Initializable {
 
     public void refresh(ActionEvent actionEvent) {
         requestsTable.setVisible(false);
-        ObservableList<RequestForSellerColumn> requests = controller.getRequestsForSellerTable();
+        ObservableList<RequestForSellerRow> requests = controller.getRequestsForSellerTable();
         requestsTable.setItems(requests);
-        ObservableList<PurchaseForSellerColumn> purchases = controller.getPurchasesForSellerTable();
+        ObservableList<PurchaseForSellerRow> purchases = controller.getPurchasesForSellerTable();
         purchasesTable.setItems(purchases);
         requestsTable.setVisible(true);
     }

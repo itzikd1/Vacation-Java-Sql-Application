@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class RequestForBuyerColumn {
+public class RequestForBuyerRow {
 
     public String RequestID;
     public String VacationID;
@@ -87,7 +87,7 @@ public class RequestForBuyerColumn {
         Cancel = cancel;
     }
 
-    public RequestForBuyerColumn(BuyingRequest br, String destination, Button b, Button c, Button details) {
+    public RequestForBuyerRow(BuyingRequest br, String destination, Button b, Button c, Button details) {
         RequestID = br.getRequestID();
         VacationID = br.getVacationID();
         SellerUserName = br.getSellerUserName();
