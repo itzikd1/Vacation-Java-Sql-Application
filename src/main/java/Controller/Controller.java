@@ -243,7 +243,7 @@ public class Controller {
             if (o[i] instanceof Vacation) {
                 Vacation v = (Vacation) o[i];
                 if (chceckVacationDate(v) == true && v.getStatus().equals("Available"))
-                    vacations.add(new VacationsForSearchRow(v, new Button(), new Button()));
+                    vacations.add(new VacationsForSearchRow(v, new Button(), new Button(), new Button()));
             } else System.out.println("wrong table in controller getVacationsForSearch");
         }
         return vacations;
@@ -288,6 +288,9 @@ public class Controller {
         return model.insertBuyingRequest(details);
     }
 
+    public void setTradeId(String vac_id) {
+        model.setCurrent_trade_id(vac_id);
+    }
     public boolean insertNewVacation(String tableName, Object[] vacation_details) throws V4UException {
 
         List<Integer> notEmptyStringFields = new ArrayList<>(Arrays.asList(0,2,3,5,8,9,13,14));

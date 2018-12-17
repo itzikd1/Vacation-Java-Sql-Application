@@ -135,7 +135,7 @@ public class RequestForSellerRow {
             if (flag) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Buying Request Approved");
-                alert.setHeaderText("Your confirmation has been sent to Seller. \nPlease check your requests page soon to see if he paid");
+                alert.setHeaderText("Your confirmation has been sent to Buyer. \nPlease check your requests page soon to see if he paid");
                 alert.showAndWait();
             }
         });

@@ -12,6 +12,17 @@ public class Model {
     private int purchaseIDCounter;
     private BuyingRequest current_buying_request = null; //only while user clicked on BUY button to pay this info will be updated
     private Vacation current_buying_vacation = null; //only while user try to buy or show details of vacation this will update
+    private String current_trade_id = null;
+
+
+    public String getCurrent_trade_id() {
+        return current_trade_id;
+    }
+
+    public void setCurrent_trade_id(String currrent_trade_id) {
+        this.current_trade_id = currrent_trade_id;
+    }
+
 
     public Vacation getCurrent_buying_vacation() {
         return current_buying_vacation;
@@ -191,8 +202,8 @@ public class Model {
 
 
     public void before_hagasha() {
-        database.dropTable("Vacations");
-        database.dropTable("Purchases");
+//        database.dropTable("Vacations");
+//        database.dropTable("Purchases");
         database.dropTable("BuyingRequests");
     }
 
@@ -298,9 +309,17 @@ public class Model {
     }
 
     public boolean insertBuyingRequest(String[] data) throws V4UException {
-
+        String trade_id = "";
+        if (this.current_trade_id!=null)
+            trade_id = current_trade_id;
+        String[] new_data = new String[database.get_num_of_fields("BuyingRequests")];
+        for (int i=0; i<data.length; i++) {
+            new_data[i]=data[i];
+        }
+        new_data[new_data.length-1] = trade_id;
+        setCurrent_trade_id(null);
         if(!database.buyingRequestExists(data[1],data[3]))
-            return database.insert("BuyingRequests",data);
+            return database.insert("BuyingRequests",new_data);
         return false;
     }
 

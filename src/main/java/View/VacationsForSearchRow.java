@@ -20,11 +20,20 @@ public class VacationsForSearchRow {
     public Button buy;
     public String from;
     public String destination;
-
+    public Button trade;
 
 
     public String SellerUserName;
     public LocalDate departureDate;
+
+
+    public Button getTrade() {
+        return trade;
+    }
+
+    public void setTrade(Button trade) {
+        this.trade = trade;
+    }
 
 
    // public static String get_static_vacationID(){
@@ -97,7 +106,7 @@ public class VacationsForSearchRow {
     }
 
 
-    public VacationsForSearchRow(Vacation vacation, Button details, Button buy) {
+    public VacationsForSearchRow(Vacation vacation, Button details, Button buy, Button trade) {
         this.vacation = vacation;
         this.departureDate = LocalDate.parse(vacation.getDepartureDate());
         this.returnDate = LocalDate.parse(vacation.getReturnDate());
@@ -106,12 +115,58 @@ public class VacationsForSearchRow {
         this.details = details;
         this.buy = buy;
         this.SellerUserName = vacation.getUserName();
+        this.trade = trade;
+
+        trade.setText("Trade");
 
         buy.setText("Buy");
 //        buy.maxWidth(Double.MAX_VALUE);
 //        buy.maxHeight(Double.MAX_VALUE);
 
+        Controller controller = Controller.getInstance();
 
+
+        trade.setOnAction(event -> {
+            boolean connected_user  = true;
+            if (controller.get_connected_user_id()==null)
+                connected_user=false;
+            if (connected_user) {
+                boolean flag = false;
+                if (controller.get_connected_user_id().equals(this.SellerUserName)) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Your request to trade has been cancelled");
+                    alert.setHeaderText("You can't trade vacation with yourself");
+                    alert.showAndWait();
+                    return;
+                }
+                try {
+                    //todo:// open window for choosing vacation for trade and send a request to buyer and call to this setTradeId
+
+                    flag = controller.insertBuyingRequest(vacation.getVacationID(),vacation.getUserName());
+                } catch (V4UException e) {
+                    System.out.println("error in insert");
+                }
+                if (flag) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Buying Request Sent");
+                    alert.setHeaderText("Your request to trade has been sent to Buyer. \nPlease check your requests page soon");
+                    alert.showAndWait();
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Why Buying again?!");
+                    alert.setHeaderText("You already request to buy/trade this vacation. \nPlease keep calm and check your requests page soon");
+                    alert.showAndWait();
+
+                }
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Log in");
+                alert.setHeaderText("Only signed users are allowing to request to buy vacations\nPlease close the window, log in and try again");
+                alert.showAndWait();
+            }
+        });
 
         details.setOnAction(event -> {
 
@@ -137,7 +192,6 @@ public class VacationsForSearchRow {
 //        details.maxWidth(Double.MAX_VALUE);
 //        details.maxHeight(Double.MAX_VALUE);
 
-        Controller controller = Controller.getInstance();
 
         buy.setOnAction(event -> {
             boolean connected_user  = true;

@@ -42,8 +42,9 @@
           <TableColumn fx:id="departDate" prefWidth="93.0" text="Depart" />
             <TableColumn fx:id="to" prefWidth="100.0" text="To" />
             <TableColumn fx:id="returnDate" prefWidth="110.0" text="Return" />
-            <TableColumn fx:id="moreDetails" prefWidth="123.0" text="More Details" />
-            <TableColumn fx:id="buycolumn" minWidth="2.0" prefWidth="112.0" text="Buy" />
+            <TableColumn fx:id="moreDetails" prefWidth="78.0" text="Details" />
+            <TableColumn fx:id="buycolumn" minWidth="2.0" prefWidth="74.0" text="Buy" />
+            <TableColumn fx:id="tradecolumn" minWidth="2.0" prefWidth="82.0" text="Trade" />
         </columns>
       </TableView>
    </children>
