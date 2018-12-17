@@ -316,5 +316,9 @@ public class Model {
 
         return database.update_one_field("Sold","Vacations","Status",current_buying_vacation.getVacationID());
     }
+
+    public void delete_myVacation() {
+        database.deleteAllVacations(current_buying_vacation.getVacationID(),"Vacations");
+    }
 }
 

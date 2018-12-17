@@ -144,22 +144,7 @@ public class MyVacations {
 
         // TODO: 17/12/2018 delete function  Itzik
         delete.setOnAction(event -> {
-
-            Stage s = (Stage) details.getScene().getWindow();
-//        s.close();
-            try {
-                Controller.vacationID = vacation.getVacationID();
-                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setResizable(true);
-                stage.setTitle("Details Vacation");
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            controller.delete_myVacation();
         });
 
         // TODO: 17/12/2018 edit function  Itzik

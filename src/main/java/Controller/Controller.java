@@ -467,5 +467,9 @@ public class Controller {
         } return purchases;
 
     }
+
+    public void delete_myVacation() {
+        model.delete_myVacation();
+    }
 }
 
