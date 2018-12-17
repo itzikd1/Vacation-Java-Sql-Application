@@ -141,6 +141,19 @@ public class VacationsForSearchRow {
                 }
                 try {
                     //todo:// open window for choosing vacation for trade and send a request to buyer and call to this setTradeId
+                    try {
+
+                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MyVacationForTrade.fxml"));
+                        Stage stage = new Stage();
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.setResizable(true);
+                        stage.setTitle("Choose one vacation");
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                     flag = controller.insertBuyingRequest(vacation.getVacationID(),vacation.getUserName());
                 } catch (V4UException e) {
