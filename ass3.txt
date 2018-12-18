@@ -1,0 +1,4 @@
+we have started the 4th assignment so...
+according to Lior Ben Eliezer request we have created ass3 link here of assignment3
+download from this commit from 11/12/2018
+https://github.com/itzikd1/IRMAFD/tree/b33155c4afe84062b7a7d73794803ee5ffd298bc 
