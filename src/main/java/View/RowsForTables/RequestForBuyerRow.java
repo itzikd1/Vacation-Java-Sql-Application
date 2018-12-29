@@ -131,7 +131,7 @@ public class RequestForBuyerRow {
                 Optional<ButtonType> result = alert2.showAndWait();
                 if (result.get() == ButtonType.YES) {
                     Controller.vacationID = VacationID;
-                }
+
                     flag2 = controller.updateRequest(RequestID, "Buyer Paid");
                     if (flag2) {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -140,6 +140,7 @@ public class RequestForBuyerRow {
                                 "Please check your Purchases page soon!");
                         alert.showAndWait();
                     }
+                }
 
 
 

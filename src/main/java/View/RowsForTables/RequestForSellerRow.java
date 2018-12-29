@@ -141,8 +141,8 @@ public class RequestForSellerRow {
             else { //case of "Approved" or "Waiting"
                     Alert alert3 = new Alert(Alert.AlertType.WARNING, "Are you approve " + br.getBuyerUserName() + " paid to you?\n" +
                             "please note: if you will click YES this vacation will be marked as sold on our system\n" +
-                            "if you will click NO, you will approve to " + br.getBuyerUserName() + " to buy, so he will probably pay to you soon",
-                            ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+                            "if you will click NO, nothing will happen for now",
+                            ButtonType.YES, ButtonType.NO);
                     Optional<ButtonType> result2 = alert3.showAndWait();
                     if (result2.get() == ButtonType.YES) {
                         controller.setCurrent_buying_request(br);
@@ -150,19 +150,12 @@ public class RequestForSellerRow {
                         if (flag) {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Buying Request Approved");
-                            alert.setHeaderText("Your confirmation has been sent to Seller. \nYour vacation has been sold!");
+                            alert.setHeaderText("Your confirmation has been sent to " +br.getBuyerUserName() +  "\nYour vacation has been sold!");
                             alert.showAndWait();
                         }
-                        } else if (result2.get() == ButtonType.NO) {
-                            flag = controller.updateRequest(RequestID, "Approved");
-                            if (flag) {
-                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                alert.setTitle("Buying Request Approved");
-                                alert.setHeaderText("Your confirmation has been sent to Buyer. \nPlease contact him to be paid and then approve it here");
-                                alert.showAndWait();
-                            }
-
                         }
+
+
 
                     }
 
