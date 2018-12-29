@@ -1,4 +1,4 @@
-package View;
+package View.Vacations;
 
 import Controller.Controller;
 import Model.Excpetions.WrongPricesInsertedException;
@@ -40,7 +40,7 @@ public class BuyVacationWindow implements Initializable {
         String Paypaluser = "";
         String payMentMethod = "";
         String CreditCard = "";
-        if (buttonStatus == false) {
+        if (!buttonStatus) {
             if (CardNumber.getLength() != 0 && CardCompany.getLength() != 0) {
                 Cardnumber = CardNumber.getText();
                 payMentMethod = "Credit Card";
@@ -74,8 +74,7 @@ public class BuyVacationWindow implements Initializable {
                 return;
             }
         }
-           boolean flag = controller.insert_purchase(Cardnumber,payMentMethod,Paypaluser);
-        //todo: for maor
+           boolean flag = controller.insert_purchase("br");
         if (flag) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Confirmation");

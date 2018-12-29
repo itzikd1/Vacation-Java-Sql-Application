@@ -1,6 +1,7 @@
-package View;
+package View.Vacations;
 
 import Controller.Controller;
+import View.RowsForTables.VacationsForSearchRow;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;

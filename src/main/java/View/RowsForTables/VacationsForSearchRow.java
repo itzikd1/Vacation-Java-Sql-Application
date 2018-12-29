@@ -1,4 +1,4 @@
-package View;
+package View.RowsForTables;
 
 import Controller.Controller;
 import Model.Excpetions.V4UException;
@@ -130,21 +130,34 @@ public class VacationsForSearchRow {
                     return;
                 }
 
-                    //todo:// open window for choosing vacation for trade and send a request to buyer and call to this setTradeId
                     try {
-                       // Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
+                        if (controller.trade_req_exists(vacation.getVacationID())) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Why asking Trading again?!");
+                            alert.setHeaderText("You already request to trade or to buy this vacation. \nPlease keep calm and check your trade requests page soon");
+                            alert.showAndWait();
+                        }
+                        else {
+                            // Controller.setVacationIDForTrade(vacation.getVacationID());
+                            controller.setTradeId(vacation.getVacationID());
+                            // Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("VacationDetailsWindow.fxml"));
+                            controller.setCurrent_trade_seller_user_name(vacation.getUserName());
+                            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MyVacationForTrade.fxml"));
+                            Stage stage = new Stage();
+                            stage.initModality(Modality.APPLICATION_MODAL);
+                            stage.setResizable(true);
 
-                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MyVacationForTrade.fxml"));
-                        Stage stage = new Stage();
-                        stage.initModality(Modality.APPLICATION_MODAL);
-                        stage.setResizable(true);
+                            stage.setTitle("Choose one vacation");
+                            Scene scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.show();
+                        }
 
-                        stage.setTitle("Choose one vacation");
-                        Scene scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.show();
                     } catch (IOException e) {
                         e.printStackTrace();
+                    }
+                    finally{
+                        //Controller.setVacationIDForTrade(null);
                     }
 
             } else {
@@ -198,7 +211,7 @@ public class VacationsForSearchRow {
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Why Buying again?!");
-                    alert.setHeaderText("You already request to buy this vacation. \nPlease keep calm and check your requests page soon");
+                    alert.setHeaderText("You already requested to buy this vacation. \nPlease keep calm and check your requests page soon");
                     alert.showAndWait();
                 }
             } else {

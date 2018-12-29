@@ -1,4 +1,4 @@
-package View;
+package View.Vacations;
 
 import Controller.Controller;
 import Model.Excpetions.V4UException;

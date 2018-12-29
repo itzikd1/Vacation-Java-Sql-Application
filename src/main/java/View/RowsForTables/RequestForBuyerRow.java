@@ -1,4 +1,4 @@
-package View;
+package View.RowsForTables;
 
 import Controller.Controller;
 import Model.BuyingRequest;
@@ -7,10 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class RequestForBuyerRow {
 
@@ -105,17 +107,44 @@ public class RequestForBuyerRow {
         Buy.setOnAction(event -> {
             Controller controller = Controller.getInstance();
             if (!Status.equals("Approved")) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Can't Buy");
-                alert.setHeaderText("Seller doesn't approved your request yet.\nYou can buy only approved vacations");
-                alert.showAndWait();
-                return;
+                if (!Status.equals("Buyer Paid")) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Can't Buy");
+                    alert.setHeaderText("Seller doesn't approved your request yet.\nYou can buy only approved vacations");
+                    alert.showAndWait();
+                    return;
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Contact seller");
+                    alert.setHeaderText("Seller doesn't approved your payment yet.\nIf you really paid for this vacation, contact him ASAP");
+                    alert.showAndWait();
+                    return;
+                }
+
             }
             controller.setCurrent_buying_request(br);
             Stage s = (Stage) details.getScene().getWindow();
-//        s.close();
-//            try {
-//                Controller.vacationID = VacationID;
+                boolean flag2 = false;
+                Alert alert2 = new Alert(Alert.AlertType.WARNING, "Are you promise to pay to " +
+                        br.getSellerUserName() + " immediately?",ButtonType.YES, ButtonType.NO);
+                Optional<ButtonType> result = alert2.showAndWait();
+                if (result.get() == ButtonType.YES) {
+                    Controller.vacationID = VacationID;
+                }
+                    flag2 = controller.updateRequest(RequestID, "Buyer Paid");
+                    if (flag2) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Paid");
+                        alert.setHeaderText("You will get the vacation only after seller will approve the cash payment by you\n" +
+                                "Please check your Purchases page soon!");
+                        alert.showAndWait();
+                    }
+
+
+
+
+//
 //                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("BuyVacationWindow.fxml"));
 //                Stage stage = new Stage();
 //                stage.initModality(Modality.APPLICATION_MODAL);
@@ -127,8 +156,8 @@ public class RequestForBuyerRow {
 //            } catch (IOException e) {
 //                e.printStackTrace();
 //            }
-//        });
-            boolean flag = false;
+       // });
+//            boolean flag = false;
         });
 
         Cancel.setOnAction(event -> {

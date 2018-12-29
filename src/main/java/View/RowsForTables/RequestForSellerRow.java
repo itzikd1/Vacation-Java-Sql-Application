@@ -1,4 +1,4 @@
-package View;
+package View.RowsForTables;
 
 import Controller.Controller;
 import Model.BuyingRequest;
@@ -7,14 +7,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class RequestForSellerRow {
 
-    public String RequestID;
+
 
     public String getDestination() {
         return destination;
@@ -23,7 +25,7 @@ public class RequestForSellerRow {
     public void setDestination(String destination) {
         this.destination = destination;
     }
-
+    public String RequestID;
     public String destination;
     public String VacationID;
     public String BuyerUserName;
@@ -105,18 +107,30 @@ public class RequestForSellerRow {
 
         Approve.setOnAction(event -> {
             Controller controller = Controller.getInstance();
+            boolean flag = false;
             if (Status.equals("Cancelled")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Can't Approve");
                 alert.setHeaderText("The Buyer has been cancelled his request. \nYou can't approve cancelled requests");
                 alert.showAndWait();
                 return;
-            } else if (Status.equals("Approved")) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Can't Approve");
-                alert.setHeaderText("You already approved this request. \nYou can't approve the same request more than once");
-                alert.showAndWait();
-                return;
+            } else if (Status.equals("Buyer Paid")) {
+                Alert alert2 = new Alert(Alert.AlertType.WARNING, "Are you approve " + br.getBuyerUserName() + "paid to you?\n" +
+                        "please note: if you will click YES this the vacation will be marked as sold on our system\n" +
+                        "if you choose no, nothing will happen for now", ButtonType.YES, ButtonType.NO);
+                Optional<ButtonType> result = alert2.showAndWait();
+                if (result.get() == ButtonType.YES) {
+                    controller.setCurrent_buying_request(br);
+                    flag = controller.insert_purchase("br");
+                    if (flag) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Buying Request Approved");
+                        alert.setHeaderText("Your confirmation has been sent to " + br.getBuyerUserName()+ " \nYour vacation has been sold!");
+                        alert.showAndWait();
+                    }
+                    return;
+                }
+
             } else if (Status.equals("Declined")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Can't Approve");
@@ -124,14 +138,34 @@ public class RequestForSellerRow {
                 alert.showAndWait();
                 return;
             }
-            boolean flag = false;
-            flag = controller.updateRequest(RequestID, "Approved");
-            if (flag) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Buying Request Approved");
-                alert.setHeaderText("Your confirmation has been sent to Buyer. \nPlease check your requests page soon to see if he paid");
-                alert.showAndWait();
-            }
+            else { //case of "Approved" or "Waiting"
+                    Alert alert3 = new Alert(Alert.AlertType.WARNING, "Are you approve " + br.getBuyerUserName() + " paid to you?\n" +
+                            "please note: if you will click YES this vacation will be marked as sold on our system\n" +
+                            "if you will click NO, you will approve to " + br.getBuyerUserName() + " to buy, so he will probably pay to you soon",
+                            ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+                    Optional<ButtonType> result2 = alert3.showAndWait();
+                    if (result2.get() == ButtonType.YES) {
+                        controller.setCurrent_buying_request(br);
+                        flag = controller.insert_purchase("br");
+                        if (flag) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Buying Request Approved");
+                            alert.setHeaderText("Your confirmation has been sent to Seller. \nYour vacation has been sold!");
+                            alert.showAndWait();
+                        }
+                        } else if (result2.get() == ButtonType.NO) {
+                            flag = controller.updateRequest(RequestID, "Approved");
+                            if (flag) {
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Buying Request Approved");
+                                alert.setHeaderText("Your confirmation has been sent to Buyer. \nPlease contact him to be paid and then approve it here");
+                                alert.showAndWait();
+                            }
+
+                        }
+
+                    }
+
         });
 
         decline.setOnAction(event -> {

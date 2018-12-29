@@ -1,4 +1,4 @@
-package View;
+package View.Account;
 
 import Controller.Controller;
 import Model.Excpetions.V4UException;

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="522.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyVacationsForTradeView">
+<AnchorPane prefHeight="522.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Vacations.MyVacationsForTradeView">
     <children>
         <ImageView fitHeight="522.0" fitWidth="834.0" layoutX="-19.0" pickOnBounds="true" preserveRatio="true">
             <image>

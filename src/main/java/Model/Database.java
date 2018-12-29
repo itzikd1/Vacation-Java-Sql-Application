@@ -146,15 +146,11 @@ class Database {
                 + " BuyerUserName varchar NOT NULL,\n"
                 + " SellerUserName varchar NOT NULL, \n"
                 + " Price varchar NOT NULL, \n"
-                + " PaymentMethod varchar NOT NULL, \n"
-                + " CreditCardNum varchar, \n"
-                + " PayPalUserName varchar, \n"
                 + " DateOfPurchase varchar"
 
                 + "  \n"
                 + ");";
-        String[] purchasesFields = {"PurchaseID","VacationID","BuyerUserName","SellerUserName",
-                "Price","PaymentMethod","CreditCardNum", "PayPalUserName", "DateOfPurchase"};
+        String[] purchasesFields = {"PurchaseID","VacationID","BuyerUserName","SellerUserName", "Price", "DateOfPurchase"};
         fieldsOfTables.put("Purchases" , purchasesFields);
         String vacationsSQL = "CREATE TABLE IF NOT EXISTS Vacations(\n"
                 + "\tVacationID varchar PRIMARY KEY,\n"
@@ -186,17 +182,29 @@ class Database {
                 + "\tVacationID varchar NOT NULL,\n"
                 + "\tSellerUserName varchar NOT NULL,\n"
                 + "\tBuyerUserName varchar NOT NULL,\n"
+                + "\tisApproved bit NOT NULL"
+                + " \n"
+                + ");";
+        String[] buyingRequestsFields = {"RequestID","VacationID","SellerUserName","BuyerUserName","isApproved"};
+        fieldsOfTables.put("BuyingRequests" , buyingRequestsFields);
+
+        String tradeRequestsSQL = "CREATE TABLE IF NOT EXISTS TradeRequests(\n"
+                + "\tRequestID varchar PRIMARY KEY,\n"
+                + "\tVacationID varchar NOT NULL,\n"
+                + "\tSellerUserName varchar NOT NULL,\n"
+                + "\tBuyerUserName varchar NOT NULL,\n"
                 + "\tisApproved bit NOT NULL," + " \n"
                 + "\ttradeID varchar" + " \n"
                 + ");";
-        String[] buyingRequestsFields = {"RequestID","VacationID","SellerUserName","BuyerUserName","isApproved", "tradeID"};
-        fieldsOfTables.put("BuyingRequests" , buyingRequestsFields);
+        String[] tradeRequestsFields = {"RequestID","VacationID","SellerUserName","BuyerUserName","isApproved", "tradeID"};
+        fieldsOfTables.put("TradeRequests" , tradeRequestsFields);
 
         boolean flag1 = runQuery(usersSQL);
         boolean flag2 = runQuery(purchasesSQL);
         boolean flag3 = runQuery(vacationsSQL);
         boolean flag4 = runQuery(buyingRequestsSQL);
-        return flag1 && flag2 && flag3 && flag4;
+        boolean flag5 = runQuery(tradeRequestsSQL);
+        return flag1 && flag2 && flag3 && flag4 && flag5;
     }
 
     /**
@@ -351,7 +359,21 @@ class Database {
                 }
             }
         }
-        return max;
+
+        String sql2 = "SELECT RequestID FROM TradeRequests";
+        LinkedList<String> ans2 = runQueryReturnOutputForOneField(sql,"BuyingRequests", "RequestID");
+        int max2 = 0;
+        if (ans != null) {
+            for (String num : ans) {
+                int x = Integer.parseInt(num);
+                if (x > max2) {
+                    max2 = x;
+                }
+            }
+        }
+        if (max>max2)
+            return max;
+        else return max2;
     }
 
     public int getMaxPurchaseID (){
@@ -400,6 +422,16 @@ class Database {
 
         return runQueryReturnOutput(sql,"BuyingRequests")[0]!=null;
     }
+
+    public boolean tradeRequestExists(String vacationID, String buyerID) {
+
+        String sql = "SELECT * FROM TradeRequests WHERE VacationID  = '" + vacationID +
+                "' AND BuyerUserName = '" + buyerID+"'";
+
+        return runQueryReturnOutput(sql,"TradeRequests")[0]!=null;
+    }
+
+
 
     public String getPriceForCurrentVacation(String vacationID) {
         String sql = "SELECT * FROM Vacations WHERE VacationID  = '" + vacationID + "'";

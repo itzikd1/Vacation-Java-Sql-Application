@@ -1,6 +1,7 @@
-package View;
+package View.Vacations;
 import Controller.Controller;
 import Model.Vacation;
+import View.RowsForTables.MyVacationsRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,7 +42,6 @@ public class MyVacationsView implements Initializable {
         moreDetails.setCellValueFactory(new PropertyValueFactory<>("details"));
         delete.setCellValueFactory(new PropertyValueFactory<>("delete"));
 
-        // TODO: 17/12/2018 edit  Itzik
         ObservableList<MyVacationsRow> vacations = controller.getMyVacations();
         //vacationsTable.setItems(tryme());
         vacationsTable.setItems(vacations);

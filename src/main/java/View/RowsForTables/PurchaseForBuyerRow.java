@@ -1,4 +1,4 @@
-package View;
+package View.RowsForTables;
 
 import Controller.Controller;
 import Model.Purchase;
@@ -102,10 +102,9 @@ public class PurchaseForBuyerRow {
         Details.setText("Details");
 
         cancel.setOnAction(event -> {
-            //todo: add cancel option on button Cancel
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Not Implemented");
-            alert.setHeaderText("Will do that on next part of work.\n you can buy vacations so enjoy!!! bye");
+            alert.setHeaderText("We decided to not implement this on this part of the assignment\n you can buy vacations / trade them, so enjoy");
             alert.showAndWait();
         });
 

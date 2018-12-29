@@ -44,7 +44,5 @@ public class Main extends Application {
         launch(args);
     }
 
-    //todo: to change on trade request (while I show them) - check dates function as raanan did for ragular buying rqeuest
-    //todo: or just see why the vacation of itzik doesn'y work on trade (buenos aires)
 }
 

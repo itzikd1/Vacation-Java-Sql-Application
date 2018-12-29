@@ -1,4 +1,4 @@
-package View;
+package View.RowsForTables;
 
 import Controller.Controller;
 import Model.Excpetions.V4UException;
@@ -125,37 +125,27 @@ public class MyVacationForTradeRow {
         choose.setOnAction(event -> {
             boolean flag = false;
             Stage s = (Stage) choose.getScene().getWindow();
-            controller.setTradeId(vacation.getVacationID());
             try {
-                flag = controller.insertBuyingRequest(vacation.getVacationID(),vacation.getUserName());
+                flag = controller.insertBuyingRequest(vacation.getVacationID(),"will be changed"); //will be changed on model because it has been setted from outside
             } catch (V4UException e) {
                 e.printStackTrace();
             }
             if (flag) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Trade request");
-                alert.setHeaderText("your request for trade has been sent to seller!\n please check soon your requests page!");
+                alert.setHeaderText("your request for trade has been sent to seller!\n You cancel this request anytime until the seller will approve this,\nif the seller will approve this -> you will switch your vacations!\n to be updated, check your purchases / requests page from time to time!");
                 alert.showAndWait();
             }
             else {
-                System.out.println("problem in inserting trade request");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Why asking Trading again?!");
+                alert.setHeaderText("You already request to trade this vacation. \nPlease keep calm and check your trade requests page soon");
+                alert.showAndWait();
+                System.out.println("should never prints this line. so if this happen check the problem on line 144 pon MyVacationForTradeRow.java");
             }
             s.close();
         });
     }
 }
 
-/**
- todo:
- יוזר שולח בקשה לקנייה או החלפה
- אם קנייה:
- סלר מאשר
- יוזר מאמת ששילם
- סלר מ..  אשר קבלת תשלום
- העסקה התבצעה
 
- אם החלפה:
- סלר מאשר
-**/
-
-//todo: to open a new trades requests table & move the history of purchases to another page.

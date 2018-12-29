@@ -7,20 +7,16 @@ public class Purchase {
     private String BuyerUserName;
     private String SellerUserName;
     private String Price;
-    private String PaymentMethod;
-    private String CreditCardNum;
-    private String PayPalUserName;
+
     private String DateOfPurchase;
 
-    public Purchase(String purchaseID, String vacationID, String buyerUserName, String sellerUserName, String price, String paymentMethod, String creditCardNum, String payPalUserName, String dateOfPurchase) {
+    public Purchase(String purchaseID, String vacationID, String buyerUserName, String sellerUserName, String price, String dateOfPurchase) {
         PurchaseID = purchaseID;
         VacationID = vacationID;
         BuyerUserName = buyerUserName;
         SellerUserName = sellerUserName;
         Price = price;
-        PaymentMethod = paymentMethod;
-        CreditCardNum = creditCardNum;
-        PayPalUserName = payPalUserName;
+
         DateOfPurchase = dateOfPurchase;
     }
 
@@ -30,10 +26,7 @@ public class Purchase {
         BuyerUserName = details[2];
         SellerUserName = details[3];
         Price = details[4];
-        PaymentMethod = details[5];
-        CreditCardNum = details[6];
-        PayPalUserName = details[7];
-        DateOfPurchase = details[8];
+        DateOfPurchase = details[5];
     }
 
 
@@ -77,18 +70,6 @@ public class Purchase {
         Price = price;
     }
 
-    public String getPaymentMethod() {
-        return PaymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        PaymentMethod = paymentMethod;
-    }
-
-    public String getCreditCardNum() {
-        return CreditCardNum;
-    }
-
     public String getDateOfPurchase() {
         return DateOfPurchase;
     }
@@ -96,16 +77,5 @@ public class Purchase {
     public void setDateOfPurchase(String dateOfPurchase) {
         DateOfPurchase = dateOfPurchase;
     }
-
-    public void setCreditCardNum(String creditCardNum) {
-        CreditCardNum = creditCardNum;
-    }
-
-    public String getPayPalUserName() {
-        return PayPalUserName;
-    }
-
-    public void setPayPalUserName(String payPalUserName) {
-        PayPalUserName = payPalUserName;
-    }
 }
+

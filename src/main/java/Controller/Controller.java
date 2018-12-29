@@ -6,7 +6,8 @@ import Model.User;
 import Model.Vacation;
 import Model.Purchase;
 import Model.BuyingRequest;
-import View.*;
+import Model.TradeRequest;
+import View.RowsForTables.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -31,6 +32,10 @@ public class Controller {
     public static String vacationID; // for vacation details window
     private Model model;
 
+
+
+
+
     private Controller() {
         this.model = Model.getInstance();
     }
@@ -46,24 +51,42 @@ public class Controller {
         return model.getPriceForCurrentVacation();
     }
 
-    public boolean insert_purchase(String creditCard, String payMentMethod, String PayPalUserName) {
-        boolean flag_remove = model.delete_buying_request();
+    public void setCurrent_trade_seller_user_name(String s) {
+        model.setCurrent_trade_seller_user_name(s);
+    }
+
+    public String getCurrent_trade_seller_user_name() {
+        return model.getCurrent_trade_seller_user_name();
+    }
+
+    public boolean insert_purchase(String brORtr) {
+        boolean flag_remove;
+        boolean all_of_trade_case = true;
+        boolean trade_case = false;
+        if (brORtr.equals("br")) {
+            flag_remove = model.delete_buying_request();
+        }
+        else {  //trede case
+            flag_remove = model.delete_trade_request();
+            trade_case = true;
+        }
         if (!flag_remove)
             return false;
         readVacation(getCurrent_buying_request().getVacationID()); //this is neccsary for the next line
         Vacation current_vacation = model.getCurrent_buying_vacation();
-        String[] purchase_details = new String[9];
+        String[] purchase_details = new String[model.get_num_of_fields("Purchases")];
        purchase_details[0] = String.valueOf(model.getNextPurchaseID());
        purchase_details[1] = current_vacation.getVacationID();
        purchase_details[2] = getCurrent_buying_request().getBuyerUserName();
        purchase_details[3] = getCurrent_buying_request().getSellerUserName();
-       purchase_details[4] = current_vacation.getPrice();
-        purchase_details[5] = payMentMethod;
-        purchase_details[6] = creditCard;
-       purchase_details[7] = PayPalUserName;
+       if (trade_case)
+           purchase_details[4] = "Trade";
+       else
+            purchase_details[4] = current_vacation.getPrice();
+
        //date of today:
         LocalDate date = LocalDate.now();
-        purchase_details[8] = date.toString();
+        purchase_details[5] = date.toString();
         boolean flag_insert_purchase = false;
         try {
             flag_insert_purchase = model.insert("Purchases",purchase_details);
@@ -75,7 +98,38 @@ public class Controller {
             flag_of_remove_from_vacations = model.delete_vacation();
         }
         boolean flag_of_remove_of_all_buying_requests = model.delete_all_buying_requets_for_vacationID();
-        return  flag_insert_purchase && flag_of_remove_from_vacations && flag_of_remove_of_all_buying_requests;
+        boolean flag_of_remove_of_all_trade_requests = model.delete_all_trade_requets_for_vacationID();
+
+
+        if (trade_case) {
+            readVacation(((TradeRequest)getCurrent_buying_request()).getTradeID()); //this is neccsary for the next line
+            Vacation current_vacation2 = model.getCurrent_buying_vacation();
+            String[] purchase_details2 = new String[model.get_num_of_fields("Purchases")];
+            purchase_details2[0] = String.valueOf(model.getNextPurchaseID());
+            purchase_details2[1] = current_vacation2.getVacationID();
+            purchase_details2[2] = getCurrent_buying_request().getSellerUserName();
+            purchase_details2[3] = getCurrent_buying_request().getBuyerUserName();
+            purchase_details2[4] = "Trade";
+
+            //date of today:
+            purchase_details2[5] = date.toString();
+            boolean flag_insert_purchase2 = false;
+            try {
+                flag_insert_purchase2 = model.insert("Purchases",purchase_details2);
+            } catch (V4UException e) {
+                System.out.println(e.getMessage());
+            }
+            boolean flag_of_remove_from_vacations2 = false;
+            if (flag_insert_purchase) {
+                flag_of_remove_from_vacations2 = model.delete_vacation();
+            }
+            boolean flag_of_remove_of_all_buying_requests2 = model.delete_all_buying_requets_for_vacationID();
+            boolean flag_of_remove_of_all_trade_requests2 = model.delete_all_trade_requets_for_vacationID();
+
+            all_of_trade_case = flag_insert_purchase2 && flag_of_remove_from_vacations2 && flag_of_remove_of_all_buying_requests2 && flag_of_remove_of_all_trade_requests2;
+
+        }
+        return  flag_insert_purchase && flag_of_remove_from_vacations && flag_of_remove_of_all_buying_requests && flag_of_remove_of_all_trade_requests && all_of_trade_case;
     }
 
     public Period getPeriod(Date date) throws TooYoungException {
@@ -302,8 +356,18 @@ public class Controller {
         return model.insertBuyingRequest(details);
     }
 
+    public boolean trade_req_exists(String vac_id ) {
+        String buyer = get_connected_user_id();
+        return model.trade_req_exists(vac_id,buyer);
+    }
+
+
     public void setTradeId(String vac_id) {
         model.setCurrent_trade_id(vac_id);
+    }
+
+    public String getTradeId() {
+        return model.getCurrent_trade_id();
     }
     public boolean insertNewVacation(String tableName, Object[] vacation_details) throws V4UException {
 
@@ -437,6 +501,10 @@ public class Controller {
         return model.updateRequest(requestID, status);
     }
 
+    public boolean updateTradeRequest(String requestID, String status) {
+        return model.updateTradeRequest(requestID, status);
+    }
+
     public ObservableList<RequestForBuyerRow> getRequestsForBuyerTable() {
         ObservableList<RequestForBuyerRow> requests = FXCollections.observableArrayList();
         Object[] o = model.readAllForOneUser("BuyingRequests","BuyerUserName");
@@ -481,16 +549,50 @@ public class Controller {
         for (int i = 0; i < o.length; i++) {
             if (o[i] instanceof Vacation) {
                 Vacation v = (Vacation) o[i];
-                if (v.getUserName().equals(model.connected_user.getUsername()))
+                if (v.getUserName().equals(model.connected_user.getUsername()) && chceckVacationDate(v))
                     vacations.add(new MyVacationForTradeRow(v, new Button(), new Button()));
             } else System.out.println("wrong table in controller getVacationsForSearch");
         }
         return vacations;
     }
 
+    public ObservableList<TradeRequestForSellerRow> getTradeRequestsForSellerTable() {
+        ObservableList<TradeRequestForSellerRow> requests = FXCollections.observableArrayList();
+        Object[] o = model.readAllForOneUser("TradeRequests","SellerUserName");
+        for (int i = 0; i < o.length; i++) {
+            if (o[i] instanceof TradeRequest) {
+                TradeRequest b = (TradeRequest)o[i];
+                String vacationID = b.VacationID;
+                Vacation v = (Vacation)model.read("Vacations",vacationID);
+                requests.add(new TradeRequestForSellerRow(b,v.getDestination(), new Button(),new Button(), new Button(), new Button()));
+            }
+            else
+                System.out.println("wrong table in controller getTradeRequestsForSellerTableTable");
+
+        } return requests;
+    }
+
+    public ObservableList<TradeRequestForBuyerRow> getTradeRequestsForBuyerTable() {
+        ObservableList<TradeRequestForBuyerRow> requests = FXCollections.observableArrayList();
+        Object[] o = model.readAllForOneUser("TradeRequests","BuyerUserName");
+        for (int i = 0; i < o.length; i++) {
+            if (o[i] instanceof TradeRequest) {
+                TradeRequest b = (TradeRequest)o[i];
+                String vacationID = b.VacationID;
+                Vacation v = (Vacation)model.read("Vacations",vacationID);
+                requests.add(new TradeRequestForBuyerRow(b,v.getDestination(), new Button(), new Button(), new Button()));
+            }
+            else
+                System.out.println("wrong table in controller getTradeRequestsForSellerTableTable");
+
+        } return requests;
+    }
+
+
+
 
 //    public void edit_myVacation(String vacationID) {
 //        model.updateMyVacation(vacationID);
 //    }
-}
 
+}

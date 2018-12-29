@@ -1,5 +1,6 @@
-package View;
+package View.Vacations;
 import Controller.Controller;
+import View.RowsForTables.MyVacationForTradeRow;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -26,6 +27,7 @@ public class MyVacationsForTradeView implements Initializable {
     public TableColumn<MyVacationForTradeRow, LocalDate> returnDate;
     public TableColumn<MyVacationForTradeRow, Button> moreDetails;
     public TableColumn<MyVacationForTradeRow, Button> trade;
+
 
     //public Button b = new Button();
 

@@ -34,14 +34,13 @@ public class MainPageView implements Initializable {
     public Button my_vacations_as_seller;
     public Button my_vacations_as_buyer;
     public Button my_vacations_b;
+    public Button purchases_sells_button;
 
 
     public TextField tf_username;
     public PasswordField tf_password;
     private Controller controller = Controller.getInstance();
-    //todo: Commit of 10/12/2018 - 19:00 final version ..
 
-//todo: to show message when user log in and log out (only if he have new sell or buying request or purchase)
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -101,7 +100,7 @@ public class MainPageView implements Initializable {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
-            stage.setTitle("UpdateInfo");
+            stage.setTitle("Update Info");
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -180,6 +179,7 @@ public class MainPageView implements Initializable {
         my_vacations_as_seller.setDisable(false);
         my_vacations_as_buyer.setDisable(false);
         my_vacations_b.setDisable(false);
+        purchases_sells_button.setDisable(false);
     }
     private void switchToLogout() {
         account_settings.setVisible(false);
@@ -192,6 +192,7 @@ public class MainPageView implements Initializable {
         my_vacations_as_seller.setDisable(true);
         my_vacations_as_buyer.setDisable(true);
         my_vacations_b.setDisable(true);
+        purchases_sells_button.setDisable(true);
     }
 
 
@@ -240,11 +241,11 @@ public class MainPageView implements Initializable {
         Stage s = (Stage) my_vacations_as_seller.getScene().getWindow();
 //        s.close();
         try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MyVacationsAsSeller.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("RequestsForMyVacations.fxml"));
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
-            stage.setTitle("My Vacations");
+            stage.setTitle("Requests for my Vacations");
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -257,11 +258,11 @@ public class MainPageView implements Initializable {
         Stage s = (Stage) my_vacations_as_seller.getScene().getWindow();
 //        s.close();
         try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MyVacationsAsBuyer.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("MyRequests.fxml"));
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
-            stage.setTitle("My Vacations");
+            stage.setTitle("My Requests");
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -279,6 +280,23 @@ public class MainPageView implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             stage.setTitle("My Vacations");
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void purchases_sells_command(ActionEvent actionEvent) {
+        Stage s = (Stage) my_vacations_b.getScene().getWindow();
+//        s.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("PurchasesAndSells.fxml"));
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Purchases & Sells");
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

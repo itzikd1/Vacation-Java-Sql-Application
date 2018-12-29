@@ -1,6 +1,8 @@
-package View;
+package View.Vacations;
 
 import Controller.Controller;
+import View.RowsForTables.RequestForSellerRow;
+import View.RowsForTables.TradeRequestForSellerRow;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -13,7 +15,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MyVacationsAsSellerView implements Initializable {
+public class RequestsForMyVacationsView implements Initializable {
 
 
     private Controller controller = Controller.getInstance();
@@ -28,18 +30,28 @@ public class MyVacationsAsSellerView implements Initializable {
     public TableColumn<RequestForSellerRow, String> status;
     public TableColumn<RequestForSellerRow, Button> approve;
     public TableColumn<RequestForSellerRow, Button> decline;
-    public TableColumn<RequestForSellerRow, Button> details1;
+    public TableColumn<RequestForSellerRow, Button> details;
     public TableColumn<RequestForSellerRow, String> destination;
 
 
     //second table:
-    public TableView<PurchaseForSellerRow> purchasesTable;
-    public TableColumn<PurchaseForSellerRow, String> PurchaseID;
-    public TableColumn<PurchaseForSellerRow, String> VacationID2;
-    public TableColumn<PurchaseForSellerRow, String> buyer2;
-    public TableColumn<PurchaseForSellerRow, String> price;
-    public TableColumn<PurchaseForSellerRow, Button> details2;
-    public TableColumn<PurchaseForSellerRow, String> destination2;
+    public TableView<TradeRequestForSellerRow> trade_req_Table;
+    public TableColumn<TradeRequestForSellerRow, String> requestID1;
+    public TableColumn<TradeRequestForSellerRow, String> vacationID1;
+    public TableColumn<TradeRequestForSellerRow, String> destination1;
+    public TableColumn<TradeRequestForSellerRow, String> trader;
+    public TableColumn<TradeRequestForSellerRow, Button> offer;
+    public TableColumn<TradeRequestForSellerRow, String> status1;
+    public TableColumn<TradeRequestForSellerRow, Button> approve1;
+    public TableColumn<TradeRequestForSellerRow, Button> decline1;
+    public TableColumn<TradeRequestForSellerRow, Button> details1;
+
+
+
+
+
+
+
 
 
     @Override
@@ -51,20 +63,26 @@ public class MyVacationsAsSellerView implements Initializable {
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         approve.setCellValueFactory(new PropertyValueFactory<>("approve"));
         decline.setCellValueFactory(new PropertyValueFactory<>("decline"));
-        details1.setCellValueFactory(new PropertyValueFactory<>("details"));
+        details.setCellValueFactory(new PropertyValueFactory<>("details"));
         destination.setCellValueFactory(new PropertyValueFactory<>("destination"));
         ObservableList<RequestForSellerRow> requests = controller.getRequestsForSellerTable();
         requestsTable.setItems(requests);
 
         //second table:
-        PurchaseID.setCellValueFactory(new PropertyValueFactory<>("PurchaseID"));
-        VacationID2.setCellValueFactory(new PropertyValueFactory<>("VacationID"));
-        buyer2.setCellValueFactory(new PropertyValueFactory<>("BuyerUserName"));
-        price.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        details2.setCellValueFactory(new PropertyValueFactory<>("details"));
-        destination2.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        ObservableList<PurchaseForSellerRow> purchases = controller.getPurchasesForSellerTable();
-        purchasesTable.setItems(purchases);
+        requestID1.setCellValueFactory(new PropertyValueFactory<>("RequestID"));
+        vacationID1.setCellValueFactory(new PropertyValueFactory<>("VacationID"));
+        destination1.setCellValueFactory(new PropertyValueFactory<>("Destination"));
+        trader.setCellValueFactory(new PropertyValueFactory<>("TraderUserName"));
+        offer.setCellValueFactory(new PropertyValueFactory<>("Offer"));
+        status1.setCellValueFactory(new PropertyValueFactory<>("Status"));
+        approve1.setCellValueFactory(new PropertyValueFactory<>("Approve"));
+        decline1.setCellValueFactory(new PropertyValueFactory<>("Decline"));
+        details1.setCellValueFactory(new PropertyValueFactory<>("Details"));
+        ObservableList<TradeRequestForSellerRow> trade_requests = controller.getTradeRequestsForSellerTable();
+        trade_req_Table.setItems(trade_requests);
+
+
+
 
 
     }
@@ -78,8 +96,11 @@ public class MyVacationsAsSellerView implements Initializable {
         requestsTable.setVisible(false);
         ObservableList<RequestForSellerRow> requests = controller.getRequestsForSellerTable();
         requestsTable.setItems(requests);
-        ObservableList<PurchaseForSellerRow> purchases = controller.getPurchasesForSellerTable();
-        purchasesTable.setItems(purchases);
         requestsTable.setVisible(true);
+
+        trade_req_Table.setVisible(false);
+        ObservableList<TradeRequestForSellerRow> trade_requests = controller.getTradeRequestsForSellerTable();
+        trade_req_Table.setItems(trade_requests);
+        trade_req_Table.setVisible(true);
     }
 }

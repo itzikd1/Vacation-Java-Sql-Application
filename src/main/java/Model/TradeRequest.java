@@ -1,28 +1,19 @@
 package Model;
 
-public class BuyingRequest {
+public class TradeRequest extends BuyingRequest {
 
 
-    public String RequestID;
-    public String VacationID;
-    public String SellerUserName;
-    public String BuyerUserName;
-    public String isApproved;
+    public String tradeID; //vacation ID of traded offered vacation
 
-    public BuyingRequest(String requestID, String vacationID, String sellerUserName, String buyerUserName, String isApproved) {
-        RequestID = requestID;
-        VacationID = vacationID;
-        SellerUserName = sellerUserName;
-        BuyerUserName = buyerUserName;
-        this.isApproved = isApproved; // "Waiting" / "Approved" / "Not Approved" / "Cancelled" /"Buyer Paid"
-}
+    public TradeRequest(String requestID, String vacationID, String sellerUserName, String buyerUserName, String isApproved, String trade_id) {
+        super(requestID,vacationID,sellerUserName,buyerUserName,isApproved);
+        this.tradeID=trade_id;
+    }
 
-    public BuyingRequest(String[] data) {
-        RequestID = data[0];
-        VacationID = data[1];
-        SellerUserName = data[2];
-        BuyerUserName = data[3];
-        this.isApproved = data[4];
+
+    public TradeRequest(String[] data) {
+        super(data);
+        this.tradeID = data[5];
     }
 
 
@@ -64,6 +55,15 @@ public class BuyingRequest {
 
     public String getIsApproved() {
         return isApproved;
+    }
+
+
+    public String getTradeID() {
+        return tradeID;
+    }
+
+    public void setTradeID(String tradeID) {
+        this.tradeID = tradeID;
     }
 }
 

@@ -1,4 +1,4 @@
-package View;
+package View.Account;
 
 import Controller.Controller;
 import javafx.event.ActionEvent;

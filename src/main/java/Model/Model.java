@@ -13,7 +13,15 @@ public class Model {
     private BuyingRequest current_buying_request = null; //only while user clicked on BUY button to pay this info will be updated
     private Vacation current_buying_vacation = null; //only while user try to buy or show details of vacation this will update
     private String current_trade_id = null;
+    private String current_trade_seller_user_name = null;
 
+    public String getCurrent_trade_seller_user_name() {
+        return current_trade_seller_user_name;
+    }
+
+    public void setCurrent_trade_seller_user_name(String current_trade_seller_user_name) {
+        this.current_trade_seller_user_name = current_trade_seller_user_name;
+    }
 
     public String getCurrent_trade_id() {
         return current_trade_id;
@@ -44,7 +52,7 @@ public class Model {
     private Model() {
 
         createDataBase();
-       // before_hagasha();
+        //before_hagasha();
         createTables();
         vacationIDCounter = searchForNext() + 1;
         requestIDCounter = searchForNextRequestID() + 1;
@@ -120,6 +128,12 @@ public class Model {
         return flag;
     }
 
+
+    public boolean delete_all_trade_requets_for_vacationID() {
+        boolean flag = database.deleteAllVacations(current_buying_vacation.getVacationID(),"TradeRequests" );
+        return flag;
+    }
+
     public int get_num_of_fields(String table_name) {
         return database.get_num_of_fields(table_name);
     }
@@ -167,11 +181,8 @@ public class Model {
                 String BuyerUserName = result[2];
                 String SellerUserName = result[3];
                 String Price2 = result[4];
-                String PaymentMethod = result[5];
-                String CreditCardNum = result[6];
-                String PayPalUserName = result[7];
-                String DateOfPurchase = result[8];
-                ans = new Purchase(PurchaseID,VacationID2,BuyerUserName,SellerUserName,Price2,PaymentMethod,CreditCardNum,PayPalUserName,DateOfPurchase);
+                String DateOfPurchase = result[5];
+                ans = new Purchase(PurchaseID,VacationID2,BuyerUserName,SellerUserName,Price2,DateOfPurchase);
                 break;
         }
         return ans;
@@ -203,8 +214,9 @@ public class Model {
 
     public void before_hagasha() {
 //        database.dropTable("Vacations");
-//        database.dropTable("Purchases");
-        database.dropTable("BuyingRequests");
+  database.dropTable("Purchases");
+      // database.dropTable("BuyingRequests");
+       //database.dropTable("TradeRequests");
     }
 
     private void clear_connected_user() {
@@ -257,6 +269,8 @@ public class Model {
                 return vacations;
             case "BuyingRequests":
                 return buying_req_switch_case(tableName,field,user_name_id);
+            case "TradeRequests":
+                return trade_req_switch_case(tableName,field,user_name_id);
             case "Purchases":
                 return purchase_switch_case(tableName,field,user_name_id);
 
@@ -265,8 +279,18 @@ public class Model {
         return null;
     }
 
-    private  BuyingRequest[] buying_req_switch_case(String tableName, String field, String user_name_id) {
+    private TradeRequest[] trade_req_switch_case(String tableName, String field, String user_name_id) {
         Object[] items = null;
+        items = getObjects(tableName, field, user_name_id, items);
+        TradeRequest[] requests = new TradeRequest[items.length];
+        for (int i=0; i< items.length; i++) {
+            TradeRequest br = new TradeRequest((String[]) items[i]);
+            requests[i] = br;
+        }
+        return requests;
+    }
+
+    private Object[] getObjects(String tableName, String field, String user_name_id, Object[] items) {
         switch (field) {
             case "SellerUserName":
                 items = database.getAllDataForOneUser(tableName, "SellerUserName", user_name_id);
@@ -275,6 +299,12 @@ public class Model {
                 items = database.getAllDataForOneUser(tableName, "BuyerUserName", user_name_id);
                 break;
         }
+        return items;
+    }
+
+    private  BuyingRequest[] buying_req_switch_case(String tableName, String field, String user_name_id) {
+        Object[] items = null;
+        items = getObjects(tableName, field, user_name_id, items);
         BuyingRequest[] requests = new BuyingRequest[items.length];
         for (int i=0; i< items.length; i++) {
             BuyingRequest br = new BuyingRequest((String[]) items[i]);
@@ -285,14 +315,7 @@ public class Model {
 
     private  Purchase[] purchase_switch_case(String tableName, String field, String user_name_id) {
         Object[] items = null;
-        switch (field) {
-            case "SellerUserName":
-                items = database.getAllDataForOneUser(tableName, "SellerUserName", user_name_id);
-                break;
-            case "BuyerUserName":
-                items = database.getAllDataForOneUser(tableName, "BuyerUserName", user_name_id);
-                break;
-        }
+        items = getObjects(tableName, field, user_name_id, items);
         Purchase[] purchases = new Purchase[items.length];
         for (int i=0; i< items.length; i++) {
             Purchase pu = new Purchase((String[]) items[i]);
@@ -310,21 +333,46 @@ public class Model {
 
     public boolean insertBuyingRequest(String[] data) throws V4UException {
         String trade_id = "";
-        if (this.current_trade_id!=null)
+        String[] new_data;
+        String table_name = "BuyingRequests";
+        if (this.current_trade_id != null) {
+            table_name = "TradeRequests";
             trade_id = current_trade_id;
-        String[] new_data = new String[database.get_num_of_fields("BuyingRequests")];
-        for (int i=0; i<data.length; i++) {
-            new_data[i]=data[i];
+            new_data = new String[database.get_num_of_fields(table_name)];
+            for (int i = 0; i < data.length; i++) {
+                new_data[i] = data[i];
+            }
+            new_data[2] = getCurrent_trade_seller_user_name(); //for changing it to current seller. will be setted from GUI
+            String tmp = new_data[1];
+            new_data[1] = trade_id;
+            new_data[new_data.length - 1] = tmp;
+
+            setCurrent_trade_id(null);
+            setCurrent_trade_seller_user_name(null);
+            if (!database.tradeRequestExists(new_data[1], new_data[3]) && !database.buyingRequestExists(new_data[1], new_data[3]))
+                return database.insert(table_name, new_data);
+        } else {
+            new_data = data;
+            if (!database.buyingRequestExists(new_data[1], new_data[3]) && !database.tradeRequestExists(new_data[1], new_data[3]))
+                return database.insert(table_name, new_data);
+
         }
-        new_data[new_data.length-1] = trade_id;
-        setCurrent_trade_id(null);
-        if(!database.buyingRequestExists(data[1],data[3]))
-            return database.insert("BuyingRequests",new_data);
         return false;
+
+    }
+
+
+    public boolean trade_req_exists(String vac_id, String buyer_user_name) {
+        return database.tradeRequestExists(vac_id,buyer_user_name);
     }
 
     public boolean updateRequest(String requestID, String status) {
         return database.update_one_field(status,"BuyingRequests","isApproved",requestID);
+    }
+
+    public boolean updateTradeRequest(String requestID, String status) {
+        return database.update_one_field(status,"TradeRequests","isApproved",requestID);
+
     }
 
     public String getPriceForCurrentVacation() {
@@ -341,6 +389,11 @@ public class Model {
     }
 
     public void updateMyVacation(String vacationID) {
+    }
+
+    public boolean delete_trade_request() {
+        boolean flag =  database.delete(getCurrent_buying_request().getRequestID(), "TradeRequests");
+        return flag;
     }
 }
 
