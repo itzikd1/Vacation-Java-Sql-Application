@@ -356,9 +356,9 @@ public class Controller {
         return model.insertBuyingRequest(details);
     }
 
-    public boolean trade_req_exists(String vac_id ) {
+    public boolean req_exists(String vac_id ) {
         String buyer = get_connected_user_id();
-        return model.trade_req_exists(vac_id,buyer);
+        return model.trade_req_exists(vac_id,buyer) || model.buying_req_exists(vac_id,buyer);
     }
 
 

@@ -131,11 +131,12 @@ public class VacationsForSearchRow {
                 }
 
                     try {
-                        if (controller.trade_req_exists(vacation.getVacationID())) {
+                        if (controller.req_exists(vacation.getVacationID())) {
                             Alert alert = new Alert(Alert.AlertType.ERROR);
                             alert.setTitle("Why asking Trading again?!");
                             alert.setHeaderText("You already request to trade or to buy this vacation. \nPlease keep calm and check your trade requests page soon");
                             alert.showAndWait();
+                            return;
                         }
                         else {
                             // Controller.setVacationIDForTrade(vacation.getVacationID());
@@ -199,6 +200,13 @@ public class VacationsForSearchRow {
                     return;
                 }
                 try {
+                    if (controller.req_exists(vacation.getVacationID())) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Why asking Buyinh again?!");
+                        alert.setHeaderText("You already request to trade or to buy this vacation. \nPlease keep calm and check your trade requests page soon");
+                        alert.showAndWait();
+                        return;
+                    }
                     flag = controller.insertBuyingRequest(vacation.getVacationID(), vacation.getUserName());
                 } catch (V4UException e) {
                     System.out.println("error in insert");

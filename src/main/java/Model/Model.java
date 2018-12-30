@@ -362,6 +362,10 @@ public class Model {
     }
 
 
+    public boolean buying_req_exists(String vac_id, String buyer_user_name) {
+        return database.buyingRequestExists(vac_id,buyer_user_name);
+    }
+
     public boolean trade_req_exists(String vac_id, String buyer_user_name) {
         return database.tradeRequestExists(vac_id,buyer_user_name);
     }
