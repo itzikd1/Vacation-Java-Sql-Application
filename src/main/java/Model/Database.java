@@ -273,6 +273,13 @@ class Database {
 
     }
 
+    public boolean deleteAllForUser (String user_name, String tableName, String field) {
+        String[] fields = fieldsOfTables.get(tableName);
+        String sql = "DELETE FROM " + tableName + " WHERE " + field + " = '" + user_name + "'";
+        return runQuery(sql);
+
+    }
+
     public boolean update (String[] data, String tableName) {
         String[] fields = fieldsOfTables.get(tableName);
         String sql = "UPDATE " + tableName + " SET ";
@@ -444,6 +451,13 @@ class Database {
             String[] fields = fieldsOfTables.get(tableName);
             String sql = "DELETE FROM " + tableName + " WHERE " + "VacationID" + " = '" + vacationID + "'";
             return runQuery(sql);
+    }
+
+    public boolean update_one_fieldForUserName(String data, String tableName, String field, String fiels_to_compare, String key) {
+        String[] fields = fieldsOfTables.get(tableName);
+
+        String sql = "UPDATE " + tableName + " SET " + field + " = '" + data +"' WHERE " + fiels_to_compare + " LIKE '" + key + "'";
+        return runQuery(sql);
     }
 
 

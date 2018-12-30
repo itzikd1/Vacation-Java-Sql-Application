@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="522.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Vacations.MyVacationsForTradeView">
+<AnchorPane prefHeight="522.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Vacations.MyVacationsForTradeView">
     <children>
         <ImageView fitHeight="522.0" fitWidth="834.0" layoutX="-19.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -43,7 +43,6 @@
                 <TableColumn fx:id="returnDate" prefWidth="110.0" text="Return" />
                 <TableColumn fx:id="moreDetails" prefWidth="123.0" text="More Details" />
                 <TableColumn fx:id="trade" minWidth="2.0" prefWidth="112.0" text="Trade" />
-                <TableColumn fx:id="delete" prefWidth="95.0" text="Delete" />
             </columns>
         </TableView>
     </children>

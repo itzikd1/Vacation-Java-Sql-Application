@@ -113,14 +113,21 @@ public class Model {
 
     public boolean delete_user() {
         boolean flag =  database.delete(connected_user.getUsername(), "Users");
-        if (flag)
-            delete_all_for_user(connected_user.getUsername());
+        if (flag) {
+            flag = delete_all_for_user(connected_user.getUsername());
             log_out();
+        }
         return flag;
     }
 
-    private void delete_all_for_user(String username) {
-        //boolean flag
+    private boolean delete_all_for_user(String username) {
+        boolean flag1 = database.deleteAllForUser(username, "BuyingRequests","SellerUserName");
+        boolean flag2 = database.deleteAllForUser(username, "BuyingRequests","BuyerUserName");
+        boolean flag3 = database.deleteAllForUser(username, "TradeRequests","SellerUserName");
+        boolean flag4 = database.deleteAllForUser(username, "TradeRequests","BuyerUserName");
+        boolean flag5 = database.update_one_fieldForUserName("Sold","Vacations", "Status", "UserName",username);
+        return flag1 && flag2 && flag3 && flag4 && flag5;
+
     }
 
     public boolean delete_buying_request() {

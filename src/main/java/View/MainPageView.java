@@ -69,7 +69,8 @@ public class MainPageView implements Initializable {
         password = tf_password.getText();
         Object[] user_date = new Object[]{user, password};
         Alert alert = new Alert(Alert.AlertType.WARNING,
-                "Are you sure you want to delete your account?",
+                "Are you sure you want to delete your account?\n this mean all of your buying and trading" +
+                        "requests will be deleted immedietly!\n this act is irreversable act!",
                 ButtonType.YES, ButtonType.NO);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.YES) {
@@ -217,7 +218,7 @@ public class MainPageView implements Initializable {
         if (controller.get_connected_user_id() ==null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Log in");
-            alert.setHeaderText("Only signed users are allowing to public vacations for sell\nPlease log in and try again");
+            alert.setHeaderText("Only signed users are allowing to public vacations for sell\nPlease log in or sign up a new account and try again");
             alert.showAndWait();
             return;
         }
