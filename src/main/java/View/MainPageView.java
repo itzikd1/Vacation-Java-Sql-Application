@@ -69,7 +69,7 @@ public class MainPageView implements Initializable {
         password = tf_password.getText();
         Object[] user_date = new Object[]{user, password};
         Alert alert = new Alert(Alert.AlertType.WARNING,
-                "Are you sure you want to delete_user your account?",
+                "Are you sure you want to delete your account?",
                 ButtonType.YES, ButtonType.NO);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.YES) {

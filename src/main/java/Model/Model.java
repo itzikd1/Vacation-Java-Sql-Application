@@ -114,8 +114,13 @@ public class Model {
     public boolean delete_user() {
         boolean flag =  database.delete(connected_user.getUsername(), "Users");
         if (flag)
+            delete_all_for_user(connected_user.getUsername());
             log_out();
         return flag;
+    }
+
+    private void delete_all_for_user(String username) {
+        //boolean flag
     }
 
     public boolean delete_buying_request() {

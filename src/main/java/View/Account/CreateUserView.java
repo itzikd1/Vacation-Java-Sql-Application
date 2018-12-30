@@ -37,12 +37,23 @@ public class CreateUserView implements Initializable {
 
         Object[] user_details = new Object[]{user, password, bd, fn, ln, city};
         try {
-            controller.insertNewUser("Users", user_details);
+            boolean flag = controller.insertNewUser("Users", user_details);
             Stage s = (Stage) BackButton.getScene().getWindow();
-            s.close();
+
             //ChangeScene();
 
-            updateLoginOnGui();
+            if (flag) {
+                updateLoginOnGui();
+                s.close();
+            }
+
+            else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("your username is already in use, please choose another");
+                alert.showAndWait();
+                return;
+            }
         } catch (V4UException e) {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

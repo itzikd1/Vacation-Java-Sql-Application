@@ -41,7 +41,7 @@ class Database {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             flag = false;
         }
         finally {
@@ -49,6 +49,7 @@ class Database {
         }
         return flag;
     }
+
 
     private String[] runQueryReturnOutput (String sql, String tableName){
         ResultSet result = null;
